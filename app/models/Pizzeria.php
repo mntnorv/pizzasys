@@ -1,9 +1,7 @@
 <?php
 
 class Pizzeria extends Eloquent {
-	protected $fillable = array(
-		'name',
-		'address',
-		'city_id'
-	);
+	public function city() {
+		return $this->belongsTo('City');
+	}
 }
