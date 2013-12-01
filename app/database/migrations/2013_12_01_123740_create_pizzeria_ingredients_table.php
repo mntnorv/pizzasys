@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePizzeriasTable extends Migration {
+class CreatePizzeriaIngredientsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,10 +11,11 @@ class CreatePizzeriasTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('pizzerias', function($table) {
+		Schema::create('pizzeria_ingredients', function($table) {
 			$table->increments('id');
-			$table->string('name');
-			$table->string('address');
+			$table->double('quantity');
+			$table->integer('pizzeria_id')->unsigned();
+			$table->foreign('pizzeria_id')->references('id')->on('pizzerias');
 			$table->integer('city_id')->unsigned();
 			$table->foreign('city_id')->references('id')->on('cities');
 		});
@@ -27,7 +28,7 @@ class CreatePizzeriasTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('pizzerias');
+		Schema::drop('pizzeria_ingredients');
 	}
 
 }
