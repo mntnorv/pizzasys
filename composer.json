@@ -4,7 +4,11 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.0.*"
+		"laravel/framework": "4.0.*",
+		"jasonlewis/basset": "4.0.*@dev",
+		"leafo/lessphp": "v0.4.0",
+		"natxet/CssMin": "dev-master",
+		"mrclay/minify": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
