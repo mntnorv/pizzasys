@@ -1,6 +1,8 @@
 <?php
 
 class Food extends Eloquent {
+	$table = "food";
+	
 	public function type() {
 		return $this->belongsTo('FoodType');
 	}
