@@ -14,10 +14,15 @@ class CreateDiscountsTable extends Migration {
 		Schema::create('discounts', function($table) {
 			$table->increments('id');
 			$table->string('name');
-			$table->integer('discount_to')->unsigned();
+			$table->integer('discount_to_food')->unsigned()->nullable();
+			$table->foreign('discount_to_food')->references('id')->on('food');
+			$table->integer('discount_to_food_type')->unsigned()->nullable();
+			$table->foreign('discount_to_food_type')->on('food_types');
+			$table->integer('discount_to_order')->unsigned()->nullable();
+			$table->foreign('discount_to_order')->on('orders');
 			$table->integer('type')->unsigned();
 			$table->foreign('type')->references('id')->on('discount_types');
-			$table->double('amount');
+			$table->double('percentage');
 		});
 	}
 
