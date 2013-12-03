@@ -2,12 +2,17 @@
 
 class PizzeriaTableSeeder extends Seeder {
 	public function run() {
-		DB::table('users')->delete();
+		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+		DB::table('pizzerias')->delete();
+		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-		Pizzeria::create(array(
+		$pizzeria = new Pizzeria(array(
 			'name' => 'Kauno picerija',
-			'address' => 'Saulės gatvė 41',
-			'city_id' => 27
+			'address' => 'Saulės gatvė 41'
 		));
+
+		$city = City::where('name', '=', 'Kaunas')->first();
+		$pizzeria->city()->associate($city);
+		$pizzeria->save();
 	}
 }

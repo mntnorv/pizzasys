@@ -2,7 +2,9 @@
 
 class CityTableSeeder extends Seeder {
 	public function run() {
-		DB::table('users')->delete();
+		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+		DB::table('cities')->delete();
+		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 		City::create(array('name' => 'Akmenė'));
 		City::create(array('name' => 'Alytus'));

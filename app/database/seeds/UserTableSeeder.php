@@ -2,7 +2,9 @@
 
 class UserTableSeeder extends Seeder {
 	public function run() {
+		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 		DB::table('users')->delete();
+		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 		User::create(array(
 			'id'         => 1,
