@@ -16,6 +16,7 @@ class CreateIngredientsTable extends Migration {
 			$table->string('name');
 			$table->integer('type')->unsigned();
 			$table->foreign('type')->references('id')->on('ingredient_types');
+			$table->timestamps();
 		});
 	}
 

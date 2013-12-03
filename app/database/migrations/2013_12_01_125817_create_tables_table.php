@@ -16,6 +16,7 @@ class CreateTablesTable extends Migration {
 			$table->string('name');
 			$table->integer('pizzeria_id')->unsigned();
 			$table->foreign('pizzeria_id')->references('id')->on('pizzerias');
+			$table->timestamps();
 		});
 	}
 

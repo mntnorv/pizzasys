@@ -14,6 +14,7 @@ class CreateReportTypesTable extends Migration {
 		Schema::create('report_types', function($table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->timestamps();
 		});
 	}
 

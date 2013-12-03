@@ -14,6 +14,7 @@ class CreateDiscountTypesTable extends Migration {
 		Schema::create('discount_types', function($table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->timestamps();
 		});
 	}
 

@@ -17,6 +17,7 @@ class CreatePizzeriasTable extends Migration {
 			$table->string('address');
 			$table->integer('city_id')->unsigned();
 			$table->foreign('city_id')->references('id')->on('cities');
+			$table->timestamps();
 		});
 	}
 

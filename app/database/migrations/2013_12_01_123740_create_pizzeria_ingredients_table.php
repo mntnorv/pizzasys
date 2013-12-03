@@ -18,6 +18,7 @@ class CreatePizzeriaIngredientsTable extends Migration {
 			$table->foreign('pizzeria_id')->references('id')->on('pizzerias');
 			$table->integer('ingredient_id')->unsigned();
 			$table->foreign('ingredient_id')->references('id')->on('ingredients');
+			$table->timestamps();
 		});
 	}
 

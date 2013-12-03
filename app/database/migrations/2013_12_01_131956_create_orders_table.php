@@ -15,7 +15,6 @@ class CreateOrdersTable extends Migration {
 			$table->increments('id');
 			$table->integer('state')->unsigned();
 			$table->foreign('state')->references('id')->on('order_states');
-			$table->timestamp('created_at');
 			$table->integer('type')->unsigned();
 			$table->foreign('type')->references('id')->on('order_types');
 			$table->integer('pizzeria_id')->unsigned();
@@ -26,6 +25,7 @@ class CreateOrdersTable extends Migration {
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->string('address');
 			$table->double('price');
+			$table->timestamps();
 		});
 	}
 

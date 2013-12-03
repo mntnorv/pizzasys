@@ -14,6 +14,7 @@ class CreateOrderStatesTable extends Migration {
 		Schema::create('order_states', function($table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->timestamps();
 		});
 	}
 

@@ -14,6 +14,7 @@ class CreateOrderTypesTable extends Migration {
 		Schema::create('order_types', function($table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->timestamps();
 		});
 	}
 

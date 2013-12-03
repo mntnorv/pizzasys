@@ -17,6 +17,7 @@ class CreateFoodTable extends Migration {
 			$table->integer('type')->unsigned();
 			$table->foreign('type')->references('id')->on('food_types');
 			$table->double('price');
+			$table->timestamps();
 		});
 	}
 

@@ -18,6 +18,7 @@ class CreateOrderFoodTable extends Migration {
 			$table->integer('food_id')->unsigned();
 			$table->foreign('food_id')->references('id')->on('food');
 			$table->integer('amount')->unsigned();
+			$table->timestamps();
 		});
 	}
 

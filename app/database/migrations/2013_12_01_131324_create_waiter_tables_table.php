@@ -17,6 +17,7 @@ class CreateWaiterTablesTable extends Migration {
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->integer('table_id')->unsigned()->nullable();
 			$table->foreign('table_id')->references('id')->on('tables');
+			$table->timestamps();
 		});
 	}
 

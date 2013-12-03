@@ -19,6 +19,7 @@ class CreateReportsTable extends Migration {
 			$table->integer('discount_to')->unsigned();
 			$table->integer('type')->unsigned();
 			$table->foreign('type')->references('id')->on('discount_types');
+			$table->timestamps();
 		});
 	}
 

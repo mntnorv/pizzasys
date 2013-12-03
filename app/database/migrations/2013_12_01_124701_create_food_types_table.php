@@ -14,6 +14,7 @@ class CreateFoodTypesTable extends Migration {
 		Schema::create('food_types', function($table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->timestamps();
 		});
 	}
 

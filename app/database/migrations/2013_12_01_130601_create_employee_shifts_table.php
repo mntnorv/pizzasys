@@ -16,6 +16,7 @@ class CreateEmployeeShiftsTable extends Migration {
 			$table->string('name');
 			$table->time('starts_at');
 			$table->time('ends_at');
+			$table->timestamps();
 		});
 	}
 

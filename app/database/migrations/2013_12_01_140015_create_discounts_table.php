@@ -23,6 +23,7 @@ class CreateDiscountsTable extends Migration {
 			$table->integer('type')->unsigned();
 			$table->foreign('type')->references('id')->on('discount_types');
 			$table->double('percentage');
+			$table->timestamps();
 		});
 	}
 
