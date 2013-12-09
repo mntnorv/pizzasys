@@ -15,10 +15,11 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('username', 16);
 			$table->string('password', 64);
-			$table->integer('type')->unsigned();
-			$table->foreign('type')->references('id')->on('user_types');
-			$table->integer('shift')->unsigned()->nullable();
-			$table->foreign('shift')->references('id')->on('employee_shifts');
+			$table->integer('user_type_id')->unsigned();
+			$table->foreign('user_type_id')->references('id')->on('user_types');
+			$table->integer('shift_id')->unsigned()->nullable();
+			$table->foreign('shift_id')->references('id')->on('employee_shifts');
+			$table->integer('blocked')->default(0);
 			$table->timestamps();
 		});
 	}

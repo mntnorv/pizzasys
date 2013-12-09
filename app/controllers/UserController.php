@@ -94,25 +94,4 @@ class UserController extends BaseController {
 		return View::make('profile');
 	}
 
-	/*
-	| GET /manage
-	*/
-	public function showUserManage(){
-		$users = User::All();
-
-		return View::make('manage', array("users" => $users));
-	}
-
-	public function toSimpleArray($key = 'id', $value = 'name')
-	{
-		$final = array();
-
-		foreach ($this->items as $item)
-		{
-			$final[$item->{$key}] = $item->{$value};
-		}
-
-		return $final;
-	}
-
 }
