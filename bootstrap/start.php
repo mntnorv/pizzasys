@@ -28,7 +28,7 @@ $app->redirectIfTrailingSlash();
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('manto-desktop'),
+	'local' => array('ThrOne-PC'),
 
 ));
 

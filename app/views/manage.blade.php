@@ -9,7 +9,7 @@
 
 	<!-- Grid-->
 	<div class="row">
-		<!-- Login form-->
+		<!-- User manage form-->
 		<div class="col-sm-6">
 			@include('forms/manage_form')
 		</div>

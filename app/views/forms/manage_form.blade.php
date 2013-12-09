@@ -1,6 +1,4 @@
 {{ Form::model($users, array('class' => 'form-horizontal', 'id' => 'user-manage-form')) }}
-<?php var_dump(UserType::All()->lists('name', 'id')); ?>
-
 
 	<!-- Username select -->
 	<div class="form-group">
@@ -14,7 +12,7 @@
 	<div class="form-group">
 		{{ Form::label('blocked', 'Blokuotas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::checkbox('blocked', 'value', $users->find(1)->blocked === 1 ? true : false, NULL)}}
+			{{ Form::checkbox('blocked', NULL, $users->find(1)->blocked === 1 ? true : false, NULL)}}
 		</div>
 	</div>
 
@@ -22,7 +20,7 @@
 	<div class="form-group">
 		{{ Form::label('type', 'Tipas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::select('type', $userTypes, NULL, array( 'class' => 'form-control'))}}
+			{{ Form::select('type', $userTypes, $users->find(1)->user_type_id, array( 'class' => 'form-control'))}}
 		</div>
 	</div>
 

@@ -59,6 +59,9 @@ Route::group(array('prefix' => 'admin'), function() {
 
 	Route::get('users', array('uses' => 'AdminController@showUserManage', 
 		'as' => 'users'))->before('auth');
+
+	Route::post('users', array('uses' => 'AdminController@handleUserManage', 
+		'as' => 'users.post'))->before('auth');
 });
 
 Route::group(array('prefix' => 'api'), function() {
