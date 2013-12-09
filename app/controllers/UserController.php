@@ -13,15 +13,15 @@ class UserController extends BaseController {
 
 		if (Auth::attempt($user)) {
 			return Redirect::route('home')
-			->with('flash_message', 'You have successfully logged in.')
-			->with('flash_type', 'success');
+				->with('flash_message', 'You have successfully logged in.')
+				->with('flash_type', 'success');
 		}
 
 		// authentication failure! lets go back to the login page
 		return Redirect::route('login')
-		->with('flash_message', 'Your username/password combination was incorrect.')
-		->with('flash_type', 'error')
-		->withInput();
+			->with('flash_message', 'Your username/password combination was incorrect.')
+			->with('flash_type', 'error')
+			->withInput();
 	}
 
 	/*
@@ -33,31 +33,33 @@ class UserController extends BaseController {
 			'username' => Input::get('username'),
 			'password'  =>Input::get('password'),
 			'password_confirmation'=> strtolower(Input::get('password_confirmation'))
-			);
+		);
+
 		$rules = array(
 			'username' => 'Required|Between:6,20|AlphaNum|Unique:users',
-			'password'  =>'Required|AlphaNum|Between:6,32|Confirmed',
+			'password' =>'Required|AlphaNum|Between:6,32|Confirmed',
 			'password_confirmation'=>'Required|AlphaNum|Between:6,32'
-			);
+		);
 
 		$validator = Validator::make($user_for_test, $rules);	
 
-		if( $validator->passes() ) {
+		if ($validator->passes()) {
 			$user = new User;
 			$user->username = $user_for_test['username'];
-			$user->password = Hash::make( $user_for_test['password']);
+			$user->password = Hash::make($user_for_test['password']);
+			$user->user_type_id = 4;
 			$user->save();
 
 			return Redirect::route('login')
-			->with('flash_message', 'You have successfully registered')
-			->with('flash_type', 'success');
+				->with('flash_message', 'You have successfully registered')
+				->with('flash_type', 'success');
 		} else { 
-			$errors =  $validator->messages()->all();
+			$errors = $validator->messages()->all();
 			$error_messages = implode('<br/>', $errors);
 
 			return Redirect::route('register')
-			->with('flash_message', $error_messages)
-			->with('flash_type', 'error');
+				->with('flash_message', $error_messages)
+				->with('flash_type', 'error');
 		}		
 	}
 
@@ -68,8 +70,8 @@ class UserController extends BaseController {
 		Auth::logout();
 
 		return Redirect::route('home')
-		->with('flash_message', 'You have successfully logged out.')
-		->with('flash_type', 'success');
+			->with('flash_message', 'You have successfully logged out.')
+			->with('flash_type', 'success');
 	}
 
 
