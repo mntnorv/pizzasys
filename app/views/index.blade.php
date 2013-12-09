@@ -2,6 +2,8 @@
 
 @section('content')
 
-pizzasys
+<div class="container">
+	pizzasys
+</div>
 
 @stop

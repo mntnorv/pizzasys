@@ -35,9 +35,7 @@ return array(
             // collection will contain valid CSS.
             $directory = $collection->directory('assets/stylesheets', function($collection)
             {
-                $collection->requireDirectory('less')->apply('Less');
-                $collection->requireDirectory('sass')->apply('Sass');
-                $collection->requireDirectory();
+                $collection->requireDirectory()->apply('Less');
             });
 
             $directory->apply('CssMin');
@@ -53,7 +51,28 @@ return array(
             });
 
             $directory->apply('JsMin');
-        }
+        },
+
+        'main' => function($collection)
+        {
+            $directory = $collection->directory('assets/stylesheets', function($collection)
+            {
+                $collection->stylesheet('bootstrap-custom.less');
+                $collection->stylesheet('application.less');
+            });
+
+            $directory->apply('Less');
+            $directory->apply('CssMin');
+            $directory->apply('UriRewriteFilter');
+
+            $directory = $collection->directory('assets/javascripts', function($collection)
+            {
+                $collection->requireDirectory('libs');
+                $collection->requireDirectory();
+            });
+
+            $directory->apply('JsMin');
+        },
 
     ),
 
@@ -179,7 +198,7 @@ return array(
             |
             */
 
-            'Less' => array('PhpLessFilter', function($filter)
+            'Less' => array('LessphpFilter', function($filter)
             {
                 $filter->whenAssetIs('.*\.less')->findMissingConstructorArgs();
             }),
