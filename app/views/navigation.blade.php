@@ -14,12 +14,6 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				@if(Auth::check())
-					<?php $requestCount = UserController::getPendingRequestsCount(); ?>
-					@if($requestCount > 0)
-						<li>{{ link_to(route('contacts'),'Contacts ('.$requestCount.')',[]) }}</li>
-					@else
-						<li>{{ link_to(route('contacts'),'Contacts',[]) }}</li>
-					@endif
 					<li>{{ link_to(route('profile'),'Profile',[]) }}</li>
 					<li>{{ link_to(route('logout'),'Logout ('.Auth::user()->username.')',[]) }}</li>
 				@else
