@@ -14,8 +14,8 @@ class CreateFoodTable extends Migration {
 		Schema::create('food', function($table) {
 			$table->increments('id');
 			$table->string('name');
-			$table->integer('type')->unsigned();
-			$table->foreign('type')->references('id')->on('food_types');
+			$table->integer('food_type_id')->unsigned();
+			$table->foreign('food_type_id')->references('id')->on('food_types');
 			$table->double('price');
 			$table->timestamps();
 		});

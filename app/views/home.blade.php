@@ -7,7 +7,16 @@
 		<ul class="category-list">
 			@foreach ($foodTypes as $type)
 				<li>
-					{{ $type->name }}
+					{{
+						link_to_route(
+							'foodCategory',
+							$type->displayName,
+							$parameters = array(
+								'category' => $type->name
+							),
+							$attributes = array()
+						)
+					}}
 				</li>
 			@endforeach
 		</ul>

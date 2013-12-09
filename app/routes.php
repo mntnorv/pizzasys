@@ -18,10 +18,10 @@ Route::get('/', array('uses' => 'HomeController@showHome',
 | UserController routes
 */
 
-Route::post('login',      'UserController@handleLogin')
+Route::post('login', 'UserController@handleLogin')
 	->before('csrf');
 
-Route::post('register',   'UserController@handleRegistration')
+Route::post('register', 'UserController@handleRegistration')
 	->before('csrf');
 
 Route::post('acceptrequest', array('uses' => 'UserController@acceptFriendRequest',
@@ -36,6 +36,9 @@ Route::get('logout',   array('uses' => 'UserController@handleLogout',
 Route::get('login',    array('uses' => 'UserController@showLogin',
 	'as' => 'login'))->before('guest');
 
+Route::get('category/{category}', array('uses' => 'HomeController@showCategory',
+	'as' => 'foodCategory'));
+
 Route::group(array('prefix' => 'user'), function() {
 
 	Route::get('profile',     array('uses' => 'UserController@showProfile',
@@ -46,15 +49,14 @@ Route::group(array('prefix' => 'user'), function() {
 
 	Route::get('contacts',    array('uses' => 'UserController@showContacts', 
 		'as' => 'contacts'))->before('auth');
-
 });
 
 Route::group(array('prefix' => 'admin'), function() {
 
-	Route::get('index',     array('uses' => 'AdminController@showIndex',
+	Route::get('index', array('uses' => 'AdminController@showIndex',
 		'as' => 'index'))->before('auth');
 
-		Route::get('users', array('uses' => 'AdminController@showUserManage', 
+	Route::get('users', array('uses' => 'AdminController@showUserManage', 
 		'as' => 'users'))->before('auth');
 });
 
