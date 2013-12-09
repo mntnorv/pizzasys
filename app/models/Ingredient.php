@@ -1,7 +1,7 @@
 <?php
 
 class Ingredient extends Eloquent {
-	public function type() {
+	public function ingredientType() {
 		return $this->belongsTo('IngredientType');
 	}
 

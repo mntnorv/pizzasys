@@ -16,7 +16,22 @@ class HomeController extends BaseController {
 	*/
 
 	public function showHome() {
-		return View::make('home');
+		$food = Food::all();
+		$foodTypes = FoodType::all();
+		
+		return View::make('home', array(
+			'food'      => $food,
+			'foodTypes' => $foodTypes
+		));
+	}
+
+	public function showCategory($category) {
+		$categoryObj = FoodType::where('name', '=', $category)->first();
+		$food = Food::where('food_type_id', '=', $categoryObj->id)->get();
+
+		return View::make('food_category', array(
+			'food' => $food
+		));
 	}
 
 }

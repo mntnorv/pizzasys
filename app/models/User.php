@@ -57,11 +57,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->belongsTo('UserType');
 	}
 
-	public function shift(){
+	public function shift() {
 		return $this->belongsTo('EmployeeShift');
 	}
 
-	public function orders(){
+	public function orders() {
 		return $this->hasMany('Order');
 	}
 

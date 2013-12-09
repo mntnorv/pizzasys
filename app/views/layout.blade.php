@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Chattr</title>
+	<title>Pizzasys</title>
 	@stylesheets('main')
 	@javascripts('main')
 </head>

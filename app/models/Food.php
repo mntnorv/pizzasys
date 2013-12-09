@@ -1,9 +1,9 @@
 <?php
 
 class Food extends Eloquent {
-	$table = "food";
+	protected $table = "food";
 	
-	public function type() {
+	public function foodType() {
 		return $this->belongsTo('FoodType');
 	}
 
