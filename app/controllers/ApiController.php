@@ -20,8 +20,29 @@ class ApiController extends BaseController {
 	/*
 	| GET /food
 	*/
-	public function getFood(){
+	public function getFood() {
 		$food = Food::all();
-		return Response::json(array('food' => $food->toArray()));
+
+		return Response::json(array(
+			'food' => $food->toArray()
+		));
+	}
+
+	/*
+	| GET /food/{type}
+	*/
+	public function getFoodByType($type_id) {
+		$type = FoodType::where('name', '=', $type_id)->first();
+
+		if ($type == NULL) {
+			$error['error'] = "Invalid food type";
+			return json_encode($error);
+		}
+
+		$food = Food::where('food_type_id', '=', $type->id)->get();
+
+		return Response::json(array(
+			'food' => $food->toArray()
+		));
 	}
 }

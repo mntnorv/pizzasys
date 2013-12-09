@@ -1,13 +1,11 @@
+<li><a href="#">Visi</a></li>
+
 @foreach ($foodTypes as $type)
-	<li>
+	<li data-food-type="{{$type->name}}">
 		{{
-			link_to_route(
-				'foodCategory',
-				$type->displayName,
-				$parameters = array(
-					'category' => $type->name
-				),
-				$attributes = array()
+			link_to(
+				'#' . $type->name,
+				$type->displayName
 			)
 		}}
 	</li>

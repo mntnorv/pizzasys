@@ -14,7 +14,6 @@
 	</div>
 	<div class="col-md-9">
 		<div id="home-food-list" class="row food-list">
-			
 		</div>
 	</div>
 </div>
