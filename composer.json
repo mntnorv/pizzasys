@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.0.*",
-		"codesleeve/asset-pipeline": "dev-master"
+		"codesleeve/asset-pipeline": "dev-master",
+		"codesleeve/l4-asset-handlebars": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

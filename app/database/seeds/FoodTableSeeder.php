@@ -7,8 +7,26 @@ class FoodTableSeeder extends Seeder {
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 		Food::create(array(
-			'name'         => 'Skani pica',
+			'name'         => 'Capricioza',
 			'food_type_id' => 1,
+			'price'        => 1
+		));
+
+		Food::create(array(
+			'name'         => 'Steikas',
+			'food_type_id' => 2,
+			'price'        => 1
+		));
+
+		Food::create(array(
+			'name'         => 'Koldūnai',
+			'food_type_id' => 3,
+			'price'        => 1
+		));
+
+		Food::create(array(
+			'name'         => 'Coca cola',
+			'food_type_id' => 4,
 			'price'        => 1
 		));
 	}

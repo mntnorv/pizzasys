@@ -29,8 +29,7 @@ class AdminController extends BaseController {
 		if(!in_array($_POST['user_id'], $typeKeys)){
 			return json_encode($error['error'] = "Unknown user");
 		}
-
-		
+	
 		//Update user
 		$changed = false;
 		$user = User::find($_POST['user_id']);
