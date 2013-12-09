@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Pizzasys</title>
-	@stylesheets('main')
-	@javascripts('main')
+	<?= stylesheet_link_tag() ?>
+	<?= javascript_include_tag() ?>
 </head>
 <body>
 	@include('navigation')
