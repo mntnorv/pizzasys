@@ -1,19 +1,20 @@
-{{ Form::model($users, array('class' => 'form-horizontal')) }}
-{{var_dump($users[0]->type())}}
+{{ Form::model($users, array('class' => 'form-horizontal', 'id' => 'user-manage-form')) }}
+<?php var_dump(UserType::All()->lists('name', 'id')); ?>
+
 
 	<!-- Username select -->
 	<div class="form-group">
-		{{ Form::label('username', 'Username:', array('class' => 'col-md-4 control-label')) }}
+		{{ Form::label('user', 'Username:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::select('username', $users->lists('username', 'id'), NULL, array( 'class' => 'form-control')) }}
+			{{ Form::select('user', $users->lists('username', 'id'), NULL, array( 'class' => 'form-control')) }}
 		</div>
 	</div>
 
 	<!-- User controls blocked -->
 	<div class="form-group">
-		{{ Form::label('blokuotas', 'Blokuotas:', array('class' => 'col-md-4 control-label')) }}
+		{{ Form::label('blocked', 'Blokuotas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::checkbox('blokuotas', '1', NULL, NULL)}}
+			{{ Form::checkbox('blocked', NULL, NULL, NULL)}}
 		</div>
 	</div>
 
@@ -21,9 +22,18 @@
 	<div class="form-group">
 		{{ Form::label('type', 'Tipas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::select('tipas', 'xujotas', NULL, NULL)}}
+			{{ Form::select('type', $userTypes, NULL, array( 'class' => 'form-control'))}}
 		</div>
 	</div>
+
+	<!-- User controls password-->
+	<div class="form-group">
+		{{ Form::label('password', 'Slaptažodis:', array('class' => 'col-md-4 control-label')) }}
+		<div class="col-md-8">
+			{{ Form::text('password', NULL, array( 'class' => 'form-control'))}}
+		</div>
+	</div>
+
 
 	<!-- Submit button -->
 	<div class="form-group">

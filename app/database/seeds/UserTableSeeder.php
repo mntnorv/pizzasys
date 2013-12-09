@@ -10,7 +10,14 @@ class UserTableSeeder extends Seeder {
 			'id'         => 1,
 			'username'   => 'admin',
 			'password'   => '$2a$04$BxXsZLfneByzlNzfKuN2PewrNQPa.jK4yafgLsnl48PRAY.61UH.2',
-			'type'       => 1
+			'user_type_id'       => 1
+		));
+		
+		User::create(array(
+			'id'         => 2,
+			'username'   => 'notadmin',
+			'password'   => '$2a$04$BxXsZLfneByzlNzfKuN2PewrNQPa.jK4yafgLsnl48PRAY.61UH.2',
+			'user_type_id'       => 2
 		));
 	}
 }

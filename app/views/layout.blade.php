@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Chattr</title>
-	@stylesheets('application')
-	@javascripts('application')
+	<title>Pizzasys</title>
+	@stylesheets('main')
+	@javascripts('main')
 </head>
 <body>
 	@include('navigation')
