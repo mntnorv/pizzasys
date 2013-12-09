@@ -50,3 +50,9 @@ Route::group(array('prefix' => 'user'), function() {
 	Route::get('manage', array('uses' => 'UserController@showUserManage', 
 		'as' => 'manage'))->before('auth');
 });
+
+Route::group(array('prefix' => 'admin'), function() {
+
+	Route::get('index',     array('uses' => 'AdminController@showIndex',
+		'as' => 'index'))->before('auth');
+});
