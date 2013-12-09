@@ -4,8 +4,8 @@
 
 <div class="jumbotron">
 	<div class="container">
-		<h1>Welcome to Chattr</h1>
-		<p>A video chat application that does not require any plugins</p>
+		<h1>Welcome to Pizzasys</h1>
+		<p>A pizzeria management system</p>
 		<p>{{ link_to(route('register'),'Register now &raquo;',['class'=>'btn btn-primary btn-lg']) }}</p>
 	</div>
 </div>
