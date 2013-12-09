@@ -6,7 +6,7 @@
 	<div class="form-group">
 		{{ Form::label('user', 'Username:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::select('user', $users->lists('username', 'id'), NULL, array( 'class' => 'form-control')) }}
+			{{ Form::select('user_id', $users->lists('username', 'id'), NULL, array( 'class' => 'form-control', 'id' => 'user_id')) }}
 		</div>
 	</div>
 
@@ -14,7 +14,7 @@
 	<div class="form-group">
 		{{ Form::label('blocked', 'Blokuotas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::checkbox('blocked', NULL, NULL, NULL)}}
+			{{ Form::checkbox('blocked', 'value', $users->find(1)->blocked === 1 ? true : false, NULL)}}
 		</div>
 	</div>
 

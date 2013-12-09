@@ -19,10 +19,10 @@ Route::get('/', array('uses' => 'HomeController@showHome',
 */
 
 Route::post('login',      'UserController@handleLogin')
-	->before('csrf');
+->before('csrf');
 
 Route::post('register',   'UserController@handleRegistration')
-	->before('csrf');
+->before('csrf');
 
 Route::post('acceptrequest', array('uses' => 'UserController@acceptFriendRequest',
 	'as' => 'acceptrequest'))->before('auth');
@@ -54,13 +54,16 @@ Route::group(array('prefix' => 'admin'), function() {
 	Route::get('index',     array('uses' => 'AdminController@showIndex',
 		'as' => 'index'))->before('auth');
 
-		Route::get('users', array('uses' => 'AdminController@showUserManage', 
+	Route::get('users', array('uses' => 'AdminController@showUserManage', 
 		'as' => 'users'))->before('auth');
 });
 
 Route::group(array('prefix' => 'api'), function() {
 
-		Route::get('get', array('uses' => 'ApiController@get', 
-		'as' => 'api.get'))->before('auth');
+	Route::group(array('prefix' => 'get'), function() {
+			Route::get('user/{id}', array('uses' => 'ApiController@getUser', 
+				'as' => 'api.get.user'))->before('auth');
+	});
+
 });
 
