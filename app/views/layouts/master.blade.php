@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pizzasys</title>
+	<title>
+		@section('title')
+            Pizzasys
+        @show
+	</title>
 	<?= stylesheet_link_tag() ?>
 	<?= javascript_include_tag() ?>
 </head>
 <body>
-	@include('navigation')
-	@include('messages')
+	@include('partials.navigation')
+	@include('partials.messages')
 
 	@yield('content')
 
 	<div class="container">
-		@include('footer')
+		@include('partials.footer')
 	</div>
 </body>
 </html>

@@ -1,4 +1,8 @@
-@extends('layout')
+@extends('layouts.master')
+
+@section('title')
+	Home
+@stop
 
 @section('content')
 
@@ -24,8 +28,19 @@
 	<div class="col-md-9">
 		<div class="row food-list">
 			@foreach ($food as $oneFood)
-				<div class="col-md-4 food-item">
-					{{ $oneFood->name }}
+				<div class="col-md-4">
+					<div class="food-item">
+						<img
+							class="food-item-image"
+							src="{{url('assets/default_food.png')}}"
+						/>
+						<div class="food-item-name">
+							{{ $oneFood->name }}
+							<span class="pull-right">
+								{{ $oneFood->price }} Lt
+							</span>
+						</div>
+					</div>
 				</div>
 			@endforeach
 		</div>
