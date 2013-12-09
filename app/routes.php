@@ -46,4 +46,7 @@ Route::group(array('prefix' => 'user'), function() {
 
 	Route::get('contacts',    array('uses' => 'UserController@showContacts', 
 		'as' => 'contacts'))->before('auth');
+
+	Route::get('manage', array('uses' => 'UserController@showUserManage', 
+		'as' => 'manage'))->before('auth');
 });
