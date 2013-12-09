@@ -57,17 +57,20 @@ return array(
         {
             $directory = $collection->directory('assets/stylesheets', function($collection)
             {
+                $collection->stylesheet('chosen.less');
                 $collection->stylesheet('bootstrap-custom.less');
                 $collection->stylesheet('application.less');
             });
 
             $directory->apply('Less');
             $directory->apply('CssMin');
-            $directory->apply('UriRewriteFilter');
+            //$directory->apply('UriRewriteFilter');
 
             $directory = $collection->directory('assets/javascripts', function($collection)
             {
-                $collection->requireDirectory('libs');
+                $collection->javascript('libs/jquery-1.10.2.min.js');
+                $collection->javascript('libs/chosen.jquery.js');
+                $collection->javascript('libs/jquery.chained.remote.min.js');
                 $collection->requireDirectory();
             });
 

@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Pizzasys</title>
-	@stylesheets('application')
-	@javascripts('application')
+	@stylesheets('main')
+	@javascripts('main')
 </head>
 <body>
 	@include('navigation')

@@ -9,19 +9,19 @@ class UserController extends BaseController {
 		$user = array(
 			'username' => Input::get('username'),
 			'password' => Input::get('password')
-		);
+			);
 
 		if (Auth::attempt($user)) {
 			return Redirect::route('home')
-				->with('flash_message', 'You have successfully logged in.')
-				->with('flash_type', 'success');
+			->with('flash_message', 'You have successfully logged in.')
+			->with('flash_type', 'success');
 		}
 
 		// authentication failure! lets go back to the login page
 		return Redirect::route('login')
-			->with('flash_message', 'Your username/password combination was incorrect.')
-			->with('flash_type', 'error')
-			->withInput();
+		->with('flash_message', 'Your username/password combination was incorrect.')
+		->with('flash_type', 'error')
+		->withInput();
 	}
 
 	/*

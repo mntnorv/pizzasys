@@ -53,7 +53,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany('WaiterTable');
 	}
 
-	public function type() {
+	public function userType(){
 		return $this->belongsTo('UserType');
 	}
 

@@ -46,4 +46,21 @@ Route::group(array('prefix' => 'user'), function() {
 
 	Route::get('contacts',    array('uses' => 'UserController@showContacts', 
 		'as' => 'contacts'))->before('auth');
+
 });
+
+Route::group(array('prefix' => 'admin'), function() {
+
+	Route::get('index',     array('uses' => 'AdminController@showIndex',
+		'as' => 'index'))->before('auth');
+
+		Route::get('users', array('uses' => 'AdminController@showUserManage', 
+		'as' => 'users'))->before('auth');
+});
+
+Route::group(array('prefix' => 'api'), function() {
+
+		Route::get('get', array('uses' => 'ApiController@get', 
+		'as' => 'api.get'))->before('auth');
+});
+
