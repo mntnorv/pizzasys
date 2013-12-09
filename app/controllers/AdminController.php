@@ -49,8 +49,13 @@ class AdminController extends BaseController {
 				case "true":
 				$user->blocked = 1;
 				break;
+
 				case "false":
 				$user->blocked = 0;
+				break;
+
+				default:
+				return json_encode($error['error'] = "Unknown blocked value");
 				break;
 			}
 			$changed = true;

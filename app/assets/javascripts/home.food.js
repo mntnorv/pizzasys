@@ -1,4 +1,10 @@
 $(function() {
+
+	//Thanks Master but I don't need your food in my SandBox
+	if($("#home-food-list").length == 0){
+		return false;
+	}
+
 	var updateFoodItems = function(foodList, foodType) {
 		var url = "api/get/food";
 		if (foodType) {
