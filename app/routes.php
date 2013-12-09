@@ -47,3 +47,9 @@ Route::group(array('prefix' => 'user'), function() {
 	Route::get('contacts',    array('uses' => 'UserController@showContacts', 
 		'as' => 'contacts'))->before('auth');
 });
+
+Route::group(array('prefix' => 'admin'), function() {
+
+	Route::get('index',     array('uses' => 'AdminController@showIndex',
+		'as' => 'index'))->before('auth');
+});
