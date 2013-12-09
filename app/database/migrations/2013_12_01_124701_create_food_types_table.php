@@ -13,7 +13,8 @@ class CreateFoodTypesTable extends Migration {
 	{
 		Schema::create('food_types', function($table) {
 			$table->increments('id');
-			$table->string('name');
+			$table->string('name', 16)->unique();
+			$table->string('displayName');
 			$table->timestamps();
 		});
 	}
