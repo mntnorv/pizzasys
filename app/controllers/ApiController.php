@@ -17,5 +17,11 @@ class ApiController extends BaseController {
 		return $user;
 	}
 
-
+	/*
+	| GET /food
+	*/
+	public function getFood(){
+		$food = Food::all();
+		return Response::json(array('food' => $food->toArray()));
+	}
 }

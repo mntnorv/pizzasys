@@ -16,5 +16,10 @@
 //= require jquery.chained.remote
 //= require chosen.jquery
 //
+// Pizzasys handlebar templates:
+//= require handlebars
+//= require_directory handlebars
+//
 // Pizzasys javascripts:
 //= require admin.users
+//= require home.food

@@ -64,8 +64,11 @@ Route::group(array('prefix' => 'admin'), function() {
 Route::group(array('prefix' => 'api'), function() {
 
 	Route::group(array('prefix' => 'get'), function() {
-			Route::get('user/{id}', array('uses' => 'ApiController@getUser', 
-				'as' => 'api.get.user'))->before('auth');
+		Route::get('user/{id}', array('uses' => 'ApiController@getUser', 
+			'as' => 'api.get.user'))->before('auth');
+
+		Route::get('food', array('uses' => 'ApiController@getFood', 
+			'as' => 'api.get.food'));
 	});
 
 });
