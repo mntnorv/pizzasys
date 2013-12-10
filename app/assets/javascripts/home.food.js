@@ -1,20 +1,23 @@
 $(function() {
 
-	//Thanks Master but I don't need your food in my SandBox
 	var foodList = $("#home-food-list");
 	if(foodList.length == 0){
 		return false;
 	}
 
+	var cartSize = $("#cart-size");
+
 	var addToCart = function() {
 		var url = "api/cart/food";
 		var foodId = $(this).attr('data-food');
 
-		$.post(url, {'food_id': foodId})
-			.done(function (data) {
-				console.log(data);
-			})
-		;
+		$.post(url, {'food_id': foodId}, function (data) {
+			if (data.success) {
+				var size = cartSize.html();
+				size++;
+				cartSize.html(size);
+			}
+		}, 'json');
 	};
 
 	var updateFoodItems = function(foodList, foodType) {

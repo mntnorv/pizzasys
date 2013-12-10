@@ -13,9 +13,9 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li>
-					{{ link_to(route('cart'), 'Krepšelis (' . $cartSize . ')', []) }}
-				</li>
+				<li><a href="{{route('cart')}}">
+					Krepšelis (<span id="cart-size">{{$cartSize}}</span>)
+				</a></li>
 				@if(Auth::check())
 					<li>
 						{{ link_to(route('profile'), 'Profilis', []) }}
