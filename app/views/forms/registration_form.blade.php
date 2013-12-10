@@ -2,34 +2,34 @@
 
 	<!-- Username field -->
 	<div class="form-group">
-		{{ Form::label('username', 'Username:', array('class' => 'col-md-4 control-label')) }}
+		{{ Form::label('username', 'Vartotojo vardas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::text('username', Input::old('username'), array('placeholder' => 'Username', 'class' => 'form-control')) }}
+			{{ Form::text('username', Input::old('username'), array('placeholder' => 'Vartotojo vardas', 'class' => 'form-control')) }}
 		</div>
-		<small class="col-md-offset-4 col-md-8"><em>Username shoud be 6 or more symbols length</em></small>
+		<small class="col-md-offset-4 col-md-8"><em>Vartotojo vardas turi būti 6 simbolių arba ilgesnis</em></small>
 	</div>
 
 	<!-- Password field -->
 	<div class="form-group">
-		{{ Form::label('password', 'Password:', array('class' => 'col-md-4 control-label')) }}
+		{{ Form::label('password', 'Slaptažodis:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control')) }}
+			{{ Form::password('password', array('placeholder' => 'Slaptažodis', 'class' => 'form-control')) }}
 		</div>
-		<small class="col-md-offset-4 col-md-8"><em>Password should be 6 or more symbol length</em></small>
+		<small class="col-md-offset-4 col-md-8"><em>Slaptažodis turi būti 6 simbolių arba ilgesnis</em></small>
 	</div>
 
 	<!-- Confirm password field -->
 	<div class="form-group">
-		{{ Form::label('password_confirmation', 'Confirm password:', array('class' => 'col-md-4 control-label')) }}
+		{{ Form::label('password_confirmation', 'Pakartokite slaptažodį:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::password('password_confirmation', array('placeholder' => 'Confirm password', 'class' => 'form-control')) }}
+			{{ Form::password('password_confirmation', array('placeholder' => 'Pakartokite slaptažodį', 'class' => 'form-control')) }}
 		</div>
 	</div>
 
 	<!-- Submit button -->
 	<div class="form-group">
 		<div class="col-md-offset-4 col-md-8">
-			<p>{{ Form::submit('Register', array('class' => 'btn btn-primary btn-block btn-lg')) }}</p>
+			<p>{{ Form::submit('Registruotis', array('class' => 'btn btn-primary btn-block btn-lg')) }}</p>
 		</div>
 	</div>
 
