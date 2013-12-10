@@ -52,15 +52,15 @@ Route::get('cart', array('uses' => 'CartController@showContents',
 */
 
 Route::get('admin', array('uses' => 'AdminController@showIndex',
-	'as' => 'admin'))->before('auth');
+	'as' => 'admin'))->before('admin');
 
 Route::group(array('prefix' => 'admin'), function() {
 
 	Route::get('users', array('uses' => 'UserManagementController@showUserManage', 
-		'as' => 'admin.users'))->before('auth');
+		'as' => 'admin.users'))->before('admin');
 
 	Route::post('users', array('uses' => 'UserManagementController@handleUserManage', 
-		'as' => 'admin.users.post'))->before('auth');
+		'as' => 'admin.users.post'))->before('admin');
 });
 
 /*
