@@ -24,15 +24,23 @@ class CartController extends BaseController {
 		}
 
 		$food = Food::find($foodId);
-		if ($food == NULL) {
+		if ($food === NULL) {
 			return $this->jsonError('Invalid food_id');
 		}
 
-		$orderFood = new OrderFood();
-		$orderFood->amount = 1;
-		$orderFood->order()->associate($order);
-		$orderFood->food()->associate($food);
-		$orderFood->save();
+		$orderFood = OrderFood::where('food_id', '=', $food->id)
+			->where('order_id', '=', $order->id)->first();
+
+		if ($orderFood !== NULL) {
+			$orderFood->amount++;
+			$orderFood->save();
+		} else {
+			$orderFood = new OrderFood();
+			$orderFood->amount = 1;
+			$orderFood->order()->associate($order);
+			$orderFood->food()->associate($food);
+			$orderFood->save();
+		}
 
 		return $this->jsonSuccess('Added food to order');
 	}
