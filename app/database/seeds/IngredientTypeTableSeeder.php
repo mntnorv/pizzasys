@@ -1,6 +1,6 @@
 <?php
 
-class IngredientsTypeTableSeeder extends Seeder {
+class IngredientTypeTableSeeder extends Seeder {
 	public function run() {
 		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 		DB::table('ingredient_types')->delete();

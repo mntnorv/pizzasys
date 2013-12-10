@@ -1,9 +1,9 @@
 <?php
 
-class IngredientsTableSeeder extends Seeder {
+class IngredientTableSeeder extends Seeder {
 	public function run() {
 		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-		DB::table('pizzerias')->delete();
+		DB::table('ingredients')->delete();
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 		$ingredient = new Ingredient(array(

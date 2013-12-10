@@ -13,18 +13,18 @@ class CreateOrdersTable extends Migration {
 	{
 		Schema::create('orders', function($table) {
 			$table->increments('id');
-			$table->integer('state')->unsigned();
-			$table->foreign('state')->references('id')->on('order_states');
-			$table->integer('type')->unsigned();
-			$table->foreign('type')->references('id')->on('order_types');
-			$table->integer('pizzeria_id')->unsigned();
+			$table->integer('order_state_id')->unsigned();
+			$table->foreign('order_state_id')->references('id')->on('order_states');
+			$table->integer('order_type_id')->unsigned();
+			$table->foreign('order_type_id')->references('id')->on('order_types');
+			$table->integer('pizzeria_id')->unsigned()->nullable();
 			$table->foreign('pizzeria_id')->references('id')->on('pizzerias');
-			$table->integer('table_id')->unsigned();
+			$table->integer('table_id')->unsigned()->nullable();
 			$table->foreign('table_id')->references('id')->on('tables');
-			$table->integer('user_id')->unsigned();
+			$table->integer('user_id')->unsigned()->nullable();
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->string('address');
-			$table->double('price');
+			$table->string('address')->nullable();
+			$table->double('price')->nullable();
 			$table->timestamps();
 		});
 	}

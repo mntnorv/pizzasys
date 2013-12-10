@@ -9,7 +9,7 @@ class UserController extends BaseController {
 		$user = array(
 			'username' => Input::get('username'),
 			'password' => Input::get('password')
-			);
+		);
 
 		if (Auth::attempt($user)) {
 			return Redirect::route('home')
@@ -31,7 +31,7 @@ class UserController extends BaseController {
 
 		$user_for_test = array(
 			'username' => Input::get('username'),
-			'password'  =>Input::get('password'),
+			'password' => Input::get('password'),
 			'password_confirmation'=> strtolower(Input::get('password_confirmation'))
 		);
 

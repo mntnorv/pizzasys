@@ -75,5 +75,12 @@ Route::group(array('prefix' => 'api'), function() {
 
 	});
 
+	Route::group(array('prefix' => 'cart'), function() {
+
+		Route::post('food', array('uses' => 'CartController@addFood', 
+			'as' => 'api.cart.food'))->before('auth');
+
+	});
+
 });
 

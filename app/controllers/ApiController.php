@@ -9,9 +9,8 @@ class ApiController extends BaseController {
 		
 		$user = User::find($id);
 
-		if($user == NULL){
-			$error['error'] = "User not found";
-			return json_encode($error);
+		if($user == NULL) {
+			return $this->jsonError("User not found");
 		}
 
 		return $user;
@@ -35,8 +34,7 @@ class ApiController extends BaseController {
 		$type = FoodType::where('name', '=', $type_id)->first();
 
 		if ($type == NULL) {
-			$error['error'] = "Invalid food type";
-			return json_encode($error);
+			return $this->jsonError("Invalid food type");
 		}
 
 		$food = Food::where('food_type_id', '=', $type->id)->get();

@@ -16,8 +16,10 @@ class DatabaseSeeder extends Seeder {
 		$this->call('PizzeriaTableSeeder');
 		$this->call('FoodTypeTableSeeder');
 		$this->call('FoodTableSeeder');
-		$this->call('IngredientsTypeTableSeeder');
-		$this->call('IngredientsTableSeeder');
+		$this->call('IngredientTypeTableSeeder');
+		$this->call('IngredientTableSeeder');
+		$this->call('OrderTypeTableSeeder');
+		$this->call('OrderStateTableSeeder');
 	}
 
 }
