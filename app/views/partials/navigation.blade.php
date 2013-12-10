@@ -13,12 +13,23 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav navbar-right">
+				<li>
+					{{ link_to(route('cart'), 'Krepšelis (' . $cartSize . ')', []) }}
+				</li>
 				@if(Auth::check())
-					<li>{{ link_to(route('profile'),'Profilis',[]) }}</li>
-					<li>{{ link_to(route('logout'),'Atsijungti ('.Auth::user()->username.')',[]) }}</li>
+					<li>
+						{{ link_to(route('profile'), 'Profilis', []) }}
+					</li>
+					<li>
+						{{ link_to(route('logout'), 'Atsijungti ('.Auth::user()->username.')', []) }}
+					</li>
 				@else
-					<li>{{ link_to(route('login'),'Prisijungti',[]) }}</li>
-					<li>{{ link_to(route('register'),'Registruotis',[]) }}</li>
+					<li>
+						{{ link_to(route('login'), 'Prisijungti', []) }}
+					</li>
+					<li>
+						{{ link_to(route('register'), 'Registruotis', []) }}
+					</li>
 				@endif
 			</ul>
 		</div>

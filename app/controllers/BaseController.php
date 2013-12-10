@@ -2,16 +2,33 @@
 
 class BaseController extends Controller {
 
+	public function BaseController() {
+		View::share('cartSize', $this->getCartSize());
+	}
+
 	/**
 	 * Setup the layout used by the controller.
 	 *
 	 * @return void
 	 */
-	protected function setupLayout()
-	{
-		if ( ! is_null($this->layout))
-		{
+	protected function setupLayout() {
+		if ( ! is_null($this->layout)) {
 			$this->layout = View::make($this->layout);
+		}
+	}
+
+	/**
+	 * Get the current cart size
+	 *
+	 * @return integer containing the current cart size
+	 */
+	protected function getCartSize() {
+		if (Session::has('cart_order_id')) {
+			$cartOrderId = Session::get('cart_order_id');
+			$count = OrderFood::where('order_id', '=', $cartOrderId)->count();
+			return $count;
+		} else {
+			return 0;
 		}
 	}
 

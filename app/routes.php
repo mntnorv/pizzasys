@@ -41,19 +41,26 @@ Route::group(array('prefix' => 'user'), function() {
 });
 
 /*
+| Cart management routes
+*/
+
+Route::get('cart', array('uses' => 'CartController@showContents', 
+	'as' => 'cart'));
+
+/*
 | Admin panel routes
 */
 
+Route::get('admin', array('uses' => 'AdminController@showIndex',
+	'as' => 'admin'))->before('auth');
+
 Route::group(array('prefix' => 'admin'), function() {
 
-	Route::get('index', array('uses' => 'AdminController@showIndex',
-		'as' => 'index'))->before('auth');
+	Route::get('users', array('uses' => 'UserManagementController@showUserManage', 
+		'as' => 'admin.users'))->before('auth');
 
-	Route::get('users', array('uses' => 'AdminController@showUserManage', 
-		'as' => 'users'))->before('auth');
-
-	Route::post('users', array('uses' => 'AdminController@handleUserManage', 
-		'as' => 'users.post'))->before('auth');
+	Route::post('users', array('uses' => 'UserManagementController@handleUserManage', 
+		'as' => 'admin.users.post'))->before('auth');
 });
 
 /*
@@ -78,7 +85,7 @@ Route::group(array('prefix' => 'api'), function() {
 	Route::group(array('prefix' => 'cart'), function() {
 
 		Route::post('food', array('uses' => 'CartController@addFood', 
-			'as' => 'api.cart.food'))->before('auth');
+			'as' => 'api.cart.food'));
 
 	});
 
