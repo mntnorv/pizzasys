@@ -47,7 +47,7 @@ class CartController extends BaseController {
 
 		$food = Food::find($foodId);
 		if ($food === NULL) {
-			return $this->jsonError('INVALID_REQUEST');
+			return $this->jsonError('INVALID_FOOD_ID');
 		}
 
 		$orderFood = OrderFood::where('food_id', '=', $food->id)
@@ -87,7 +87,7 @@ class CartController extends BaseController {
 			->where('food_id', '=', Input::get('food_id'))->get()->first();
 
 		if ($orderFood === NULL) {
-			return $this->jsonError('INVALID_REQUEST');
+			return $this->jsonError('INVALID_FOOD_ID');
 		}
 
 		$order->price -= $orderFood->food->price * $orderFood->amount;
@@ -95,6 +95,42 @@ class CartController extends BaseController {
 		$orderFood->delete();
 
 		return $this->jsonSuccess('FOOD_REMOVED');
+	}
+
+	/*
+	| POST /api/cart/update
+	*/
+
+	public function updateFood() {
+		if (!Input::has('food_id') || !Input::has('amount')) {
+			return $this->jsonError('INVALID_REQUEST');
+		}
+
+		if (!Session::has('cart_order_id')) {
+			return $this->jsonError('CART_EMPTY');
+		}
+
+		$order = Order::find(Session::get('cart_order_id'));
+		$orderFood = OrderFood::where('order_id', '=', $order->id)
+			->where('food_id', '=', Input::get('food_id'))->get()->first();
+
+		if ($orderFood === NULL) {
+			return $this->jsonError('INVALID_FOOD_ID');
+		}
+
+		$newAmount = Input::get('amount');
+		if ($newAmount < 0 || $newAmount > 1000) {
+			return $this->jsonError('INVALID_AMOUNT');
+		}
+
+		$amountDiff = $newAmount - $orderFood->amount;
+		$orderFood->amount = $newAmount;
+		$orderFood->save();
+
+		$order->price += $amountDiff * $orderFood->food->price;
+		$order->save();
+
+		return $this->jsonSuccess('FOOD_UPDATED');
 	}
 
 }

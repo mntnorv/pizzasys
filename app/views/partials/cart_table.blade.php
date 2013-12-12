@@ -24,14 +24,14 @@
 	</tfoot>
 	<tbody>
 		@foreach ($cartItems as $item)
-			<tr class="cart-item" data-food="{{ $item->food->id }}">
+			<tr
+				class="cart-item"
+				data-food="{{ $item->food->id }}"
+				data-price="{{ $item->food->price }}"
+			>
 				<td>{{ $item->food->name }}</td>
 				<td class="align-right">
-					<input
-						type="text"
-						value="{{ $item->amount }}"
-						data-price="{{ $item->food->price }}"
-					/>
+					<input type="text" class="amount-input" value="{{ $item->amount }}" />
 				</td>
 				<td class="align-right">
 					<span class="price">{{ $item->food->price * $item->amount }}</span> Lt

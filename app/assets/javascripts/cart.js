@@ -15,14 +15,19 @@ $(function() {
 
 	var updateCachedSelectors = function() {
 		cartTableRows = cartTable.find('.cart-item');
-		inputElements = cartTable.find('input[data-price]');
+		inputElements = cartTable.find('input.amount-input');
 		priceElements = cartTable.find('.price');
 		removeButtons = cartTable.find('.remove-button');
 	};
 	updateCachedSelectors();
 
 	var updateItemPrice = function (elem) {
-		var newAmount = elem.val();
+		var newAmount    = elem.val();
+		var inputIndex   = inputElements.index(elem);
+		var row          = cartTableRows.eq(inputIndex);
+		var priceForOne  = row.attr('data-price');
+		var foodId       = row.attr('data-food');
+		var priceElement = priceElements.eq(inputIndex);
 
 		if (!parseInt(newAmount) || newAmount < 0) {
 			newAmount = 0;
@@ -34,9 +39,11 @@ $(function() {
 			elem.val(1000);
 		}
 
-		var priceForOne = elem.attr('data-price');
-		var inputIndex = inputElements.index(elem);
-		var priceElement = priceElements.eq(inputIndex);
+		var url = BASE_URL + '/api/cart/update';
+		$.post(url, {
+			'food_id': foodId,
+			'amount': newAmount
+		});
 
 		priceElement.html(newAmount * priceForOne);
 	};
@@ -66,14 +73,14 @@ $(function() {
 	var deleteRow = function() {
 		var row = cartTableRows.eq(removeButtons.index($(this)));
 		var foodId = Number(row.attr('data-food'));
-		row.remove();
-
-		updateCachedSelectors();
-		updateFullPrice();
-		updateFullAmount();
 
 		var url = BASE_URL + '/api/cart/remove';
 		$.post(url, {'food_id': foodId});
+
+		row.remove();
+		updateCachedSelectors();
+		updateFullPrice();
+		updateFullAmount();
 	};
 
 	inputElements.focusout(onInputFocusLost);

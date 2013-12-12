@@ -90,6 +90,9 @@ Route::group(array('prefix' => 'api'), function() {
 		Route::post('remove', array('uses' => 'CartController@removeFood', 
 			'as' => 'api.cart.remove'));
 
+		Route::post('update', array('uses' => 'CartController@updateFood', 
+			'as' => 'api.cart.update'));
+
 	});
 
 });
