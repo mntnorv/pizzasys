@@ -27,7 +27,7 @@
 			@foreach ($cartItems as $item)
 				<tr>
 					<td>{{ $item->food->name }}</td>
-					<td>{{ $item->amount }}</td>
+					<td><input type="text" value="{{ $item->amount }}" /></td>
 					<td>{{ $item->food->price * $item->amount }} Lt</td>
 				</tr>
 			@endforeach

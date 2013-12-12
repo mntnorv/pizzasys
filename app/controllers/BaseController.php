@@ -25,7 +25,12 @@ class BaseController extends Controller {
 	protected function getCartSize() {
 		if (Session::has('cart_order_id')) {
 			$cartOrderId = Session::get('cart_order_id');
-			$count = OrderFood::where('order_id', '=', $cartOrderId)->count();
+			$count = 0;
+
+			$cartItems = OrderFood::where('order_id', '=', $cartOrderId)->get();
+			foreach ($cartItems as $item) {
+				$count += $item->amount;
+			}
 			return $count;
 		} else {
 			return 0;
