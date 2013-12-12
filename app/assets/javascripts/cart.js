@@ -1,12 +1,13 @@
 $(function() {
 
 	var cartTable = $("#cart-table");
-	if(cartTable.length == 0){
+	if (cartTable.length === 0) {
 		return false;
 	}
 
 	var inputElements = cartTable.find('input[data-price]');
-	var priceElements = cartTable.find('.price-cell');
+	var priceElements = cartTable.find('.price');
+	var fullPriceElem = cartTable.find('#full-price');
 	var cartSize = $('#cart-size');
 
 	/*var changeAmount = function() {
@@ -25,20 +26,47 @@ $(function() {
 		}, 'json');
 	};*/
 
-	var onInputFocusLost = function() {
-		var newAmount = $(this).val();
+	var updateItemPrice = function (elem) {
+		var newAmount = elem.val();
 
-		if (newAmount < 0) {
+		if (!parseInt(newAmount) || newAmount < 0) {
 			newAmount = 0;
-			$(this).val(0);
+			elem.val(0);
 		}
 
-		var priceForOne = $(this).attr('data-price');
-		var inputIndex = inputElements.index($(this));
+		if (newAmount > 1000) {
+			newAmount = 1000;
+			elem.val(1000);
+		}
+
+		var priceForOne = elem.attr('data-price');
+		var inputIndex = inputElements.index(elem);
 		var priceElement = priceElements.eq(inputIndex);
 
-		priceElement.html((newAmount * priceForOne) + " Lt");
+		priceElement.html(newAmount * priceForOne);
+	};
+
+	var updateFullPrice = function() {
+		var fullPrice = 0;
+		priceElements.each(function (index) {
+			fullPrice += Number($(this).html());
+		});
+		fullPriceElem.html(fullPrice);
+	};
+
+	var updateFullAmount = function() {
+		var fullAmount = 0;
+		inputElements.each(function (index) {
+			fullAmount += Number($(this).val());
+		});
+		cartSize.html(fullAmount);
+	};
+
+	var onInputFocusLost = function() {
+		updateItemPrice($(this));
+		updateFullPrice();
+		updateFullAmount();
 	};
 
 	inputElements.focusout(onInputFocusLost);
-})
+});

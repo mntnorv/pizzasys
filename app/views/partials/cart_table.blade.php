@@ -17,7 +17,9 @@
 		<tr>
 			<td>Iš viso:</td>
 			<td></td>
-			<td class="align-right">{{ $cartPrice }} Lt</td>
+			<td class="align-right">
+				<span id="full-price">{{ $cartPrice }}</span> Lt
+			</td>
 		</tr>
 	</tfoot>
 	<tbody>
@@ -31,8 +33,8 @@
 						data-price="{{ $item->food->price }}"
 					/>
 				</td>
-				<td class="align-right price-cell">
-					{{ $item->food->price * $item->amount }} Lt
+				<td class="align-right">
+					<span class="price">{{ $item->food->price * $item->amount }}</span> Lt
 				</td>
 				<td><button class="btn btn-xs btn-danger">X</button></td>
 			</tr>

@@ -1,7 +1,7 @@
 $(function() {
 
 	var foodList = $("#home-food-list");
-	if(foodList.length == 0){
+	if (foodList.length === 0) {
 		return false;
 	}
 
@@ -45,4 +45,4 @@ $(function() {
 	};
 
 	window.onhashchange();
-})
+});
