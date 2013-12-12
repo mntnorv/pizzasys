@@ -5,26 +5,21 @@ $(function() {
 		return false;
 	}
 
-	var inputElements = cartTable.find('input[data-price]');
-	var priceElements = cartTable.find('.price');
+	var cartTableRows = null;
+	var inputElements = null;
+	var priceElements = null;
+	var removeButtons = null;
+
 	var fullPriceElem = cartTable.find('#full-price');
-	var cartSize = $('#cart-size');
+	var cartSize      = $('#cart-size');
 
-	/*var changeAmount = function() {
-		var foodId = $(this).attr('data-food');
-		var postData = {
-			food_id: foodId,
-			amount: amount
-		};
-
-		$.post(url, postData, function (data) {
-			if (data.success) {
-				var size = cartSize.html();
-				size++;
-				cartSize.html(size);
-			}
-		}, 'json');
-	};*/
+	var updateCachedSelectors = function() {
+		cartTableRows = cartTable.find('.cart-item');
+		inputElements = cartTable.find('input[data-price]');
+		priceElements = cartTable.find('.price');
+		removeButtons = cartTable.find('.remove-button');
+	};
+	updateCachedSelectors();
 
 	var updateItemPrice = function (elem) {
 		var newAmount = elem.val();
@@ -68,5 +63,15 @@ $(function() {
 		updateFullAmount();
 	};
 
+	var deleteRow = function() {
+		var row = cartTableRows.eq(removeButtons.index($(this)));
+		row.remove();
+
+		updateCachedSelectors();
+		updateFullPrice();
+		updateFullAmount();
+	};
+
 	inputElements.focusout(onInputFocusLost);
+	removeButtons.click(deleteRow);
 });

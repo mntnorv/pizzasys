@@ -24,7 +24,7 @@
 	</tfoot>
 	<tbody>
 		@foreach ($cartItems as $item)
-			<tr>
+			<tr class="cart-item">
 				<td>{{ $item->food->name }}</td>
 				<td class="align-right">
 					<input
@@ -36,7 +36,9 @@
 				<td class="align-right">
 					<span class="price">{{ $item->food->price * $item->amount }}</span> Lt
 				</td>
-				<td><button class="btn btn-xs btn-danger">X</button></td>
+				<td>
+					<button class="btn btn-xs btn-danger remove-button">X</button>
+				</td>
 			</tr>
 		@endforeach
 
