@@ -84,8 +84,11 @@ Route::group(array('prefix' => 'api'), function() {
 
 	Route::group(array('prefix' => 'cart'), function() {
 
-		Route::post('food', array('uses' => 'CartController@addFood', 
-			'as' => 'api.cart.food'));
+		Route::post('add', array('uses' => 'CartController@addFood', 
+			'as' => 'api.cart.add'));
+
+		Route::post('remove', array('uses' => 'CartController@removeFood', 
+			'as' => 'api.cart.remove'));
 
 	});
 

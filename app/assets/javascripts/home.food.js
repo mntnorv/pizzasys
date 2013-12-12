@@ -8,7 +8,7 @@ $(function() {
 	var cartSize = $("#cart-size");
 
 	var addToCart = function() {
-		var url = "api/cart/food";
+		var url = BASE_URL + "/api/cart/add";
 		var foodId = $(this).attr('data-food');
 
 		$.post(url, {'food_id': foodId}, function (data) {
@@ -21,7 +21,7 @@ $(function() {
 	};
 
 	var updateFoodItems = function(foodList, foodType) {
-		var url = "api/get/food";
+		var url = BASE_URL + "/api/get/food";
 		if (foodType) {
 			url += "/" + foodType;
 		}

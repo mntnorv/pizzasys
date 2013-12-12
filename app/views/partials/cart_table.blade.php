@@ -24,7 +24,7 @@
 	</tfoot>
 	<tbody>
 		@foreach ($cartItems as $item)
-			<tr class="cart-item">
+			<tr class="cart-item" data-food="{{ $item->food->id }}">
 				<td>{{ $item->food->name }}</td>
 				<td class="align-right">
 					<input

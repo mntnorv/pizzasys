@@ -65,11 +65,15 @@ $(function() {
 
 	var deleteRow = function() {
 		var row = cartTableRows.eq(removeButtons.index($(this)));
+		var foodId = Number(row.attr('data-food'));
 		row.remove();
 
 		updateCachedSelectors();
 		updateFullPrice();
 		updateFullAmount();
+
+		var url = BASE_URL + '/api/cart/remove';
+		$.post(url, {'food_id': foodId});
 	};
 
 	inputElements.focusout(onInputFocusLost);
