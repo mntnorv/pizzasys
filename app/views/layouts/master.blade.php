@@ -6,6 +6,11 @@
             Pizzasys
         @show
 	</title>
+
+	<script type="text/javascript">
+		var BASE_URL = '{{ url("/") }}';
+	</script>
+
 	<?= stylesheet_link_tag() ?>
 	<?= javascript_include_tag() ?>
 </head>
