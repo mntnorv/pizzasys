@@ -35,7 +35,7 @@ Route::get('login',    array('uses' => 'UserController@showLogin',
 
 Route::group(array('prefix' => 'user'), function() {
 
-	Route::get('profile',     array('uses' => 'UserController@showProfile',
+	Route::get('profile', array('uses' => 'UserController@showProfile',
 		'as' => 'profile'))->before('auth');
 
 });
@@ -90,4 +90,3 @@ Route::group(array('prefix' => 'api'), function() {
 	});
 
 });
-

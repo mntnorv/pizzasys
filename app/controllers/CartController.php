@@ -3,6 +3,27 @@
 class CartController extends BaseController {
 
 	/*
+	| GET /cart
+	*/
+
+	public function showContents() {
+		$cartItems = NULL;
+		$cartPrice = 0;
+		if (Session::has('cart_order_id')) {
+			$cartOrder = Order::find(Session::get('cart_order_id'));
+			$cartPrice = $cartOrder->price;
+			$cartItems = OrderFood::where('order_id', '=', $cartOrder->id)->get();
+		} else {
+			$cartItems = OrderFood::where('order_id', '=', 0)->get();
+		}
+
+		return View::make('cart', array(
+			'cartItems' => $cartItems,
+			'cartPrice' => $cartPrice
+		));
+	}
+
+	/*
 	| POST /api/cart/food
 	*/
 	public function addFood() {
@@ -16,7 +37,8 @@ class CartController extends BaseController {
 		if (!Session::has('cart_order_id')) {
 			$order = Order::create(array(
 				'order_type_id'  => 2,
-				'order_state_id' => 1
+				'order_state_id' => 1,
+				'price'          => 0
 			));
 			Session::put('cart_order_id', $order->id);
 		} else {
@@ -33,14 +55,16 @@ class CartController extends BaseController {
 
 		if ($orderFood !== NULL) {
 			$orderFood->amount++;
-			$orderFood->save();
 		} else {
 			$orderFood = new OrderFood();
 			$orderFood->amount = 1;
 			$orderFood->order()->associate($order);
 			$orderFood->food()->associate($food);
-			$orderFood->save();
 		}
+
+		$orderFood->save();
+		$order->price += $food->price;
+		$order->save();
 
 		return $this->jsonSuccess('Added food to order');
 	}

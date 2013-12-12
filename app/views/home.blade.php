@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Home
+	Pradinis puslapis
 @stop
 
 @section('content')
