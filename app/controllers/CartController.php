@@ -72,7 +72,6 @@ class CartController extends BaseController {
 	/*
 	| POST /api/cart/remove
 	*/
-
 	public function removeFood() {
 		if (!Input::has('food_id')) {
 			return $this->jsonError('INVALID_REQUEST');
@@ -100,7 +99,6 @@ class CartController extends BaseController {
 	/*
 	| POST /api/cart/update
 	*/
-
 	public function updateFood() {
 		if (!Input::has('food_id') || !Input::has('amount')) {
 			return $this->jsonError('INVALID_REQUEST');

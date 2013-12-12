@@ -37,7 +37,7 @@
 					<span class="price">{{ $item->food->price * $item->amount }}</span> Lt
 				</td>
 				<td>
-					<button class="btn btn-xs btn-danger remove-button">X</button>
+					<button class="btn btn-xs btn-danger remove-button fa fa-times"></button>
 				</td>
 			</tr>
 		@endforeach

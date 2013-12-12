@@ -7,7 +7,8 @@ $(function() {
 	$("#user-manage-form #user_id").change(function () {
 		var normalus_user_id = $('#user-manage-form').find('select[name="user_id"]').val();
 
-		$.getJSON("../api/get/user/" + normalus_user_id, function ( user ){
+		var url = BASE_URL + "/api/get/user/" + normalus_user_id;
+		$.getJSON(url, function ( user ){
 			$('#user-manage-form #type').val(user['user_type_id']);
 			$('#user-manage-form #blocked').prop('checked', user['blocked'] === 1);
 		})
