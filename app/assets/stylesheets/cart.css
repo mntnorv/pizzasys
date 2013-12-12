@@ -1,0 +1,24 @@
+.cart-table input[type=text] {
+	width: 40px;
+	text-align: right;
+}
+
+.cart-table .food-column {
+	width: 80%;
+}
+
+.cart-table .amount-column {
+	width: 5%;
+}
+
+.cart-table .price-column {
+	width: 10%;
+}
+
+.cart-table .actions-column {
+	width: 5%;
+}
+
+.cart-table .align-right {
+	text-align: right;
+}

@@ -23,3 +23,4 @@
 // Pizzasys javascripts:
 //= require admin.users
 //= require home.food
+//= require cart

@@ -2,48 +2,7 @@ body {
 	margin-top: 50px;
 }
 
-.category-list {
-	list-style: none outside none;
-	padding: 10px 0px 0px 0px;
-}
-
-.category-list > li {
-	display: block;
-	padding: 5px 10px 5px 10px;
-	border-radius: 5px;
-}
-
-.category-list > li:hover {
-	background-color: #eee;
-}
-
-.food-list {
-	margin-top: 10px;
-}
-
-.food-item {
-	position: relative;
-	overflow: hidden;
-
-	height: 200px;
-	border-radius: 5px;
-
-	margin-bottom: 30px;
-	border: 1px solid #eee;
-}
-
-.food-item-name {
-	position: absolute;
-	z-index: 1;
-	bottom: 0;
-	width: 100%;
-	background-color: rgba(0, 0, 0, 0.4);
-
-	padding: 5px 8px 5px 8px;
-	color: #fff;
+tfoot {
 	font-weight: bold;
-}
-
-.food-item-image {
-	width: 100%;
+	border-top: 2px solid rgb(221, 221, 221);
 }

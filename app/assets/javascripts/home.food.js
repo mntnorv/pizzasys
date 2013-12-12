@@ -31,7 +31,7 @@ $(function() {
 				foodList.html(
 					JST['handlebars/food_list'](data)
 				);
-				$('.food-item[data-food]').click(addToCart);
+				foodList.find('.food-item[data-food]').click(addToCart);
 			} else {
 				foodList.html('');
 				console.error('Error retrieving food: ' + data.error);

@@ -8,31 +8,12 @@
 
 <div class="container">
 	<h1>Krepšelis</h1>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Maistas</th>
-				<th>Kiekis</th>
-				<th>Kaina</th>
-			</tr>
-		</thead>
-		<tfoot>
-			<tr>
-				<td>Iš viso:</td>
-				<td></td>
-				<td>{{ $cartPrice }} Lt</td>
-			</tr>
-		</tfoot>
-		<tbody class="table-striped">
-			@foreach ($cartItems as $item)
-				<tr>
-					<td>{{ $item->food->name }}</td>
-					<td><input type="text" value="{{ $item->amount }}" /></td>
-					<td>{{ $item->food->price * $item->amount }} Lt</td>
-				</tr>
-			@endforeach
-		</tbody>
-	</table> 
+
+	<div class="row">
+		<div class="col-md-8">
+			@include('partials.cart_table')
+		</div>
+	</div>
 </div>
 
 @stop
