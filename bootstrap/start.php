@@ -30,6 +30,7 @@ $env = $app->detectEnvironment(array(
 
 	'local' => array(
 		'manto-desktop',
+		'MantoPC',
 		'ThrOne-PC'
 	),
 
