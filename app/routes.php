@@ -47,6 +47,16 @@ Route::group(array('prefix' => 'user'), function() {
 Route::get('cart', array('uses' => 'CartController@showContents', 
 	'as' => 'cart'));
 
+Route::group(array('prefix' => 'cart'), function() {
+
+	Route::get('delivery', array('uses' => 'CartController@showDelivery', 
+		'as' => 'cart.delivery'));
+
+	Route::post('delivery', array('uses' => 'CartController@setDelivery', 
+		'as' => 'cart.delivery.set'));
+
+});
+
 /*
 | Admin panel routes
 */
@@ -61,6 +71,7 @@ Route::group(array('prefix' => 'admin'), function() {
 
 	Route::post('users', array('uses' => 'UserManagementController@handleUserManage', 
 		'as' => 'admin.users.post'))->before('admin');
+
 });
 
 /*

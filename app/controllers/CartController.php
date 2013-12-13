@@ -24,6 +24,14 @@ class CartController extends BaseController {
 	}
 
 	/*
+	| GET /cart/delivery
+	*/
+
+	public function showDelivery() {
+		return View::make('cart.delivery');
+	}
+
+	/*
 	| POST /api/cart/add
 	*/
 	public function addFood() {
