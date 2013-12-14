@@ -20,8 +20,8 @@ class CreateDiscountsTable extends Migration {
 			$table->foreign('discount_to_food_type')->references('id')->on('food_types');
 			$table->integer('discount_to_order')->unsigned()->nullable();
 			$table->foreign('discount_to_order')->references('id')->on('orders');
-			$table->integer('type')->unsigned();
-			$table->foreign('type')->references('id')->on('discount_types');
+			$table->integer('discount_type_id')->unsigned();
+			$table->foreign('discount_type_id')->references('id')->on('discount_types');
 			$table->double('percentage');
 			$table->timestamps();
 		});
