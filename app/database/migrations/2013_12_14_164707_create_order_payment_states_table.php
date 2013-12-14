@@ -31,10 +31,11 @@ class CreateOrderPaymentStatesTable extends Migration {
 	public function down()
 	{		
 		Schema::table('orders', function($table)
-	{
-		$table->dropForeign('order_payment_state_id');
-		$table->dropColumn('order_payment_state_id');
-	});
+		{
+			$table->dropForeign('orders_order_payment_state_id_foreign');
+			$table->dropColumn('order_payment_state_id');
+		});
+
 		Schema::drop('order_payment_states');
 	}
 

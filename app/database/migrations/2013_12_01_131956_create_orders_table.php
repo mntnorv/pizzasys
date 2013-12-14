@@ -43,11 +43,6 @@ class CreateOrdersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('orders', function($table)
-		{
-			$table->dropForeign('order_payment_state_id');
-			$table->dropColumn('order_payment_state_id');
-		});
 		Schema::drop('orders');
 	}
 
