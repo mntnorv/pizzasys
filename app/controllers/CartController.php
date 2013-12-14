@@ -28,7 +28,12 @@ class CartController extends BaseController {
 	*/
 
 	public function showDelivery() {
-		return View::make('cart.delivery');
+		$cities = Pizzeria::join('cities', 'pizzerias.city_id', '=', 'cities.id')
+			->get()->lists('name', 'id');
+
+		return View::make('cart.delivery', array(
+			'cities' => $cities
+		));
 	}
 
 	/*

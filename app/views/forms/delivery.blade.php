@@ -7,7 +7,7 @@
 			<div class="form-group">
 				{{ Form::label('city', 'Miestas:', array('class' => 'col-md-4 control-label')) }}
 				<div class="col-md-8">
-					{{ Form::text('city', NULL, array('placeholder' => 'Miestas', 'class' => 'form-control')) }}
+					{{ Form::select('city_id', $cities, NULL, array('class' => 'form-control')) }}
 				</div>
 			</div>
 
