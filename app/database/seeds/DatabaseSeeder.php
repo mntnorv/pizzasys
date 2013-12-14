@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('OrderPaymentStateTableSeeder');
 		$this->call('OrderTableSeeder');
-		//$this->call('');
+		$this->call('OrderFoodTableSeeder');
 		//$this->call('');
 		//$this->call('');
 
