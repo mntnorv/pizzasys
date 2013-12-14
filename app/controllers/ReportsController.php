@@ -5,10 +5,10 @@ class ReportsController extends BaseController {
 	| GET /admin/users
 	*/
 	public function showReports() {
-		$users = User::all();
-		$userTypes = UserType::all()->lists('name', 'id');
+		 $report_types = ReportType::all()->lists('name', 'id');
+		// $userTypes = UserType::all()->lists('name', 'id');
 
-		return View::make('admin.users', array("users" => $users, "userTypes" => $userTypes));
+		return View::make('admin.reports', array("report_types" => $report_types));
 	}
 
 	/*
