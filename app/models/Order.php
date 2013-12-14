@@ -19,11 +19,15 @@ class Order extends Eloquent {
 		return $this->hasMany('Discount');
 	}
 
-	public function state() {
+	public function orderState() {
 		return $this->belongsTo('OrderState');
 	}
 
-	public function type() {
+	public function orderPaymentState() {
+		return $this->belongsTo('OrderPaymentState');
+	}
+
+	public function orderType() {
 		return $this->belongsTo('OrderType');
 	}
 
