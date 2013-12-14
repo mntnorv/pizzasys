@@ -53,5 +53,13 @@ class IngredientTableSeeder extends Seeder {
 		$ingredient_type = IngredientType::where('name', '=', 'Vaisius')->first();
 		$ingredient->ingredientType()->associate($ingredient_type);
 		$ingredient->save();
+
+		$ingredient = new Ingredient(array(
+			'name' => 'Coca-Cola'
+		));
+
+		$ingredient_type = IngredientType::where('name', '=', 'Gėrimas')->first();
+		$ingredient->ingredientType()->associate($ingredient_type);
+		$ingredient->save();
 	}
 }
