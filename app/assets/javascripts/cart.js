@@ -42,7 +42,7 @@ $(function() {
 
 		var url = BASE_URL + '/api/cart/update';
 		$.post(url, {
-			'food_id': ASD,
+			'food_id': foodId,
 			'amount': newAmount
 		});
 
