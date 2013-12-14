@@ -58,6 +58,9 @@ Route::group(array('prefix' => 'cart'), function() {
 	Route::get('confirm', array('uses' => 'CartController@showConfirmation', 
 		'as' => 'cart.confirm'));
 
+	Route::get('order', array('uses' => 'CartController@handleOrder', 
+		'as' => 'cart.order'));
+
 });
 
 /*
