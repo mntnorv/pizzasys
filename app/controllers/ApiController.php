@@ -20,11 +20,20 @@ class ApiController extends BaseController {
 	| GET /food
 	*/
 	public function getFood() {
-		$food = Food::all();
+		if(Input::get('term') == NULL){
+			$food = Food::all();
 
-		return Response::json(array(
-			'food' => $food->toArray()
-		));
+			return Response::json(array(
+				'food' => $food->toArray()
+			));
+		}else{
+			$query = Input::get('term');
+			$foods = Food::where('name', 'LIKE', "%$query%")->get();
+			foreach($foods as $food){
+				$food['value'] = $food['name'];
+			}
+			return Response::json($foods);
+		}
 	}
 
 	/*
@@ -41,6 +50,6 @@ class ApiController extends BaseController {
 
 		return Response::json(array(
 			'food' => $food->toArray()
-		));
+			));
 	}
 }

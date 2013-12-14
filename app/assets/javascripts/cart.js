@@ -1,7 +1,8 @@
 $(function() {
 
-	var cartTable = $("#cart-table");
-	if (cartTable.length === 0) {
+	var cartTable   = $("#cart-table");
+	var waiterTable = $("#waiter-order-table");
+	if (cartTable.length === 0 ) {
 		return false;
 	}
 
@@ -41,7 +42,7 @@ $(function() {
 
 		var url = BASE_URL + '/api/cart/update';
 		$.post(url, {
-			'food_id': foodId,
+			'food_id': ASD,
 			'amount': newAmount
 		});
 
@@ -72,7 +73,7 @@ $(function() {
 
 	var deleteRow = function() {
 		var row = cartTableRows.eq(removeButtons.index($(this)));
-		var foodId = Number(row.attr('data-food'));
+		var ASD = Number(row.attr('data-food'));
 
 		var url = BASE_URL + '/api/cart/remove';
 		$.post(url, {'food_id': foodId});

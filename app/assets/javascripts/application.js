@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require jquery.chained.remote
 //= require chosen.jquery
+//= require jquery-ui
 //
 // Pizzasys handlebar templates:
 //= require handlebars
@@ -24,3 +25,4 @@
 //= require admin.users
 //= require home.food
 //= require cart
+//= require waiter.order

@@ -11,3 +11,15 @@ textarea.form-control {
 	resize: none;
 	height: 126px;
 }
+
+
+/*
+Waiter Order autocomplete UI
+*/
+.ui-autocomplete{
+	background: #FFF;
+}
+
+.ui-menu-item:hover{
+	background: #ddd;
+}

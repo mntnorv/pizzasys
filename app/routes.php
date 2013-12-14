@@ -123,4 +123,23 @@ Route::group(array('prefix' => 'api'), function() {
 
 	});
 
+	Route::group(array('prefix' => 'waiter'), function() {
+
+		Route::group(array('prefix' => 'order'), function() {
+
+		Route::post('add', array('uses' => 'WaiterController@addFood', 
+			'as' => 'api.waiter.order.add'));
+
+		Route::post('remove', array('uses' => 'WaiterController@removeFood', 
+			'as' => 'api.waiter.order.remove'));
+
+		Route::post('update', array('uses' => 'WaiterController@updateFood', 
+			'as' => 'api.waiter.order.update'));
+
+		});
+
+	});
+
+
+
 });
