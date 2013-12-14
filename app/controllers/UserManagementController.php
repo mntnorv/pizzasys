@@ -63,10 +63,10 @@ class UserManagementController extends BaseController {
 		// Check if details of user have changed
 		if($changed){
 			$user->save();
-			return json_encode($success['success'] = "Successfully updated " .$user->username);
+			return json_encode($success['success'] = "Sėkmingai atnaujintas " .$user->username. " vartotojas");
 		// Else avoid stressing database
 		} else {
-			return json_encode($success['success'] = "Nothing changed for " .$user->username);
+			return json_encode($success['success'] = "Nieko nepakeista šiam" .$user->username. " vartotojui");
 		}
 	}
 }

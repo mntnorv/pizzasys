@@ -4,7 +4,7 @@
 
 <div class="container">
 	<div class="page-header">
-		<h1>User management</h1>
+		<h1>Vartotojų valdymas</h1>
 	</div>
 
 	<!-- Grid-->
