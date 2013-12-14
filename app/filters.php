@@ -55,6 +55,17 @@ Route::filter('admin', function()
 	}
 });
 
+Route::filter('waiter', function()
+{
+	if (Auth::check()) {
+		if (Auth::user()->user_type_id !== 2) {
+			return Redirect::to('/');
+		}
+	} else {
+		return Redirect::guest('login');
+	}
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter

@@ -16,4 +16,8 @@ class Pizzeria extends Eloquent {
 	public function tables() {
 		return $this->hasMany('Table');
 	}
+
+	public function users(){
+		return $this->hasMany('User');
+	}
 }

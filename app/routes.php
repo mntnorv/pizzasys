@@ -78,6 +78,20 @@ Route::group(array('prefix' => 'admin'), function() {
 });
 
 /*
+| Waiter panel routes
+*/
+
+Route::get('waiter', array('uses' => 'WaiterController@showIndex',
+	'as' => 'waiter'))->before('waiter');
+
+Route::group(array('prefix' => 'waiter'), function() {
+
+	Route::get('order', array('uses' => 'WaiterController@showOrder', 
+		'as' => 'waiter.order'))->before('waiter');
+
+});
+
+/*
 | API routes
 */
 

@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration {
 			$table->integer('shift_id')->unsigned()->nullable();
 			$table->foreign('shift_id')->references('id')->on('employee_shifts');
 			$table->integer('blocked')->default(0);
+			$table->integer('pizzeria_id')->unsigned()->nullable();
+			$table->foreign('pizzeria_id')->references('id')->on('pizzerias');
 			$table->timestamps();
 		});
 	}
