@@ -1,6 +1,6 @@
 //Autocomplete
 $( function(){
-		var waiterOrderTable = $("#waiter-order-table");
+	var waiterOrderTable = $("#waiter-order-table");
 	if (waiterOrderTable.length === 0) {
 		return false;
 	}
@@ -86,48 +86,66 @@ $( function(){
 		updateFullAmount();
 	};
 
-    $( "#query" ).autocomplete({
-      source: BASE_URL + "/api/get/food",
-      minLength: 2,
-      select: function( event, ui ) {
-      var foodAmountID = -1;
- 	  waiterOrderTableRows.each(function(i){
-      		if($(this).attr('data-food') == ui.item.id){
-      			foodAmountID = i;
-      			return;
-      		}
-      	});
+	$( "#query" ).autocomplete({
+		source: BASE_URL + "/api/get/food",
+		minLength: 2,
+		select: function( event, ui ) {
+			var foodAmountID = -1;
+			waiterOrderTableRows.each(function(i){
+				if($(this).attr('data-food') == ui.item.id){
+					foodAmountID = i;
+					return;
+				}
+			});
 
-      	if(foodAmountID == -1){
-        	$("#waiter-order-table tbody").append(
-        		JST['handlebars/waiter_food_list'](ui.item)
-        	);
+			if(foodAmountID == -1){
+				$("#waiter-order-table tbody").append(
+					JST['handlebars/waiter_food_list'](ui.item)
+					);
 
         	//Add food to the cart
         	var url = BASE_URL + '/api/waiter/order/add';
-			$.post(url, {
-				'food_id': ui.item.id,
-			});
-    	}else{
-    		var foodInputField = inputElements.eq(foodAmountID);
-    		var foodAmount = foodInputField.val();
+        	$.post(url, {
+        		'food_id': ui.item.id,
+        	});
+        }else{
+        	var foodInputField = inputElements.eq(foodAmountID);
+        	var foodAmount = foodInputField.val();
 
-    		foodAmount++;
-    		foodInputField.val('' +foodAmount);
+        	foodAmount++;
+        	foodInputField.val('' +foodAmount);
 
     		//Update food amount
-        	var url = BASE_URL + '/api/waiter/order/update';
-			$.post(url, {
-				'food_id': ui.item.id,
-				'amount' : foodAmountID
-			});
+    		var url = BASE_URL + '/api/waiter/order/update';
+    		$.post(url, {
+    			'food_id': ui.item.id,
+    			'amount' : foodAmountID
+    		});
     	}
 
-        updateCachedSelectors();
-        updateFullPrice();
-        removeButtons.unbind("click");
-        removeButtons.click(deleteRow);
-      }
-    });
+    	updateCachedSelectors();
+    	updateFullPrice();
+    	removeButtons.unbind("click");
+    	removeButtons.click(deleteRow);
+    }
+});
+
+	//Handle submit yourself
+	var form = $("#waiter-order-form");
+	form.submit(function(event){
+
+		event.preventDefault();
+		var waiterTableId = $(this).find('select[name="table"]').val();
+
+		var url = BASE_URL + "/api/waiter/order/save"
+		$.post(url,
+			{
+				'table' : waiterTableId
+			},
+			function(data){
+				alert(data);
+			} );
+	}
+	)
 } )
 

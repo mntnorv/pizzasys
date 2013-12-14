@@ -141,6 +141,9 @@ Route::group(array('prefix' => 'api'), function() {
 		Route::post('update', array('uses' => 'WaiterController@updateFood', 
 			'as' => 'api.waiter.order.update'));
 
+		Route::post('save', array('uses' => 'WaiterController@saveOrder', 
+			'as' => 'api.waiter.order.save'));
+
 		});
 
 	});

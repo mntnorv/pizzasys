@@ -21,12 +21,14 @@ class UserManagementController extends BaseController {
 
 		// Check if type is correct
 		if(!in_array($_POST['type_id'], $typeKeys)){
-			return json_encode($error['error'] = "Unknown user type");
+			$error['error'] = "Unknown user type";
+			return json_encode($error);
 		}
 
 		// Check if user is correct
 		if(!in_array($_POST['user_id'], $typeKeys)){
-			return json_encode($error['error'] = "Unknown user");
+			$error['error'] = "Unknown user";
+			return json_encode($error);
 		}
 	
 		// Update user
@@ -54,7 +56,8 @@ class UserManagementController extends BaseController {
 				break;
 
 				default:
-				return json_encode($error['error'] = "Unknown blocked value");
+				$error['error'] = "Unknown blocked value";
+				return json_encode($error);
 				break;
 			}
 			$changed = true;
@@ -63,10 +66,12 @@ class UserManagementController extends BaseController {
 		// Check if details of user have changed
 		if($changed){
 			$user->save();
-			return json_encode($success['success'] = "Sėkmingai atnaujintas " .$user->username. " vartotojas");
+			$success['success'] = "Sėkmingai atnaujintas " .$user->username. " vartotojas";
+			return json_encode($success);
 		// Else avoid stressing database
 		} else {
-			return json_encode($success['success'] = "Nieko nepakeista šiam" .$user->username. " vartotojui");
+			$success['success'] = "Nieko nepakeista šiam" .$user->username. " vartotojui";
+			return json_encode($success);
 		}
 	}
 }

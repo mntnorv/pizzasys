@@ -8,14 +8,17 @@ class WaiterController extends BaseController {
 	public function showOrder(){
 		
 		$order = Order::create(array(
-				'order_type_id'  => 1,
-				'order_state_id' => 1,
-				'price'          => 0
+				'order_type_id'  	     => 1,
+				'order_state_id' 		 => 1,
+				'price'          		 => 0,
+				'order_payment_state_id' => 1
 		));
+
+		$waiterTables = User::find(Auth::user()->id)->waiterTables()->lists('table_id', 'table_id');
 
 		Session::put('waiter_order_id', $order->id);
 
-		return View::make('waiter.order', array('order' => $order));
+		return View::make('waiter.order', array('order' => $order, 'waiterTables' => $waiterTables));
 	}
 
 	/*
@@ -124,6 +127,32 @@ class WaiterController extends BaseController {
 		$order->save();
 
 		return $this->jsonSuccess('FOOD_UPDATED');
+	}
+
+	/*
+	| POST /api/waiter/order/save
+	*/
+	public function saveOrder(){
+		if (!Session::has('waiter_order_id')) {
+			return $this->jsonError('CART_EMPTY');
+		}
+
+		if(!Input::has('table')){
+			return $this->jsonError('INVALID_TABLE');
+		}
+
+		$order = Order::find(Session::get('waiter_order_id'));
+
+		if($order->orderFood()->count() === 0){
+			return $this->jsonError('ORDER_HAS_NO_FOOD');
+		}
+
+		$order->table_id = Input::get('table');
+		$order->user_id = Auth::user()->id;
+		$order->pizzeria_id = Auth::user()->pizzeria_id;	
+		$order->save();
+
+		return $this->jsonSuccess('ORDER_SAVED');
 	}
 
 }
