@@ -1,4 +1,4 @@
-<?
+<?php
 
 class EmployeeShift extends Eloquent{
 
