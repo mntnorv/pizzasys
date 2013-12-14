@@ -15,4 +15,15 @@ class DiscountController extends BaseController {
 			"discountTypes" => $discountTypes
 		));
 	}
+
+	public function editDiscount($id) {
+		$discount = Discount::find($id);
+		$discountTypes = DiscountType::all()->lists('name', 'id');
+
+		return View::make('admin.edit_discount', array(
+			"discount" => $discount,
+			"discountTypes" => $discountTypes
+		));
+	}
+
 }

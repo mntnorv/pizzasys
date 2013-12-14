@@ -36,7 +36,7 @@
 	<!-- Submit button -->
 	<div class="form-group">
 		<div class="col-md-offset-4 col-md-8">
-			{{ Form::submit('Update', array('class' => 'btn btn-primary btn-block btn-lg')) }}
+			{{ Form::submit('Atnaujinti', array('class' => 'btn btn-primary btn-block btn-lg')) }}
 		</div>
 	</div>
 

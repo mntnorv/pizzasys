@@ -6,7 +6,7 @@
 	<div class="page-header">
 		<h1>Nuolaidos</h1>
 		<ol class="breadcrumb">
-			<li>Adminstravimas</li>
+			<li>{{link_to_route('admin', 'Administravimas')}}</li>
 			<li class="active">Nuolaidos</li>
 		</ol>
 	</div>
@@ -37,10 +37,10 @@
 		@foreach ($discounts as $discount)
 		<tr class="cart-item">
 			<td>{{ $discount->name }}</td>
-			<td>{{ $discount->type }}</td>
+			<td>{{ $discount->discountType->name }}</td>
 			<td>{{ $discount->percentage }}</td>
 			<td>
-				<button type="button" class="btn btn-s btn-default edit-button discounts-edit">Redaguoti</button> 
+				<button type="button" class="btn btn-s btn-primary edit-button discounts-edit">Redaguoti</button> 
 				<button type="button" class="btn btn-s btn-danger remove-button fa fa-times"></button>
 			</td>
 		</tr>
