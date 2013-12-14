@@ -83,6 +83,7 @@ Route::group(array('prefix' => 'admin'), function() {
 
 	Route::get('discounts/{id}', array('uses' => 'DiscountController@editDiscount', 
 			'as' => 'admin.discounts.edit'))->before('admin');
+
 });
 
 /*
@@ -131,6 +132,7 @@ Route::group(array('prefix' => 'api'), function() {
 
 	});
 
+
 	Route::group(array('prefix' => 'waiter'), function() {
 
 		Route::group(array('prefix' => 'order'), function() {
@@ -151,6 +153,11 @@ Route::group(array('prefix' => 'api'), function() {
 
 	});
 
+	Route::group(array('prefix' => 'discount'), function() {
 
+		Route::post('update/{id}', array('uses' => 'DiscountController@updateDiscount', 
+			'as' => 'api.discount.update'))->before('admin');
+
+	});
 
 });
