@@ -20,6 +20,8 @@ class UserTableSeeder extends Seeder {
 			'password'   => '$2a$04$BxXsZLfneByzlNzfKuN2PewrNQPa.jK4yafgLsnl48PRAY.61UH.2',
 			'user_type_id'       => 2
 		));
+		$pizzeria = Pizzeria::where('name', '=', 'Kauno picerija 1')->first();
+		$user->pizzeria()->associate($pizzeria);
 		$user->save();
 
 		$user = new User(array(
@@ -30,6 +32,8 @@ class UserTableSeeder extends Seeder {
 		));
 		$shift = EmployeeShift::where('name', '=', 'Padavėjos dieninė pamaina')->first();
 		$user->shift()->associate($shift);
+		$pizzeria = Pizzeria::where('name', '=', 'Kauno picerija 1')->first();
+		$user->pizzeria()->associate($pizzeria);
 		$user->save();
 
 		$user = new User(array(

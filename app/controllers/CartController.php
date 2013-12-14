@@ -19,8 +19,24 @@ class CartController extends BaseController {
 
 		return View::make('cart', array(
 			'cartItems' => $cartItems,
-			'cartPrice' => $cartPrice
+			'cartPrice' => $cartPrice,
 		));
+	}
+
+	/*
+	| GET /cart/order
+	*/
+
+	public function handleOrder() {
+		$order = Order::find(Session::get('cart_order_id'));
+		$order->order_state_id = 2; // Set order state to accepted
+		$order->save();
+
+		Session::forget('cart_order_id');
+
+		return Redirect::route('home')
+			->with('flash_message', 'Sėkmingai užsakyta')
+			->with('flash_type', 'success');
 	}
 
 	/*
@@ -33,13 +49,27 @@ class CartController extends BaseController {
 			->get()->lists('name', 'id');
 
 		$orderInfo = new stdClass();
-		$orderInfo->city_id     = Input::old('city_id')     ? Input::old('city_id')     : $cartOrder->city->name;
-		$orderInfo->street      = Input::old('street')      ? Input::old('street')      : $cartOrder->street;
-		$orderInfo->building_no = Input::old('building_no') ? Input::old('building_no') : $cartOrder->building_no;
-		$orderInfo->flat_no     = Input::old('flat_no')     ? Input::old('flat_no')     : $cartOrder->flat_no;
-		$orderInfo->tel_no      = Input::old('tel_no')      ? Input::old('tel_no')      : $cartOrder->tel_no;
-		$orderInfo->door_code   = Input::old('door_code')   ? Input::old('door_code')   : $cartOrder->door_code;
-		$orderInfo->comment     = Input::old('comment')     ? Input::old('comment')     : $cartOrder->comment;
+		$orderInfo->city_id = Input::old('city_id') == NULL
+			? Input::old('city_id')
+			: $cartOrder->city->name;
+		$orderInfo->street = Input::old('street') == NULL
+			? Input::old('street')
+			: $cartOrder->street;
+		$orderInfo->building_no = Input::old('building_no') == NULL
+			? Input::old('building_no')
+			: $cartOrder->building_no;
+		$orderInfo->flat_no = Input::old('flat_no') == NULL
+			? Input::old('flat_no')
+			: $cartOrder->flat_no;
+		$orderInfo->tel_no = Input::old('tel_no') == NULL
+			? Input::old('tel_no')
+			: $cartOrder->tel_no;
+		$orderInfo->door_code = Input::old('door_code') == NULL
+			? Input::old('door_code')
+			: $cartOrder->door_code;
+		$orderInfo->comment = Input::old('comment') == NULL
+			? Input::old('comment')
+			: $cartOrder->comment;
 
 		return View::make('cart.delivery', array(
 			'orderInfo' => $orderInfo,
@@ -120,9 +150,10 @@ class CartController extends BaseController {
 		$order = NULL;
 		if (!Session::has('cart_order_id')) {
 			$order = Order::create(array(
-				'order_type_id'  => 2,
-				'order_state_id' => 1,
-				'price'          => 0
+				'order_type_id'          => 2,
+				'order_state_id'         => 1,
+				'order_payment_state_id' => 1,
+				'price'                  => 0,
 			));
 			Session::put('cart_order_id', $order->id);
 		} else {
