@@ -11,7 +11,7 @@
 	<div class="row">
 		<!-- Registration form column -->
 		<div class="col-sm-6">
-			@include('forms/registration_form')
+			@include('forms.registration_form')
 		</div>
 	</div>
 </div>

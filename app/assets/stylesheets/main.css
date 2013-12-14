@@ -9,7 +9,15 @@ tfoot {
 
 textarea.form-control {
 	resize: none;
-	height: 126px;
+	height: 90px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.align-right {
+	text-align: right;
 }
 
 

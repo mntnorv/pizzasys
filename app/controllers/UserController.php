@@ -13,13 +13,13 @@ class UserController extends BaseController {
 
 		if (Auth::attempt($user)) {
 			return Redirect::route('home')
-				->with('flash_message', 'You have successfully logged in.')
+				->with('flash_message', 'Jūs sėkmingai prisijungėte.')
 				->with('flash_type', 'success');
 		}
 
 		// authentication failure! lets go back to the login page
 		return Redirect::route('login')
-			->with('flash_message', 'Your username/password combination was incorrect.')
+			->with('flash_message', 'Neteisingas vartotojo vardas arba slaptažodis.')
 			->with('flash_type', 'error')
 			->withInput();
 	}
@@ -51,7 +51,7 @@ class UserController extends BaseController {
 			$user->save();
 
 			return Redirect::route('login')
-				->with('flash_message', 'You have successfully registered')
+				->with('flash_message', 'Jūs sėkmingai užsiregistravote.')
 				->with('flash_type', 'success');
 		} else { 
 			$errors = $validator->messages()->all();
@@ -70,7 +70,7 @@ class UserController extends BaseController {
 		Auth::logout();
 
 		return Redirect::route('home')
-			->with('flash_message', 'You have successfully logged out.')
+			->with('flash_message', 'Jūs sėkmingai atsijungėte.')
 			->with('flash_type', 'success');
 	}
 

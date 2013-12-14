@@ -2,9 +2,9 @@
 
 	<!-- Username select -->
 	<div class="form-group">
-		{{ Form::label('user', 'Username:', array('class' => 'col-md-4 control-label')) }}
+		{{ Form::label('user', 'Vartotojo vardas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::select('user_id', $users->lists('username', 'id'), NULL, array( 'class' => 'form-control', 'id' => 'user_id')) }}
+			{{ Form::select('user_id', $users->lists('username', 'id'), NULL, array('class' => 'form-control', 'id' => 'user_id')) }}
 		</div>
 	</div>
 
@@ -36,7 +36,7 @@
 	<!-- Submit button -->
 	<div class="form-group">
 		<div class="col-md-offset-4 col-md-8">
-			{{ Form::submit('Update', array('class' => 'btn btn-primary btn-block btn-lg')) }}
+			{{ Form::submit('Atnaujinti', array('class' => 'btn btn-primary btn-block btn-lg')) }}
 		</div>
 	</div>
 

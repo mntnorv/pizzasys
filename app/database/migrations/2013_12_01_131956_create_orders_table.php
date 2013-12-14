@@ -29,6 +29,7 @@ class CreateOrdersTable extends Migration {
 			$table->string('building_no', 16)->nullable();
 			$table->string('flat_no', 16)->nullable();
 			$table->string('tel_no', 16)->nullable();
+			$table->string('door_code', 16)->nullable();
 			$table->text('comment')->nullable();
 			$table->double('price')->nullable();
 			$table->timestamps();

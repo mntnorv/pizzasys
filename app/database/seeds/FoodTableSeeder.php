@@ -25,8 +25,38 @@ class FoodTableSeeder extends Seeder {
 		));
 
 		Food::create(array(
-			'name'         => 'Coca cola',
+			'name'         => 'Coca-Cola',
 			'food_type_id' => 4,
+			'price'        => 1
+		));
+
+		Food::create(array(
+			'name'         => 'Sprite',
+			'food_type_id' => 4,
+			'price'        => 1
+		));
+
+		Food::create(array(
+			'name'         => 'Fanta',
+			'food_type_id' => 4,
+			'price'        => 1
+		));
+
+		Food::create(array(
+			'name'         => 'Pepsi',
+			'food_type_id' => 4,
+			'price'        => 1
+		));
+
+		Food::create(array(
+			'name'         => 'Studentiška',
+			'food_type_id' => 1,
+			'price'        => 1
+		));
+
+		Food::create(array(
+			'name'         => 'Aštri',
+			'food_type_id' => 1,
 			'price'        => 1
 		));
 	}

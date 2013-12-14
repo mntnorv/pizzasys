@@ -1,0 +1,23 @@
+.discounts-table .name-column {
+	width: 40%;
+}
+
+.discounts-table .type-column {
+	width: 30%;
+}
+
+.discounts-table .percentaga-column {
+	width: 10%;
+}
+
+.discounts-table .actions-column {
+	width: 15%;
+}
+
+.discounts-table .align-right {
+	text-align: right;
+}
+
+.discounts-edit {
+	line-height: 1;
+}
