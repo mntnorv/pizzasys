@@ -26,6 +26,16 @@ class DiscountController extends BaseController {
 		));
 	}
 
+	public function removeDiscount($id) {
+		$discount = Discount::find($id);
+		$discountTypes = DiscountType::all()->lists('name', 'id');
+
+		return View::make('admin.edit_discount', array(
+			"discount" => $discount,
+			"discountTypes" => $discountTypes
+		));
+	}
+
 	public function updateDiscount($id) {
 		// Get all possible discount types
 		$typeKeys = DiscountType::all()->modelKeys();
@@ -58,6 +68,8 @@ class DiscountController extends BaseController {
 
 		// Check if details of discount have changed
 		if($changed){
+			$date = new DateTime();
+			$discount->updated_at = $date->getTimestamp();
 			$discount->save();
 			return $this->jsonSuccess('DISCOUNT_UPDATED');
 		} else {

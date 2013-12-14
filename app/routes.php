@@ -164,6 +164,9 @@ Route::group(array('prefix' => 'api'), function() {
 		Route::post('update/{id}', array('uses' => 'DiscountController@updateDiscount', 
 			'as' => 'api.discount.update'))->before('admin');
 
+		Route::post('remove', array('uses' => 'DiscountController@removeDiscount', 
+			'as' => 'api.discount.remove'));
+
 	});
 
 });
