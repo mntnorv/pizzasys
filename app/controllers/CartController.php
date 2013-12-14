@@ -28,11 +28,22 @@ class CartController extends BaseController {
 	*/
 
 	public function showDelivery() {
+		$cartOrder = Order::find(Session::get('cart_order_id'));
 		$cities = Pizzeria::join('cities', 'pizzerias.city_id', '=', 'cities.id')
 			->get()->lists('name', 'id');
 
+		$orderInfo = new stdClass();
+		$orderInfo->city_id     = Input::old('city_id')     ? Input::old('city_id')     : $cartOrder->city->name;
+		$orderInfo->street      = Input::old('street')      ? Input::old('street')      : $cartOrder->street;
+		$orderInfo->building_no = Input::old('building_no') ? Input::old('building_no') : $cartOrder->building_no;
+		$orderInfo->flat_no     = Input::old('flat_no')     ? Input::old('flat_no')     : $cartOrder->flat_no;
+		$orderInfo->tel_no      = Input::old('tel_no')      ? Input::old('tel_no')      : $cartOrder->tel_no;
+		$orderInfo->door_code   = Input::old('door_code')   ? Input::old('door_code')   : $cartOrder->door_code;
+		$orderInfo->comment     = Input::old('comment')     ? Input::old('comment')     : $cartOrder->comment;
+
 		return View::make('cart.delivery', array(
-			'cities' => $cities
+			'orderInfo' => $orderInfo,
+			'cities'    => $cities,
 		));
 	}
 
@@ -41,6 +52,47 @@ class CartController extends BaseController {
 	*/
 
 	public function setDelivery() {
+		$data = array(
+			'city_id'     => Input::get('city_id', null),
+			'street'      => Input::get('street', null),
+			'building_no' => Input::get('building_no', null),
+			'flat_no'     => Input::get('flat_no', null),
+			'tel_no'      => Input::get('tel_no', null),
+			'door_code'   => Input::get('door_code', null),
+			'comment'     => Input::get('comment', null),
+		);
+
+		$rules = array(
+			'city_id'     => 'Required',
+			'street'      => 'Required|Max:256',
+			'building_no' => 'Required|AlphaNum|Min:0',
+			'flat_no'     => 'Numeric|Min:1',
+			'tel_no'      => 'Between:5,16',
+			'door_code'   => 'Max:16',
+			'comment'     => 'Max:1024',
+		);
+
+		$validator = Validator::make($data, $rules);
+		if ($validator->fails()) {
+			$errors = $validator->messages()->all();
+			$error_messages = implode('<br/>', $errors);
+
+			Input::flash();
+			return Redirect::route('cart.delivery')
+				->with('flash_message', $error_messages)
+				->with('flash_type', 'error');
+		}
+
+		$order = Order::find(Session::get('cart_order_id'));
+		$order->city_id     = Input::get('city_id');
+		$order->street      = Input::get('street');
+		$order->building_no = Input::get('building_no');
+		$order->flat_no     = Input::get('flat_no');
+		$order->tel_no      = Input::get('tel_no');
+		$order->door_code   = Input::get('door_code');
+		$order->comment     = Input::get('comment');
+		$order->save();
+
 		return Redirect::route('cart.confirm');
 	}
 
@@ -49,7 +101,10 @@ class CartController extends BaseController {
 	*/
 
 	public function showConfirmation() {
-		return View::make('cart.confirm');
+		$cartOrder = Order::find(Session::get('cart_order_id'));
+		return View::make('cart.confirm', array(
+			'cartOrder' => $cartOrder
+		));
 	}
 
 	/*

@@ -3,6 +3,10 @@
 class Order extends Eloquent {
 	protected $guarded = array('id');
 
+	public function city() {
+		return $this->belongsTo('City');
+	}
+
 	public function table() {
 		return $this->belongsTo('Table');
 	}

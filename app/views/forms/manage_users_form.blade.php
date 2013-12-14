@@ -4,7 +4,7 @@
 	<div class="form-group">
 		{{ Form::label('user', 'Username:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::select('user_id', $users->lists('username', 'id'), NULL, array( 'class' => 'form-control', 'id' => 'user_id')) }}
+			{{ Form::select('user_id', $users->lists('username', 'id'), NULL, array('class' => 'form-control', 'id' => 'user_id')) }}
 		</div>
 	</div>
 
