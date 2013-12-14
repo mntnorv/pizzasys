@@ -10,11 +10,11 @@ class DatabaseSeeder extends Seeder {
 	public function run() {
 		Eloquent::unguard();
 
+		$this->call('CityTableSeeder');
+		$this->call('PizzeriaTableSeeder');
 		$this->call('UserTypeTableSeeder');
 		$this->call('EmployeeShiftsTableSeeder');
 		$this->call('UserTableSeeder');
-		$this->call('CityTableSeeder');
-		$this->call('PizzeriaTableSeeder');
 		$this->call('FoodTypeTableSeeder');
 		$this->call('FoodTableSeeder');
 		$this->call('IngredientTypeTableSeeder');
@@ -23,10 +23,11 @@ class DatabaseSeeder extends Seeder {
 		$this->call('OrderStateTableSeeder');
 		$this->call('PizzeriaIngredientsTableSeeder');
 		$this->call('DiscountTypeTableSeeder');
-		$this->call('DiscountTableSeeder');
-		
-		//$this->call('');
-		//$this->call('');
+		$this->call('DiscountTableSeeder');		
+		$this->call('TableTableSeeder');
+
+		$this->call('WaiterTableTableSeeder');
+		$this->call('FoodIngredientTableSeeder');
 		//$this->call('');
 		//$this->call('');
 		//$this->call('');
