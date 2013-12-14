@@ -86,6 +86,10 @@ Route::group(array('prefix' => 'admin'), function() {
 	
 	Route::get('reports', array('uses' => 'ReportsController@showReports', 
 			'as' => 'admin.reports.show'))->before('admin');
+
+	Route::get('orders', array('uses' => 'OrderController@showOrderList', 
+		'as' => 'admin.orders'))->before('admin');
+
 });
 
 /*
