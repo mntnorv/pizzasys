@@ -73,7 +73,7 @@ $(function() {
 
 	var deleteRow = function() {
 		var row = cartTableRows.eq(removeButtons.index($(this)));
-		var ASD = Number(row.attr('data-food'));
+		var foodId = Number(row.attr('data-food'));
 
 		var url = BASE_URL + '/api/cart/remove';
 		$.post(url, {'food_id': foodId});
