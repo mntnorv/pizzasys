@@ -47,7 +47,7 @@ class IngredientTableSeeder extends Seeder {
 		$ingredient->save();
 		
 		$ingredient = new Ingredient(array(
-			'name' => 'Apelsinas'
+			'name' => 'Apelsinai'
 		));
 
 		$ingredient_type = IngredientType::where('name', '=', 'Vaisius')->first();
