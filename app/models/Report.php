@@ -2,7 +2,7 @@
 
 class Report extends Eloquent{
 
-	public function type(){
+	public function reportTypes(){
 		return $this->belongsTo('ReportType');
 	}
 }
