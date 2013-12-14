@@ -23,7 +23,13 @@ class CreateOrdersTable extends Migration {
 			$table->foreign('table_id')->references('id')->on('tables');
 			$table->integer('user_id')->unsigned()->nullable();
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->string('address')->nullable();
+			$table->integer('city_id')->unsigned()->nullable();
+			$table->foreign('city_id')->references('id')->on('cities');
+			$table->string('street')->nullable();
+			$table->string('building_no', 16)->nullable();
+			$table->string('flat_no', 16)->nullable();
+			$table->string('tel_no', 16)->nullable();
+			$table->text('comment')->nullable();
 			$table->double('price')->nullable();
 			$table->timestamps();
 		});

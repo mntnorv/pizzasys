@@ -32,6 +32,22 @@ class CartController extends BaseController {
 	}
 
 	/*
+	| POST /cart/delivery
+	*/
+
+	public function setDelivery() {
+		return Redirect::route('cart.confirm');
+	}
+
+	/*
+	| GET /cart/confirm
+	*/
+
+	public function showConfirmation() {
+		return View::make('cart.confirm');
+	}
+
+	/*
 	| POST /api/cart/add
 	*/
 	public function addFood() {

@@ -55,6 +55,9 @@ Route::group(array('prefix' => 'cart'), function() {
 	Route::post('delivery', array('uses' => 'CartController@setDelivery', 
 		'as' => 'cart.delivery.set'));
 
+	Route::get('confirm', array('uses' => 'CartController@showConfirmation', 
+		'as' => 'cart.confirm'));
+
 });
 
 /*

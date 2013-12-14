@@ -6,3 +6,8 @@ tfoot {
 	font-weight: bold;
 	border-top: 2px solid rgb(221, 221, 221);
 }
+
+textarea.form-control {
+	resize: none;
+	height: 126px;
+}
