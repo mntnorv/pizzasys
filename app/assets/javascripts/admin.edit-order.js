@@ -87,8 +87,10 @@ $(function() {
 		var url = BASE_URL + "/api/order/update/" + orderId;
 
 		$.post(url, data, function (response) {
-			alert(response);
-		});
+			if(response.error) {
+				alert('Klaida. Nepavyko atnaujinti užsakymo.');
+			}
+		}, 'json');
 	};
 
 	editOrderForm.submit(submitOrderForm);
