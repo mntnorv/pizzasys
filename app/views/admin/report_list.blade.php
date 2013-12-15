@@ -29,7 +29,7 @@
 				<th>Tipas</th>
 				<th>Data nuo</th>
 				<th>Data iki</th>
-				<th></th>
+				<th>{{link_to_route('admin.report.create', 'Sukurti naują', null, array( 'class' => 'btn btn-success btn-xs remove-button'))}}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,7 +46,7 @@
 								array('class' => 'btn btn-primary btn-xs')
 							);
 						}}
-						<button class="btn btn-danger btn-sm remove-button fa fa-times" onclick="return confirm('Are you sure?')" data-report-id="{{$report->id}}"></button>
+						<button class="btn btn-danger btn-xs remove-button" data-report-id="{{$report->id}}"><span class="fa fa-times"></span></button>
 					</td>
 				</tr>
 			@endforeach

@@ -4,7 +4,7 @@
 	<div class="form-group">
 		{{ Form::label('report_name', 'Pavadinimas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::text('report_name', $report->name, array( 'class' => 'form-control'))}}
+			{{ Form::text('report_name', $report->name, array( 'class' => 'form-control', 'placeholder' => 'Ataskaita'))}}
 		</div>
 	</div>
 
@@ -20,7 +20,7 @@
 	<div class="form-group">
 		{{ Form::label('date_from', 'Data nuo:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::text('date_from', $report->start, array( 'class' => 'form-control'))}}
+			{{ Form::text('date_from', $report->start, array( 'class' => 'form-control', 'placeholder' => '2013-12-01'))}}
 		</div>
 	</div>
 
@@ -28,7 +28,7 @@
 	<div class="form-group">
 		{{ Form::label('date_to', 'Data iki:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
-			{{ Form::text('date_to', $report->end, array( 'class' => 'form-control'))}}
+			{{ Form::text('date_to', $report->end, array( 'class' => 'form-control', 'placeholder' => '2013-12-30'))}}
 		</div>
 	</div>
 

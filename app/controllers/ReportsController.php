@@ -30,10 +30,10 @@ class ReportsController extends BaseController {
 	public function showReportCreate() {
 
 		$report = new Report();
-		$report->name = "Nauja ataskaita";
-		$report->report_type_id = 1;
-		$report->start = "2013-12-01";
-		$report->end = "2013-12-30";
+		// $report->name = "Nauja ataskaita";
+		// $report->report_type_id = 1;
+		// $report->start = "2013-12-01";
+		// $report->end = "2013-12-30";
 
 		$report_types = ReportType::all()->lists('name', 'id');
 
