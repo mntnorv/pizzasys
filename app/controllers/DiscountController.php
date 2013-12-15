@@ -5,7 +5,6 @@ class DiscountController extends BaseController {
 	/*
 	| GET /admin/discounts
 	*/
-
 	public function showDiscountList() {
 		$discounts = Discount::all();
 		$discountTypes = DiscountType::all()->lists('id', 'name');
@@ -16,7 +15,10 @@ class DiscountController extends BaseController {
 		));
 	}
 
-	public function editDiscount($id) {
+	/*
+	| GET /admin/discount/{id}
+	*/
+	public function showEditDiscount($id) {
 		$discount = Discount::find($id);
 		$discountTypes = DiscountType::all()->lists('name', 'id');
 
@@ -26,6 +28,9 @@ class DiscountController extends BaseController {
 		));
 	}
 
+	/*
+	| POST /api/discount/remove/{id}
+	*/
 	public function removeDiscount($id) {
 		$discount = Discount::find($id);
 		$discountTypes = DiscountType::all()->lists('name', 'id');
@@ -36,6 +41,9 @@ class DiscountController extends BaseController {
 		));
 	}
 
+	/*
+	| POST /api/discount/update/{id}
+	*/
 	public function updateDiscount($id) {
 		// Get all possible discount types
 		$typeKeys = DiscountType::all()->modelKeys();

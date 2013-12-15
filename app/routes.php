@@ -81,14 +81,17 @@ Route::group(array('prefix' => 'admin'), function() {
 	Route::get('discounts', array('uses' => 'DiscountController@showDiscountList', 
 		'as' => 'admin.discounts'))->before('admin');
 
-	Route::get('discounts/{id}', array('uses' => 'DiscountController@editDiscount', 
-			'as' => 'admin.discounts.edit'))->before('admin');
+	Route::get('discount/{id}', array('uses' => 'DiscountController@showEditDiscount', 
+			'as' => 'admin.discount.edit'))->before('admin');
 	
 	Route::get('reports', array('uses' => 'ReportsController@showReports', 
 			'as' => 'admin.reports.show'))->before('admin');
 
 	Route::get('orders', array('uses' => 'OrderController@showOrderList', 
 		'as' => 'admin.orders'))->before('admin');
+
+	Route::get('order/{id}', array('uses' => 'OrderController@showEditOrder', 
+		'as' => 'admin.order.edit'))->before('admin');
 
 });
 
@@ -122,6 +125,9 @@ Route::group(array('prefix' => 'api'), function() {
 
 		Route::get('food/{type_id}', array('uses' => 'ApiController@getFoodByType', 
 			'as' => 'api.get.foodByType'));
+
+		Route::get('tables/{pizzeria_id}', array('uses' => 'ApiController@getTablesByPizzeria', 
+			'as' => 'api.get.tablesByPizzeria'));
 
 	});
 
@@ -164,7 +170,7 @@ Route::group(array('prefix' => 'api'), function() {
 		Route::post('update/{id}', array('uses' => 'DiscountController@updateDiscount', 
 			'as' => 'api.discount.update'))->before('admin');
 
-		Route::post('remove', array('uses' => 'DiscountController@removeDiscount', 
+		Route::post('remove/{id}', array('uses' => 'DiscountController@removeDiscount', 
 			'as' => 'api.discount.remove'));
 
 	});

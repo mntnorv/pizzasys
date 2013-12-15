@@ -22,8 +22,9 @@
 //= require_directory handlebars
 //
 // Pizzasys javascripts:
+//= require admin.edit-order
 //= require admin.discount
 //= require admin.users
-//= require home.food
 //= require cart
+//= require home.food
 //= require waiter.order

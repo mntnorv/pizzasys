@@ -39,8 +39,8 @@
 					<td>{{ $cartOrder->city->name }}</td>
 				</tr>
 				<tr>
-					<td class="bold align-right">Adresas:</td>
-					<td>{{ $cartOrder->address }}</td>
+					<td class="bold align-right">Gatvė:</td>
+					<td>{{ $cartOrder->street }}</td>
 				</tr>
 				<tr>
 					<td class="bold align-right">Namo nr.:</td>

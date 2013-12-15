@@ -15,4 +15,27 @@ class OrderController extends BaseController {
 		));
 	}
 
+	/*
+	| GET /admin/order/{id}
+	*/
+
+	public function showEditOrder($id) {
+		$order          = Order::find($id);
+		$types          = OrderType::all()->lists('name', 'id');
+		$states         = OrderState::all()->lists('name', 'id');
+		$payment_states = OrderPaymentState::all()->lists('name', 'id');
+		$pizzerias      = Pizzeria::all()->lists('name', 'id');
+		$cities         = Pizzeria::join('cities', 'pizzerias.city_id', '=', 'cities.id')
+			->get()->lists('name', 'id');
+
+		return View::make('admin.edit_order', array(
+			'order'          => $order,
+			'types'          => $types,
+			'states'         => $states,
+			'payment_states' => $payment_states,
+			'pizzerias'      => $pizzerias,
+			'cities'         => $cities,
+		));
+	}
+
 }

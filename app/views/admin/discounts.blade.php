@@ -41,7 +41,7 @@
 				<td>{{ $discount->percentage }}</td>
 				<td>
 					{{
-						link_to_route('admin.discounts.edit', 'Redaguoti',
+						link_to_route('admin.discount.edit', 'Redaguoti',
 							array('id' => $discount->id),
 							array('class' => 'btn btn-s btn-primary edit-button discounts-edit') 
 						)

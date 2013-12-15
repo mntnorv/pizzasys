@@ -1,7 +1,6 @@
 $(function() {
 
 	var cartTable   = $("#cart-table");
-	var waiterTable = $("#waiter-order-table");
 	if (cartTable.length === 0 ) {
 		return false;
 	}

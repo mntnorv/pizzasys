@@ -10,10 +10,18 @@
 	<h1>Užsakymų valdymas</h1>
 
 	<table class="table">
+		<colgroup>
+			<col style="width: 20%;" />
+			<col style="width: 10%;" />
+			<col style="width: 10%;" />
+			<col style="width: 10%;" />
+			<col style="width: 10%;" />
+			<col style="width: 10%;" />
+		</colgroup>
 		<thead>
 			<tr>
-				<th>Miestas</th>
 				<th>Laikas</th>
+				<th>Suma</th>
 				<th>Tipas</th>
 				<th>Būsena</th>
 				<th>Apmokėjimo būsena</th>
@@ -23,12 +31,19 @@
 		<tbody>
 			@foreach ($orders as $order)
 				<tr>
-					<td>{{$order->city->name}}</td>
 					<td>{{$order->created_at}}</td>
+					<td>{{$order->price}} Lt</td>
 					<td>{{$order->orderType->name}}</td>
 					<td>{{$order->orderState->name}}</td>
 					<td>{{$order->orderPaymentState->name}}</td>
-					<td></td>
+					<td>
+						{{
+							link_to_route('admin.order.edit', 'Redaguoti',
+								array('id' => $order->id),
+								array('class' => 'btn btn-primary btn-xs')
+							);
+						}}
+					</td>
 				</tr>
 			@endforeach
 		</tbody>

@@ -1,6 +1,8 @@
 <?php
 
 class Table extends Eloquent {
+	protected $hidden = array('created_at', 'updated_at');
+	
 	public function pizzeria() {
 		return $this->belongsTo('Pizzeria');
 	}

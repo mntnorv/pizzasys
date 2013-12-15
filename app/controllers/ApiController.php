@@ -3,21 +3,21 @@
 class ApiController extends BaseController {
 
 	/*
-	| GET /user/{id}
+	| GET /api/get/user/{id}
 	*/
 	public function getUser($id){
 		
 		$user = User::find($id);
 
 		if($user == NULL) {
-			return $this->jsonError("User not found");
+			return $this->jsonError("INVALID_USER_ID");
 		}
 
 		return $user;
 	}
 
 	/*
-	| GET /food
+	| GET /api/get/food
 	*/
 	public function getFood() {
 		if(Input::get('term') == NULL){
@@ -37,19 +37,37 @@ class ApiController extends BaseController {
 	}
 
 	/*
-	| GET /food/{type}
+	| GET /api/get/food/{type}
 	*/
 	public function getFoodByType($type_id) {
 		$type = FoodType::where('name', '=', $type_id)->first();
 
 		if ($type == NULL) {
-			return $this->jsonError("Invalid food type");
+			return $this->jsonError("INVALID_FOOD_TYPE_ID");
 		}
 
 		$food = Food::where('food_type_id', '=', $type->id)->get();
 
 		return Response::json(array(
 			'food' => $food->toArray()
-			));
+		));
+	}
+
+	/*
+	| GET /api/get/tables/{pizzeria}
+	*/
+
+	public function getTablesByPizzeria($pizzeria_id) {
+		$pizzeria = Pizzeria::find($pizzeria_id);
+
+		if ($pizzeria == NULL) {
+			return $this->jsonError('INVALID_PIZZERIA_ID');
+		}
+
+		$tables = Table::where('pizzeria_id', '=', $pizzeria->id)->get();
+
+		return Response::json(array(
+			'tables' => $tables->toArray()
+		));
 	}
 }
