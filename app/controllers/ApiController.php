@@ -93,4 +93,18 @@ class ApiController extends BaseController {
 
 		return Response::json($tables->toArray());
 	}
+
+	/*
+	| GET /api/waiter/orders/{table_id}
+	*/
+	public function getOrdersByTable($id) {
+		$table = Table::find($id);
+		if ($table == NULL) {
+			return $this->jsonError('INVALID_TABLE_ID');
+		}
+
+		$orders = Order::where('table_id', '=', $table->id)->get();
+
+		return Response::json($orders);
+	}
 }

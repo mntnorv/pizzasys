@@ -180,25 +180,29 @@ Route::group(array('prefix' => 'api'), function() {
 
 			Route::post('add', array('uses' => 'WaiterController@addFood', 
 				'as' => 'api.waiter.order.add'))
-			->before('waiter');
+				->before('waiter');
 
 			Route::post('remove', array('uses' => 'WaiterController@removeFood', 
 				'as' => 'api.waiter.order.remove'))
-			->before('waiter');
+				->before('waiter');
 
 			Route::post('update', array('uses' => 'WaiterController@updateFood', 
 				'as' => 'api.waiter.order.update'))
-			->before('waiter');
+				->before('waiter');
 
 			Route::post('save', array('uses' => 'WaiterController@saveOrder', 
 				'as' => 'api.waiter.order.save'))
-			->before('waiter');
+				->before('waiter');
 
 			Route::get('{id}/food', array('uses' => 'WaiterController@getOrderFood', 
 				'as' => 'api.waiter.order.food'))
-			->before('waiter');
+				->before('waiter');
 
 		});
+
+		Route::get('orders/{table_id}', array('uses' => 'ApiController@getOrdersByTable', 
+			'as' => 'api.waiter.ordersByTable'))
+			->before('waiter');
 
 	});
 

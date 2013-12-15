@@ -52,9 +52,11 @@ class WaiterController extends BaseController {
 		$order = NULL;
 		if (!Session::has('waiter_order_id')) {
 			$order = Order::create(array(
-				'order_type_id'  => 1,
-				'order_state_id' => 1,
-				'price'          => 0
+				'order_type_id'          => 1,
+				'order_state_id'         => 1,
+				'order_payment_state_id' => 1,
+				'user_id'                => Auth::user()->id,
+				'price'                  => 0,
 			));
 			Session::put('waiter_order_id', $order->id);
 		} else {
