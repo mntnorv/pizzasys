@@ -17,7 +17,6 @@ $( function(){
 	var loadOrderFood = function(select) {
 		waiterOrderManageTableBody.empty();
 		var order_id = select.val();
-		console.log(order_id);
 		var url = BASE_URL + '/api/waiter/order/' + order_id + '/food'
 		$.get(url, function(orderFood){
 			var json;
@@ -183,7 +182,7 @@ $( function(){
 		}
 	});
 
-	/*// Handle submit yourself
+	// Handle submit yourself
 	var form = $("#waiter-order-manage-form");
 	form.submit(function(event) {
 		event.preventDefault();
@@ -195,5 +194,5 @@ $( function(){
 		}, function (data) {
 			alert(data);
 		});
-	});*/
+	});
 });
