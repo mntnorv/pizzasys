@@ -1,0 +1,23 @@
+@extends('layouts.master')
+
+@section('title')
+	Ataskaitos rodymas
+@stop
+
+@section('content')
+
+<div class="container">
+	<div class="page-header">
+		<h1>Ataskaitos rodymas</h1>
+		<ol class="breadcrumb">
+			<li>{{link_to_route('admin', 'Administravimas')}}</li>			
+			<li>{{link_to_route('admin.reports.show', 'Ataskaitos')}}</li>
+			<li class="active">Rodymas</li>
+		</ol>
+	</div>
+	<div>
+		<?php var_dump($report) ?>
+	</div>	
+</div>
+
+@stop

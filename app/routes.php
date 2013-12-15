@@ -93,8 +93,11 @@ Route::group(array('prefix' => 'admin'), function() {
 	Route::get('report/create', array('uses' => 'ReportsController@showReportCreate', 
 		'as' => 'admin.report.create'))->before('admin');
 
-	Route::get('report/{id}', array('uses' => 'ReportsController@showReportEdit', 
+	Route::get('report/edit/{id}', array('uses' => 'ReportsController@showReportEdit', 
 		'as' => 'admin.report.edit'))->before('admin');
+
+	Route::get('report/{id}', array('uses' => 'ReportsController@showReport', 
+			'as' => 'admin.report.show'));
 
 	Route::get('orders', array('uses' => 'OrderController@showOrderList', 
 		'as' => 'admin.orders'))->before('admin');
@@ -222,7 +225,6 @@ Route::group(array('prefix' => 'api'), function() {
 
 		Route::post('create', array('uses' => 'ReportsController@createReport', 
 			'as' => 'api.report.create'));
-
 	});
 
 });

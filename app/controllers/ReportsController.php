@@ -109,14 +109,23 @@ class ReportsController extends BaseController {
 	}
 
 	/*
-	| POST /api/discount/remove/{id}
+	| POST /api/report/remove/{id}
 	*/
 	public function removeReport($id) {
-		$discount = Report::find($id);
 
-		$discount->delete();
+		$report = Report::find($id);
+		$report->delete();
 
 		return $this->jsonSuccess('DISCOUNT_REMOVED');
+	}
+
+	/*
+	| POST /api/report/remove/{id}
+	*/
+	public function showReport($id) {
+
+		$report = $id;
+		return View::make('admin.show_report', array("report" => $report));
 	}
 	
 }
