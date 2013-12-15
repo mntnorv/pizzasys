@@ -17,10 +17,11 @@ class ReportsController extends BaseController {
 
 	public function showReportEdit($id) {
 
+		$button = 'Atnaujinti';
 		$report = Report::find($id);
 		$report_types = ReportType::all()->lists('name', 'id');
 
-		return View::make('admin.edit_report', array("report_types" => $report_types, "report" => $report));
+		return View::make('admin.edit_report', array("report_types" => $report_types, "report" => $report, 'button' => $button));
 	}
 
 	/*
@@ -29,15 +30,11 @@ class ReportsController extends BaseController {
 
 	public function showReportCreate() {
 
+		$button = 'Sukurti';
 		$report = new Report();
-		// $report->name = "Nauja ataskaita";
-		// $report->report_type_id = 1;
-		// $report->start = "2013-12-01";
-		// $report->end = "2013-12-30";
-
 		$report_types = ReportType::all()->lists('name', 'id');
 
-		return View::make('admin.create_report', array("report_types" => $report_types, "report" => $report));
+		return View::make('admin.create_report', array("report_types" => $report_types, "report" => $report, 'button' => $button));
 	}
 
 	/*
@@ -46,7 +43,7 @@ class ReportsController extends BaseController {
 
 	public function updateReport($id) {
 
-		$date_for_test = array(
+		$data_for_test = array(
 			'name' => Input::get('name'),
 			'type' => Input::get('type'),
 			'date_from' => Input::get('date_from'),
@@ -56,11 +53,11 @@ class ReportsController extends BaseController {
 		$rules = array(			
 			'name' => 'Required',
 			'type' => 'Required',
-			'date_from' => 'Required',
-			'date_to' =>'Required'
+			'date_from' => 'Required|Between:8,10|Date',
+			'date_to' =>'Required|Between:8,10|Date'
 		);
 
-		$validator = Validator::make($date_for_test, $rules);	
+		$validator = Validator::make($data_for_test, $rules);	
 
 		if ($validator->passes()) {
 
@@ -80,7 +77,7 @@ class ReportsController extends BaseController {
 
 	public function createReport() {
 
-		$date_for_test = array(
+		$data_for_test = array(
 			'name' => Input::get('name'),
 			'type' => Input::get('type'),
 			'date_from' => Input::get('date_from'),
@@ -90,11 +87,11 @@ class ReportsController extends BaseController {
 		$rules = array(			
 			'name' => 'Required',
 			'type' => 'Required',
-			'date_from' => 'Required',
-			'date_to' =>'Required'
+			'date_from' => 'Required|Between:8,10|Date',
+			'date_to' =>'Required|Between:8,10|Date'
 		);
 
-		$validator = Validator::make($date_for_test, $rules);	
+		$validator = Validator::make($data_for_test, $rules);	
 
 		if ($validator->passes()) {
 
@@ -111,5 +108,24 @@ class ReportsController extends BaseController {
 		}		
 	}
 
+	/*
+	| POST /api/report/remove/{id}
+	*/
+	public function removeReport($id) {
+
+		$report = Report::find($id);
+		$report->delete();
+
+		return $this->jsonSuccess('DISCOUNT_REMOVED');
+	}
+
+	/*
+	| POST /api/report/remove/{id}
+	*/
+	public function showReport($id) {
+
+		$report = $id;
+		return View::make('admin.show_report', array("report" => $report));
+	}
 	
 }

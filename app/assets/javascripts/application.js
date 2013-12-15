@@ -24,6 +24,7 @@
 // Pizzasys javascripts:
 //= require admin.edit-order
 //= require admin.edit-report
+//= require admin.remove-report
 //= require admin.discount
 //= require admin.discount.remove
 //= require admin.users

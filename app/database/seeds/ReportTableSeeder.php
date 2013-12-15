@@ -32,7 +32,7 @@ class ReportTableSeeder extends Seeder {
 				'end' => '2013-12-20'
 		));
 		
-		$type = ReportType::where('id', '=', '3')->first();
+		$type = ReportType::where('id', '=', '2')->first();
 		$report->reportType()->associate($type);
 		$report->save();
 

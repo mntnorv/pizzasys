@@ -27,7 +27,11 @@ $(function() {
 		} else {
 			var url = BASE_URL + '/api/report/create';
 		}
+
+
+
 		$.post(url, data, function (response) {
+			console.log(response);
 			alert(response);
 			if(response.success==='REPORT_CREATED'){
 				window.location.href = BASE_URL + '/admin/reports';

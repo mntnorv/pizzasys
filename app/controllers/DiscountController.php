@@ -60,6 +60,79 @@ class DiscountController extends BaseController {
 		));
 	}
 
+	public function createDiscount() {
+
+		$typeKeys = DiscountType::all()->modelKeys();
+		$foodKeys = Food::all()->modelKeys();
+		$foodTypeKeys = FoodType::all()->modelKeys();
+
+		$dataForTest = array(
+			'name' => Input::get('name'),
+			'type' => Input::get('type'),
+			'type_to' => Input::get('type_to'),
+			'percentage' => Input::get('percentage')
+		);
+
+		$rules = array(			
+			'name' => 'Required',
+			'type' => 'Required',
+			'percentage' => 'Required'
+		);
+
+		$validator = Validator::make($dataForTest, $rules);	
+
+		if ($validator->passes()) {
+
+			$discount = new Discount();
+			$discount->name = Input::get('name');
+			
+			if(!in_array(Input::get('type'), $typeKeys)){
+				return $this->jsonError('UNKNOWN_DISCOUNT_TYPE');
+			} else {
+				$discount->discount_type_id = Input::get('type');
+			}
+
+			// Create food_id or food_type_id
+			if (Input::get('type') == 1) {
+				// Check if food is correct
+				if(!in_array(Input::get('type_to'), $foodKeys)){
+					return $this->jsonError('UNKNOWN_FOOD');
+				} else {
+					$discount->food_id = Input::get('type_to');
+					$discount->food_type_id = NULL;
+					$discount->order_id = NULL;
+				}
+			} else if (Input::get('type') == 2) {
+				// Check if food type is correct
+				if(!in_array(Input::get('type_to'), $foodTypeKeys)){
+					return $this->jsonError('UNKNOWN_FOOD_TYPE');
+				} else {
+					$discount->food_id = NULL;
+					$discount->food_type_id = Input::get('type_to');
+					$discount->order_id = NULL;
+				}
+			} else if (Input::get('type') == 3) {
+				$discount->food_id = NULL;
+				$discount->food_type_id = NULL;
+			}
+
+			if(Input::has('percentage') & -1 < Input::get('percentage') & Input::get('percentage') < 101 & is_numeric(Input::get('percentage'))){
+				$discount->percentage = Input::get('percentage');
+			} else {
+				return $this->jsonError('WRONG_PERCENTAGE_FORMAT');
+			}
+
+			$date = new DateTime();
+			$discount->created_at = $date->getTimestamp();
+			$discount->updated_at = $date->getTimestamp();
+			$discount->save();
+
+			return $this->jsonSuccess('DISCOUNT_CREATED');
+		} else { 
+			return $this->jsonError('INVALID_DATA');
+		}		
+	}
+
 	/*
 	| POST /api/discount/remove/{id}
 	*/
