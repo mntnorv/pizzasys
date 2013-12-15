@@ -81,6 +81,9 @@ Route::group(array('prefix' => 'admin'), function() {
 	Route::get('discounts', array('uses' => 'DiscountController@showDiscountList', 
 		'as' => 'admin.discounts'))->before('admin');
 
+	Route::get('discount/create', array('uses' => 'DiscountController@showCreateDiscount', 
+		'as' => 'admin.discount.create'))->before('admin');
+
 	Route::get('discount/{id}', array('uses' => 'DiscountController@showEditDiscount', 
 		'as' => 'admin.discount.edit'))->before('admin');
 

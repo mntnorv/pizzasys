@@ -39,6 +39,28 @@ class DiscountController extends BaseController {
 	}
 
 	/*
+	| GET /admin/discount/{id}
+	*/
+	public function showCreateDiscount() {
+		$discount = new Discount();
+		$discountTypes = DiscountType::all()->lists('name', 'id');
+		$food = Food::all()->lists('name', 'id');
+		$discountTo = 1;
+
+		if ($discount->discount_type_id == 1) {
+			$discountTo = $discount->food_id;
+		} else if  ($discount->discount_type_id == 2) {
+			$discountTo = $discount->food_type_id;
+		}
+
+		return View::make('admin.create_discount', array(
+			"discount" => $discount,
+			"discountTypes" => $discountTypes,
+			"discountTo" => $discountTo,
+		));
+	}
+
+	/*
 	| POST /api/discount/remove/{id}
 	*/
 	public function removeDiscount($id) {

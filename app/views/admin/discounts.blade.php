@@ -1,5 +1,10 @@
 @extends('layouts.master')
 
+@section('title')
+	Nuolaidos
+@stop
+
+
 @section('content')
 
 <div class="container">

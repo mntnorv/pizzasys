@@ -1,18 +1,18 @@
 @extends('layouts.master')
 
 @section('title')
-	Nuolaidų redagavimas
+	Nuolaidų kūrimas
 @stop
 
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h1>Nuolaidų redagavimas</h1>
+		<h1>Nuolaidų kūrimas</h1>
 		<ol class="breadcrumb">
 			<li>{{link_to_route('admin', 'Administravimas')}}</li>
 			<li>{{link_to_route('admin.discounts', 'Nuolaidos')}}</li>
-			<li class="active">Nuolaidų redagavimas</li>
+			<li class="active">Nuolaidų kūrimas</li>
 		</ol>
 	</div>
 
