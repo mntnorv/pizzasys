@@ -19,6 +19,7 @@ class DiscountController extends BaseController {
 	| GET /admin/discount/{id}
 	*/
 	public function showEditDiscount($id) {
+
 		$discount = Discount::find($id);
 		$discountTypes = DiscountType::all()->lists('name', 'id');
 
