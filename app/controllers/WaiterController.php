@@ -21,6 +21,19 @@ class WaiterController extends BaseController {
 		return View::make('waiter.order', array('order' => $order, 'waiterTables' => $waiterTables));
 	}
 
+    /*
+	| GET /waiter/order/manage
+	*/
+	public function showOrderManage(){
+		$waiter  = User::find(Auth::user()->id);
+		
+		$waiterOrders = $waiter->orders()->where('table_id', '!=', 'NULL')->get();
+
+		$waiterTables = $waiter->waiterTables()->lists('table_id', 'table_id');
+		
+		return View::make('waiter.order', array('waiterOrders' => $waiterOrders, 'waiterTables' => $waiterTables));
+	}
+
 	/*
 	| POST /api/waiter/order/add
 	*/
