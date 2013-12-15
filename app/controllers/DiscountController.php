@@ -22,10 +22,12 @@ class DiscountController extends BaseController {
 
 		$discount = Discount::find($id);
 		$discountTypes = DiscountType::all()->lists('name', 'id');
+		$food = Food::all()->lists('name', 'id');
 
 		return View::make('admin.edit_discount', array(
 			"discount" => $discount,
-			"discountTypes" => $discountTypes
+			"discountTypes" => $discountTypes,
+			"food" => $food
 		));
 	}
 
@@ -38,7 +40,7 @@ class DiscountController extends BaseController {
 
 		return View::make('admin.edit_discount', array(
 			"discount" => $discount,
-			"discountTypes" => $discountTypes
+			"discountTypes" => $discountTypes,
 		));
 	}
 
