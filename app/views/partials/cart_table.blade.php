@@ -18,7 +18,7 @@
 			<td>Iš viso:</td>
 			<td></td>
 			<td class="align-right">
-				<span id="full-price">{{ $cartPrice }}</span> Lt
+				<span id="full-price"><?php printf('%.2f', $cartPrice); ?></span> Lt
 			</td>
 		</tr>
 	</tfoot>
@@ -27,14 +27,16 @@
 			<tr
 				class="cart-item"
 				data-food="{{ $item->food->id }}"
-				data-price="{{ $item->food->price }}"
+				data-price="{{ $item->food->price * $item->food->getDiscountAttribute() }}"
 			>
 				<td>{{ $item->food->name }}</td>
 				<td class="align-right">
 					<input type="text" class="amount-input" value="{{ $item->amount }}" />
 				</td>
 				<td class="align-right">
-					<span class="price">{{ $item->food->price * $item->amount }}</span> Lt
+					<span class="price">
+						<?php printf('%.2f', $item->food->price * $item->food->getDiscountAttribute() * $item->amount); ?>
+					</span> Lt
 				</td>
 				<td>
 					<button class="btn btn-xs btn-danger remove-button fa fa-times"></button>

@@ -6,4 +6,8 @@ class FoodType extends Eloquent {
 	public function food() {
 		return $this->hasMany('Food');
 	}
+
+	public function foodTypeDiscounts() {
+		return $this->hasMany('Discount');
+	}
 }
