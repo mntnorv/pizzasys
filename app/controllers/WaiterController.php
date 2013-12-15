@@ -6,22 +6,7 @@ class WaiterController extends BaseController {
 	| GET /waiter/order
 	*/
 	public function showOrder(){
-
-
-		//Get all waiter tables
-		$waiterTables = User::find(Auth::user()->id)->waiterTables()->lists('table_id', 'table_id');
-
-		//Get unpaid waiter tables
-		$unpaidTables = Order::where('order_state_id', '=', '1')->where('user_id', '=', Auth::user()->id )->lists('table_id', 'table_id');
-
-		foreach($waiterTables as $tableKey => $tableValue){
-			if(in_array($tableValue, $unpaidTables)){
-				unset($waiterTables[$tableKey]);
-			}
-		}
-		var_dump($waiterTables, $unpaidTables);
-		Session::put('session_tables', $waiterTables);
-
+		
 		$order = Order::create(array(
 				'order_type_id'  	     => 1,
 				'order_state_id' 		 => 1,
@@ -29,10 +14,24 @@ class WaiterController extends BaseController {
 				'order_payment_state_id' => 1
 		));
 
+		$waiterTables = User::find(Auth::user()->id)->waiterTables()->lists('table_id', 'table_id');
 
 		Session::put('waiter_order_id', $order->id);
 
 		return View::make('waiter.order', array('order' => $order, 'waiterTables' => $waiterTables));
+	}
+
+    /*
+	| GET /waiter/order/manage
+	*/
+	public function showOrderManage(){
+		$waiter  = User::find(Auth::user()->id);
+		
+		$waiterOrders = $waiter->orders()->where('table_id', '!=', 'NULL')->get();
+
+		$waiterTables = $waiter->waiterTables()->lists('table_id', 'table_id');
+		
+		return View::make('waiter.order', array('waiterOrders' => $waiterOrders, 'waiterTables' => $waiterTables));
 	}
 
 	/*
@@ -154,11 +153,6 @@ class WaiterController extends BaseController {
 		if(!Input::has('table')){
 			return $this->jsonError('INVALID_TABLE');
 		}
-
-		if(!in_array(Input::get('table'), Session::get('session_tables'))){
-			return $this->jsonError('UNPAID_TABLE');
-		}
-
 
 		$order = Order::find(Session::get('waiter_order_id'));
 

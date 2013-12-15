@@ -19,10 +19,10 @@ Route::get('/', array('uses' => 'HomeController@showHome',
 */
 
 Route::post('login', 'UserController@handleLogin')
-	->before('csrf');
+->before('csrf');
 
 Route::post('register', 'UserController@handleRegistration')
-	->before('csrf');
+->before('csrf');
 
 Route::get('register', array('uses' => 'UserController@showRegistration',
 	'as' => 'register'))->before('guest');
@@ -82,10 +82,10 @@ Route::group(array('prefix' => 'admin'), function() {
 		'as' => 'admin.discounts'))->before('admin');
 
 	Route::get('discount/{id}', array('uses' => 'DiscountController@showEditDiscount', 
-			'as' => 'admin.discount.edit'))->before('admin');
+		'as' => 'admin.discount.edit'))->before('admin');
 	
 	Route::get('reports', array('uses' => 'ReportsController@showReports', 
-			'as' => 'admin.reports.show'))->before('admin');
+		'as' => 'admin.reports.show'))->before('admin');
 
 	Route::get('orders', array('uses' => 'OrderController@showOrderList', 
 		'as' => 'admin.orders'))->before('admin');
@@ -106,6 +106,13 @@ Route::group(array('prefix' => 'waiter'), function() {
 
 	Route::get('order', array('uses' => 'WaiterController@showOrder', 
 		'as' => 'waiter.order'))->before('waiter');
+	
+	Route::group(array('prefix' => 'order'), function() {
+
+		Route::get('manage', array('uses' => 'WaiterController@showOrderManage', 
+			'as' => 'waiter.order.manage'))->before('waiter');
+
+	});
 
 });
 
@@ -152,17 +159,17 @@ Route::group(array('prefix' => 'api'), function() {
 
 		Route::group(array('prefix' => 'order'), function() {
 
-		Route::post('add', array('uses' => 'WaiterController@addFood', 
-			'as' => 'api.waiter.order.add'));
+			Route::post('add', array('uses' => 'WaiterController@addFood', 
+				'as' => 'api.waiter.order.add'));
 
-		Route::post('remove', array('uses' => 'WaiterController@removeFood', 
-			'as' => 'api.waiter.order.remove'));
+			Route::post('remove', array('uses' => 'WaiterController@removeFood', 
+				'as' => 'api.waiter.order.remove'));
 
-		Route::post('update', array('uses' => 'WaiterController@updateFood', 
-			'as' => 'api.waiter.order.update'));
+			Route::post('update', array('uses' => 'WaiterController@updateFood', 
+				'as' => 'api.waiter.order.update'));
 
-		Route::post('save', array('uses' => 'WaiterController@saveOrder', 
-			'as' => 'api.waiter.order.save'));
+			Route::post('save', array('uses' => 'WaiterController@saveOrder', 
+				'as' => 'api.waiter.order.save'));
 
 		});
 

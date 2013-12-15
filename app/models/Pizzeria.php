@@ -1,6 +1,8 @@
 <?php
 
 class Pizzeria extends Eloquent {
+	protected $hidden = array('created_at', 'updated_at');
+	
 	public function city() {
 		return $this->belongsTo('City');
 	}
