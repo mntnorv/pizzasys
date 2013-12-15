@@ -1,4 +1,4 @@
-{{ Form::open(array('class' => 'form-horizontal', 'id' => 'order-edit-form' )) }}
+{{ Form::open(array('class' => 'form-horizontal', 'id' => 'order-edit-form', 'data-order-id' => $order->id )) }}
 
 	<div class="row">
 		<div class="col-md-6">
@@ -29,22 +29,6 @@
 		</div>
 		<div class="col-md-6">
 
-			<!-- Pizzeria field -->
-			<div class="form-group">
-				{{ Form::label('pizzeria', 'Picerija:', array('class' => 'col-md-4 control-label')) }}
-				<div class="col-md-8">
-					{{ Form::select('pizzeria', $pizzerias, $order->pizzeria_id, array('class' => 'form-control')) }}
-				</div>
-			</div>
-
-			<!-- Table field -->
-			<div class="form-group">
-				{{ Form::label('table', 'Staliukas:', array('class' => 'col-md-4 control-label')) }}
-				<div class="col-md-8">
-					{{ Form::select('table', array(), NULL, array('class' => 'form-control')) }}
-				</div>
-			</div>
-
 			<!-- City field -->
 			<div class="form-group">
 				{{ Form::label('city', 'Miestas:', array('class' => 'col-md-4 control-label')) }}
@@ -53,22 +37,38 @@
 				</div>
 			</div>
 
-			<!-- Address fields -->
+			<!-- Pizzeria field -->
 			<div class="form-group">
+				{{ Form::label('pizzeria', 'Picerija:', array('class' => 'col-md-4 control-label')) }}
+				<div class="col-md-8">
+					{{ Form::select('pizzeria', array(), NULL, array('class' => 'form-control')) }}
+				</div>
+			</div>
+
+			<!-- Table field -->
+			<div class="form-group" id="table-input-group">
+				{{ Form::label('table', 'Staliukas:', array('class' => 'col-md-4 control-label')) }}
+				<div class="col-md-8">
+					{{ Form::select('table', array(), NULL, array('class' => 'form-control')) }}
+				</div>
+			</div>
+
+			<!-- Address fields -->
+			<div class="form-group" id="street-input-group">
 				{{ Form::label('street', 'Gatvė:', array('class' => 'col-md-4 control-label')) }}
 				<div class="col-md-8">
 					{{ Form::text('street', $order->street, array('placeholder' => 'Gatvė', 'class' => 'form-control')) }}
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" id="building-no-input-group">
 				{{ Form::label('building_no', 'Namo numeris:', array('class' => 'col-md-4 control-label')) }}
 				<div class="col-md-8">
 					{{ Form::text('building_no', $order->building_no, array('placeholder' => 'Namo numeris', 'class' => 'form-control')) }}
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" id="flat-no-input-group">
 				{{ Form::label('flat_no', 'Buto numeris:', array('class' => 'col-md-4 control-label')) }}
 				<div class="col-md-8">
 					{{ Form::text('flat_no', $order->flat_no, array('placeholder' => 'Buto numeris', 'class' => 'form-control')) }}
@@ -76,7 +76,7 @@
 			</div>
 
 			<!-- Telephone number field -->
-			<div class="form-group">
+			<div class="form-group" id="tel-no-input-group">
 				{{ Form::label('tel_no', 'Telefonas:', array('class' => 'col-md-4 control-label')) }}
 				<div class="col-md-8">
 					{{ Form::text('tel_no', $order->tel_no, array('placeholder' => 'Telefonas', 'class' => 'form-control')) }}
@@ -84,7 +84,7 @@
 			</div>
 
 			<!-- Door code field -->
-			<div class="form-group">
+			<div class="form-group" id="door-code-input-group">
 				{{ Form::label('door_code', 'Durų kodas:', array('class' => 'col-md-4 control-label')) }}
 				<div class="col-md-8">
 					{{ Form::text('door_code', $order->door_code, array('placeholder' => 'Durų kodas', 'class' => 'form-control')) }}
@@ -92,7 +92,7 @@
 			</div>
 
 			<!-- Comment field -->
-			<div class="form-group">
+			<div class="form-group" id="comment-input-group">
 				{{ Form::label('comment', 'Komentaras:', array('class' => 'col-md-4 control-label')) }}
 				<div class="col-md-8">
 					{{ Form::textarea('comment', $order->comment, array('placeholder' => 'Komentaras', 'class' => 'form-control')) }}

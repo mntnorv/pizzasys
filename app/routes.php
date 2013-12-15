@@ -145,6 +145,9 @@ Route::group(array('prefix' => 'api'), function() {
 		Route::get('food/{type_id}', array('uses' => 'ApiController@getFoodByType', 
 			'as' => 'api.get.foodByType'));
 
+		Route::get('pizzerias/{city_id}', array('uses' => 'ApiController@getPizzeriasByCity', 
+			'as' => 'api.get.picceriasByCity'));
+
 		Route::get('tables/{pizzeria_id}', array('uses' => 'ApiController@getTablesByPizzeria', 
 			'as' => 'api.get.tablesByPizzeria'));
 
@@ -159,6 +162,13 @@ Route::group(array('prefix' => 'api'), function() {
 			'as' => 'api.cart.remove'));
 
 		Route::post('update', array('uses' => 'CartController@updateFood', 
+			'as' => 'api.cart.update'));
+
+	});
+
+	Route::group(array('prefix' => 'order'), function() {
+
+		Route::post('update/{id}', array('uses' => 'OrderController@updateOrder', 
 			'as' => 'api.cart.update'));
 
 	});
