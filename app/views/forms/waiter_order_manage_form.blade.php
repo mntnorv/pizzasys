@@ -16,6 +16,22 @@
 		</div>
 	</div>
 
+	<!--  Waiter table orders  -->
+	<div class="form-group ui-widget">
+		{{ Form::label('orders', 'Stalo užsakymai:', array('class' => 'col-md-4 control-label')) }}
+		<div class="col-md-8">
+			{{ Form::select('orders', $firstTableOrdersList, NULL, array( 'class' => 'form-control'))}}
+		</div>
+	</div>
+
+	<!--  Waiter table order state  -->
+	<div class="form-group ui-widget">
+		{{ Form::label('paid', 'Apmokėta:', array('class' => 'col-md-4 control-label')) }}
+		<div class="col-md-8">
+			{{ Form::select('paid', $orderStatusList, $firstPayState, array( 'class' => 'form-control'))}}
+		</div>
+	</div>
+
 	<div class="form-group" id="suggestions">
 	</div>
 	<table id="waiter-order-table" class="table table-striped cart-table">
