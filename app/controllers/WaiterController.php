@@ -30,8 +30,9 @@ class WaiterController extends BaseController {
 		$waiterOrders = $waiter->orders()->where('table_id', '!=', 'NULL')->get();
 		$waiterTables = $waiter->waiterTables()->join('tables', 'tables.id', '=', 'waiter_tables.table_id')->get()->lists('name', 'table_id');
 		$firstTableOrders = $waiter->orders()->where('table_id', '=', array_keys($waiterTables)[0])->get();
-		$firstTableOrdersList = $firstTableOrders->lists('updated_at', 'id');
-		$firstTableFirstOrderPayStatus = $firstTableOrders->first()->order_payment_state_id;
+		$firstTableOrdersList = !$firstTableOrders->isEmpty() ? $firstTableOrders->lists('updated_at', 'id') : array();
+
+		$firstTableFirstOrderPayStatus = !$firstTableOrders->isEmpty() ? $firstTableOrders->first()->order_payment_state_id : null;
 		$orderStatusList = OrderPaymentState::all()->lists('name', 'id');
 
 		return View::make('waiter.manage', array('waiterOrders' => $waiterOrders, 'waiterTables' => $waiterTables, 

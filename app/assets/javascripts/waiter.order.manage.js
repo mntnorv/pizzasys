@@ -18,10 +18,21 @@ $( function(){
 		var order_id = select.val();
 		var url = BASE_URL + '/api/waiter/order/' +order_id+ '/food'
 		$.get(url, function(orderFood){
-			for(var i = 0; i < orderFood.length; i++){
-				waiterOrderManageTableBody.append(
-					JST['handlebars/waiter_food_list'](orderFood[i])
-				);
+			var json;
+			var hasErrors = true;
+			try {
+    			json = $.parseJSON(orderFood);
+			} catch (e) {
+    		// not json
+    			hasErrors = false;
+			}
+
+			if(hasErrors === false){
+				for(var i = 0; i < orderFood.length; i++){
+					waiterOrderManageTableBody.append(
+						JST['handlebars/waiter_food_list'](orderFood[i])
+					);
+				}
 			}
 		})
 	};
