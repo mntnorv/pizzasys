@@ -54,9 +54,23 @@ class ApiController extends BaseController {
 	}
 
 	/*
-	| GET /api/get/tables/{pizzeria}
+	| GET /api/get/pizzerias/{city_id}
 	*/
+	public function getPizzeriasByCity($city_id) {
+		$city = City::find($city_id);
 
+		if ($city == NULL) {
+			return $this->jsonError('INVALID_CITY_ID');
+		}
+
+		$pizzerias = Pizzeria::where('city_id', '=', $city->id)->get();
+
+		return Response::json($pizzerias->toArray());
+	}
+
+	/*
+	| GET /api/get/tables/{pizzeria_id}
+	*/
 	public function getTablesByPizzeria($pizzeria_id) {
 		$pizzeria = Pizzeria::find($pizzeria_id);
 
@@ -66,8 +80,6 @@ class ApiController extends BaseController {
 
 		$tables = Table::where('pizzeria_id', '=', $pizzeria->id)->get();
 
-		return Response::json(array(
-			'tables' => $tables->toArray()
-		));
+		return Response::json($tables->toArray());
 	}
 }
