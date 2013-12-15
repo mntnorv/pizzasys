@@ -34,7 +34,7 @@
 
 	<div class="form-group" id="suggestions">
 	</div>
-	<table id="waiter-order-table" class="table table-striped cart-table">
+	<table id="waiter-order-manage-table" class="table table-striped cart-table">
 		<colgroup>
 		<col class="food-column" />
 		<col class="amount-column" />

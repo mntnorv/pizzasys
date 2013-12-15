@@ -1,25 +1,28 @@
 //Autocomplete
 $( function(){
-	var waiterOrderTable = $("#waiter-order-table");
-	if (waiterOrderTable.length === 0) {
+	var waiterOrderManageTable = $("#waiter-order-manage-table");
+	if (waiterOrderManageTable.length === 0) {
 		return false;
 	}
 
-	var waiterOrderTableRows = null;
-	var inputElements = null;
-	var priceElements = null;
-	var removeButtons = null;
-	var fullPriceElem = null;
+	var waiterOrderManageTableRows = null;
+	var inputElements   = null;
+	var priceElements   = null;
+	var removeButtons   = null;
+	var fullPriceElem   = null;
+	var orderSelectElem = null;
 
 	//var cartSize      = $('#cart-size');
 
 	var updateCachedSelectors = function() {
-		fullPriceElem = waiterOrderTable.find('#full-price');
-		waiterOrderTableRows = waiterOrderTable.find('.waiter-order-item');
-		inputElements = waiterOrderTable.find('input.amount-input');
-		priceElements = waiterOrderTable.find('.price');
-		removeButtons = waiterOrderTable.find('.remove-button');
+		fullPriceElem = waiterOrderManageTable.find('#full-price');
+		waiterOrderManageTableRows = waiterOrderManageTable.find('.waiter-order-item');
+		inputElements = waiterOrderManageTable.find('input.amount-input');
+		priceElements = waiterOrderManageTable.find('.price');
+		removeButtons = waiterOrderManageTable.find('.remove-button');
+		orderSelectElem = waiterOrderManageTable.find('#orders');
 		removeButtons.click(deleteRow);
+		orderSelectElem.change();
 		inputElements.focusout(onInputFocusLost);
 	};
 	updateCachedSelectors();
@@ -27,7 +30,7 @@ $( function(){
 	var updateItemPrice = function (elem) {
 		var newAmount    = elem.val();
 		var inputIndex   = inputElements.index(elem);
-		var row          = waiterOrderTableRows.eq(inputIndex);
+		var row          = waiterOrderManageTableRows.eq(inputIndex);
 		var priceForOne  = row.attr('data-price');
 		var foodId       = row.attr('data-food');
 		var priceElement = priceElements.eq(inputIndex);
@@ -73,8 +76,12 @@ $( function(){
 		updateFullAmount();
 	};
 
+	var onOrderSelectChange = function(){
+		loadOrderFood($(this));
+	};
+
 	var deleteRow = function() {
-		var row = waiterOrderTableRows.eq(removeButtons.index($(this)));
+		var row = waiterOrderManageTableRows.eq(removeButtons.index($(this)));
 		var foodId = Number(row.attr('data-food'));
 
 		var url = BASE_URL + '/api/waiter/order/remove';
@@ -86,12 +93,16 @@ $( function(){
 		updateFullAmount();
 	};
 
+	var loadOrderFood = function(select){
+		alert (select.val());
+	};
+
 	$( "#query" ).autocomplete({
 		source: BASE_URL + "/api/get/food",
 		minLength: 2,
 		select: function( event, ui ) {
 			var foodAmountID = -1;
-			waiterOrderTableRows.each(function(i){
+			waiterOrderManageTableRows.each(function(i){
 				if($(this).attr('data-food') == ui.item.id){
 					foodAmountID = i;
 					return;
@@ -148,3 +159,4 @@ $( function(){
 	}
 	)
 } )
+
