@@ -16,7 +16,7 @@
 		</ol>
 	</div>
 	<div>
-		<?php var_dump($report) ?>
+		<?php echo "<pre>"; var_dump($report); echo "</pre>"; ?>
 	</div>	
 </div>
 

@@ -124,7 +124,14 @@ class ReportsController extends BaseController {
 	*/
 	public function showReport($id) {
 
-		$report = $id;
+		// $report = Report::find($id);
+
+		$report = User::where('user_type_id','=','2')->leftJoin('orders','users.id','=','orders.user_id')->groupBy('users.id');
+		var_dump($report);
+		exit();
+
+
+
 		return View::make('admin.show_report', array("report" => $report));
 	}
 	
