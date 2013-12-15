@@ -86,7 +86,7 @@ Route::group(array('prefix' => 'admin'), function() {
 
 	Route::get('reports', array('uses' => 'ReportsController@showReports', 
 		'as' => 'admin.reports.show'))->before('admin');
-	
+
 	Route::get('report/{id}', array('uses' => 'ReportsController@showReportEdit', 
 		'as' => 'admin.report.edit'))->before('admin');
 
@@ -196,6 +196,16 @@ Route::group(array('prefix' => 'api'), function() {
 
 		Route::post('remove/{id}', array('uses' => 'DiscountController@removeDiscount', 
 			'as' => 'api.discount.remove'));
+
+	});
+
+	Route::group(array('prefix' => 'report'), function() {
+
+		Route::post('update/{id}', array('uses' => 'ReportsController@updateReport', 
+			'as' => 'api.report.update'))->before('admin');
+
+		Route::post('remove/{id}', array('uses' => 'ReportsController@removeReport', 
+			'as' => 'api.report.remove'));
 
 	});
 

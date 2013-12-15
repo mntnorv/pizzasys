@@ -23,6 +23,7 @@
 //
 // Pizzasys javascripts:
 //= require admin.edit-order
+//= require admin.edit-report
 //= require admin.discount
 //= require admin.users
 //= require cart
