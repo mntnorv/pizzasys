@@ -124,15 +124,25 @@ class ReportsController extends BaseController {
 	*/
 	public function showReport($id) {
 
-		// $report = Report::find($id);
+		 $report = Report::find($id);
 
-		$report = User::where('user_type_id','=','2')->leftJoin('orders','users.id','=','orders.user_id')->groupBy('users.id');
-		var_dump($report);
-		exit();
+		// $report = User::where('user_type_id','=','2')->leftJoin('orders','users.id','=','orders.user_id')->groupBy('users.id');
+		// var_dump($report);
+		// exit();
 
 
 
 		return View::make('admin.show_report', array("report" => $report));
 	}
 	
+	
+	public function showReportPDF($id) {
+
+		// $report = Report::find($id);
+
+		$report = User::where('user_type_id','=','2')->leftJoin('orders','users.id','=','orders.user_id')->groupBy('users.id');
+
+		$pdf = PDF::loadView('profile', null);
+		return $pdf->download('test.pdf');
+	}
 }

@@ -115,6 +115,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Codesleeve\AssetPipeline\AssetPipelineServiceProvider',
 		'Codesleeve\L4AssetHandlebars\L4AssetHandlebarsServiceProvider',
+		'Barryvdh\DomPDF\ServiceProvider',
 
 	),
 
@@ -180,6 +181,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+		'PDF'             => 'Barryvdh\DomPDF\Facade',
 
 	),
 

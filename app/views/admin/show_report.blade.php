@@ -16,6 +16,10 @@
 		</ol>
 	</div>
 	<div>
+	{{link_to_route('admin.report.pdf', 'PDF', array('id' => '1'))}}
+	</div>
+	<div>
+
 		<?php echo "<pre>"; var_dump($report); echo "</pre>"; ?>
 	</div>	
 </div>
