@@ -28,9 +28,9 @@ class WaiterController extends BaseController {
 		$waiter  = User::find(Auth::user()->id);
 		
 		$waiterOrders = $waiter->orders()->where('table_id', '!=', 'NULL')->get();
-		$waiterTables = $waiter->waiterTables()->lists('table_id', 'table_id');
-		$firstTableOrders = $waiter->orders()->where('table_id', '=', current($waiterTables))->get();
-		$firstTableOrdersList = $firstTableOrders->lists('id', 'id');
+		$waiterTables = $waiter->waiterTables()->join('tables', 'tables.id', '=', 'waiter_tables.table_id')->get()->lists('name', 'table_id');
+		$firstTableOrders = $waiter->orders()->where('table_id', '=', array_keys($waiterTables)[0])->get();
+		$firstTableOrdersList = $firstTableOrders->lists('updated_at', 'id');
 		$firstTableFirstOrderPayStatus = $firstTableOrders->first()->order_payment_state_id;
 		$orderStatusList = OrderPaymentState::all()->lists('name', 'id');
 
