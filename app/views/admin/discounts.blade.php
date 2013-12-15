@@ -35,7 +35,7 @@
 		</tfoot>
 		<tbody>
 			@foreach ($discounts as $discount)
-			<tr class="cart-item">
+			<tr class="discount-item">
 				<td>{{ $discount->name }}</td>
 				<td>{{ $discount->discountType->name }}</td>
 				<td>{{ $discount->percentage }}</td>
@@ -43,10 +43,10 @@
 					{{
 						link_to_route('admin.discount.edit', 'Redaguoti',
 							array('id' => $discount->id),
-							array('class' => 'btn btn-s btn-primary edit-button discounts-edit') 
+							array('class' => 'btn btn-sm btn-primary edit-button discounts-edit') 
 						)
 					}}
-					<button type="button" class="btn btn-s btn-danger remove-button fa fa-times"></button>
+					<button type="button" class="btn btn-sm btn-danger remove-button fa fa-times" data-discount-id="{{$discount->id}}"></button>
 				</td>
 			</tr>
 			@endforeach

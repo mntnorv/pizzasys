@@ -43,12 +43,10 @@ class DiscountController extends BaseController {
 	*/
 	public function removeDiscount($id) {
 		$discount = Discount::find($id);
-		$discountTypes = DiscountType::all()->lists('name', 'id');
 
-		return View::make('admin.edit_discount', array(
-			"discount" => $discount,
-			"discountTypes" => $discountTypes,
-		));
+		$discount->delete();
+
+		return $this->jsonSuccess('DISCOUNT_REMOVED');
 	}
 
 	/*
@@ -97,6 +95,9 @@ class DiscountController extends BaseController {
 				$discount->food_type_id = Input::get('type_to');
 				$discount->order_id = NULL;
 			}
+		} else if (Input::get('type') == 3) {
+			$discount->food_id = NULL;
+			$discount->food_type_id = NULL;
 		}
 
 		// Check if type is correct
@@ -105,9 +106,6 @@ class DiscountController extends BaseController {
 		} else {
 			$discount->discount_type_id = Input::get('type');
 		}
-
-
-
 
 		if(Input::has('percentage') & -1 < Input::get('percentage') & Input::get('percentage') < 101 & is_numeric(Input::get('percentage'))){
 			$discount->percentage = Input::get('percentage');
