@@ -16,7 +16,7 @@
 	<div class="row">
 		<!-- User manage form-->
 		<div class="col-sm-6">
-			@include('forms.reports_form')
+			@include('forms.report_form')
 		</div>
 	</div>
 </div>

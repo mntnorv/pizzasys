@@ -46,7 +46,7 @@
 								array('class' => 'btn btn-primary btn-xs')
 							);
 						}}
-						<button type="button" class="btn btn-sm btn-danger remove-button fa fa-times"></button>
+						<button class="btn btn-danger btn-sm remove-button fa fa-times" onclick="return confirm('Are you sure?')" data-report-id="{{$report->id}}"></button>
 					</td>
 				</tr>
 			@endforeach

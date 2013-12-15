@@ -5,8 +5,6 @@ $(function() {
 		return false;
 	}
 
-	console.log('edit report form');
-
 	var nameInput = editReportForm.find('#report_name');
 	var typeInput = editReportForm.find('#type');
 	var dateFromInput = editReportForm.find('#date_from');
@@ -24,10 +22,17 @@ $(function() {
 		};
 
 		var reportId = editReportForm.attr('data-report-id');
-		var url = BASE_URL + '/api/report/update/' + reportId;
+		if (reportId) {
+			var url = BASE_URL + '/api/report/update/' + reportId;
+		} else {
+			var url = BASE_URL + '/api/report/create';
+		}
 		$.post(url, data, function (response) {
 			alert(response);
-		});
+			if(response.success==='REPORT_CREATED'){
+				window.location.href = BASE_URL + '/admin/reports';
+			}
+		}, 'json');
 	});
 	
 });
