@@ -13,7 +13,7 @@
 
 	<!-- Grid-->
 	<!-- Discounts display-->
-	<table id="discounts-table" class="table table-striped discounts-table">
+	<table id="discount-table" class="table table-striped discounts-table">
 		<colgroup>
 			<col class="name-column" />
 			<col class="type-column" />

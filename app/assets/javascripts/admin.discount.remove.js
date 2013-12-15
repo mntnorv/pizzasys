@@ -6,20 +6,23 @@ $(function() {
 		return false;
 	}
 
-	var discountTableRows = discountTable.find('#tr');
-	var removeButtons = null;
+	var discountTableRows = discountTable.find('tr.discount-item');
+	var removeButtons = discountTable.find('.remove-button');
 
 
 	var deleteRow = function() {
-		var row = discountTableRows.eq(removeButtons.index($(this)));
-		var discount_id = Number(row.attr('data-discount-id'));
+		if (!confirm("Ar jūs tikrai norite ištrinti?")) {
+			return;
+		}
 
-		var url = BASE_URL + '/api/discount/remove' + discount_id;
-		$.post(url, {'discount_id': discount_id});
+		var row = discountTableRows.eq(removeButtons.index($(this)));
+		var discount_id = Number($(this).attr('data-discount-id'));
+
+		var url = BASE_URL + '/api/discount/remove/' + discount_id;
+		$.post(url);
 
 		row.remove();
 	};
-
 
 	removeButtons.click(deleteRow);
 
