@@ -62,9 +62,17 @@ $(function() {
 			percentage: percentage
 		};
 
-		var url = BASE_URL + "/api/discount/update/" + discount_id;
+		if (discount_id) {
+			var url = BASE_URL + "/api/discount/update/" + discount_id;
+		} else {
+			var url = BASE_URL + '/api/discount/create';
+		}
 		$.post(url, data, function (response) {
 			alert(response);
-		});
+			if(response.success==='DISCOUNT_CREATED'){
+				window.location.href = BASE_URL + '/admin/discounts';
+			}
+		}, 'json');
+
 	});
 });

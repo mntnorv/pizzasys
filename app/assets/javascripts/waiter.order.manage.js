@@ -6,6 +6,7 @@ $( function(){
 	}
 
 	var orderSelectElem = $("#orders");
+	var tableSelectElem = $('#table');
 	var	waiterOrderManageTableBody = waiterOrderManageTable.find('tbody');
 	var waiterOrderManageTableRows = null;
 	var inputElements   = null;
@@ -13,22 +14,21 @@ $( function(){
 	var removeButtons   = null;
 	var fullPriceElem   = null;
 
-	var loadOrderFood = function(select){
+	var loadOrderFood = function(select) {
 		waiterOrderManageTableBody.empty();
 		var order_id = select.val();
-		var url = BASE_URL + '/api/waiter/order/' +order_id+ '/food'
+		var url = BASE_URL + '/api/waiter/order/' + order_id + '/food'
 		$.get(url, function(orderFood){
 			var json;
 			var hasErrors = true;
 			try {
-    			json = $.parseJSON(orderFood);
+				json = $.parseJSON(orderFood);
 			} catch (e) {
-    		// not json
-    			hasErrors = false;
+				hasErrors = false;
 			}
 
 			if(hasErrors === false){
-				for(var i = 0; i < orderFood.length; i++){
+				for(var i = 0; i < orderFood.length; i++) {
 					waiterOrderManageTableBody.append(
 						JST['handlebars/waiter_food_list'](orderFood[i])
 					);
@@ -37,11 +37,29 @@ $( function(){
 		})
 	};
 
+	var loadTableOrders = function(select) {
+		var table_id = select.val();
+		var url = BASE_URL + '/api/waiter/orders/' + table_id;
+		$.getJSON(url, function (response) {
+			orderSelectElem.html(
+				JST['handlebars/waiter_order_list'](response)
+			);
+			loadOrderFood(orderSelectElem);
+		});
+	};
+
 	loadOrderFood(orderSelectElem);
-	var onOrderSelectChange = function(){
+
+	var onOrderSelectChange = function() {
 		loadOrderFood($(this));
 	};
+
+	var onTableSelectChange = function() {
+		loadTableOrders($(this));
+	};
+
 	orderSelectElem.change(onOrderSelectChange);
+	tableSelectElem.change(onTableSelectChange);
 
 	//var cartSize      = $('#cart-size');
 
@@ -123,7 +141,7 @@ $( function(){
 	$( "#query" ).autocomplete({
 		source: BASE_URL + "/api/get/food",
 		minLength: 2,
-		select: function( event, ui ) {
+		select: function (event, ui) {
 			var foodAmountID = -1;
 			waiterOrderManageTableRows.each(function(i){
 				if($(this).attr('data-food') == ui.item.id){
@@ -137,49 +155,44 @@ $( function(){
 					JST['handlebars/waiter_food_list'](ui.item)
 				);
 
-        	//Add food to the cart
-        	var url = BASE_URL + '/api/waiter/order/add';
-        	$.post(url, {
-        		'food_id': ui.item.id,
-        	});
-        }else{
-        	var foodInputField = inputElements.eq(foodAmountID);
-        	var foodAmount = foodInputField.val();
+				//Add food to the cart
+				var url = BASE_URL + '/api/waiter/order/add';
+				$.post(url, {
+					'food_id': ui.item.id,
+				});
+			} else {
+				var foodInputField = inputElements.eq(foodAmountID);
+				var foodAmount = foodInputField.val();
 
-        	foodAmount++;
-        	foodInputField.val('' +foodAmount);
+				foodAmount++;
+				foodInputField.val('' +foodAmount);
 
-    		//Update food amount
-    		var url = BASE_URL + '/api/waiter/order/update';
-    		$.post(url, {
-    			'food_id': ui.item.id,
-    			'amount' : foodAmountID
-    		});
-    	}
+				//Update food amount
+				var url = BASE_URL + '/api/waiter/order/update';
+				$.post(url, {
+					'food_id': ui.item.id,
+					'amount' : foodAmountID
+				});
+			}
 
-    	updateCachedSelectors();
-    	updateFullPrice();
-    	removeButtons.unbind("click");
-    	removeButtons.click(deleteRow);
-    }
-});
+			updateCachedSelectors();
+			updateFullPrice();
+			removeButtons.unbind("click");
+			removeButtons.click(deleteRow);
+		}
+	});
 
-	//Handle submit yourself
+	// Handle submit yourself
 	var form = $("#waiter-order-manage-form");
-	form.submit(function(event){
-
+	form.submit(function(event) {
 		event.preventDefault();
 		var waiterTableId = $(this).find('select[name="table"]').val();
 
 		var url = BASE_URL + "/api/waiter/order/save"
-		$.post(url,
-			{
-				'table' : waiterTableId
-			},
-			function(data){
-				alert(data);
-			} );
-	}
-	)
-} )
-
+		$.post(url, {
+			'table' : waiterTableId
+		}, function (data) {
+			alert(data);
+		});
+	});
+});
