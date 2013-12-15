@@ -7,7 +7,7 @@
 		<h1>Ataskaitų valdymas</h1>
 		<ol class="breadcrumb">
 			<li>{{link_to_route('admin', 'Administravimas')}}</li>
-			<li>{{link_to_route('admin.report_list.show', 'Ataskaitos')}}</li>
+			<li>{{link_to_route('admin.reports.show', 'Ataskaitos')}}</li>
 			<li class="active">Valdymas</li>
 		</ol>
 	</div>
