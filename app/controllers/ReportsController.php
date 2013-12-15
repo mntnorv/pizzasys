@@ -126,8 +126,16 @@ class ReportsController extends BaseController {
 
 		// $report = Report::find($id);
 
-		$report = User::where('user_type_id','=','2')->leftJoin('orders','users.id','=','orders.user_id')->groupBy('users.id');
+		$report = DB::table('users')
+					->select(DB::raw('count(orders.id) as order_count'))
+					->leftJoin('orders', 'users.id', '=', 'orders.user_id' )
+					->where('users.user_type_id', '=', '2')
+					->groupBy('users.id')
+					->get();
+		$queries = DB::getQueryLog();
+		$last_query = end($queries);
 		var_dump($report);
+
 		exit();
 
 
