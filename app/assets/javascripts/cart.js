@@ -45,7 +45,7 @@ $(function() {
 			'amount': newAmount
 		});
 
-		priceElement.html(newAmount * priceForOne);
+		priceElement.html(sprintf('%.2f', newAmount * priceForOne));
 	};
 
 	var updateFullPrice = function() {
@@ -53,7 +53,7 @@ $(function() {
 		priceElements.each(function (index) {
 			fullPrice += Number($(this).html());
 		});
-		fullPriceElem.html(fullPrice);
+		fullPriceElem.html(sprintf('%.2f', fullPrice));
 	};
 
 	var updateFullAmount = function() {

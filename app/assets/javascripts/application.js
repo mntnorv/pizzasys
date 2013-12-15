@@ -16,6 +16,7 @@
 //= require jquery.chained.remote
 //= require chosen.jquery
 //= require jquery-ui
+//= require sprintf
 //
 // Pizzasys handlebar templates:
 //= require handlebars
