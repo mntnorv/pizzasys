@@ -24,10 +24,14 @@
 	</div>
 
 	<!-- Discount type to edit -->
-	<div class="form-group">
-		{{ Form::label('type_to', 'Kokiam maistui:', array('class' => 'col-md-4 control-label')) }}
+	<div class="form-group" id="type-to-form">
+		{{ Form::label('type_to', 'Maistas:', array('class' => 'col-md-4 control-label', 'id' => 'type_to_label')) }}
 		<div class="col-md-8">
-			{{ Form::select('type_to', $food, $discount->food_type_id, array( 'class' => 'form-control'))}}
+			{{ Form::select('type_to', array(), NULL, array( 
+						'class' => 'form-control',
+						'data-selected' => $discountTo 
+					))
+			}}
 		</div>
 	</div>
 
