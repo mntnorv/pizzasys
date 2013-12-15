@@ -4,11 +4,11 @@
 
 <div class="container">
 	<div class="page-header">
-		<h1>Ataskaitų valdymas</h1>
+		<h1>Ataskaitų redagavimas</h1>
 		<ol class="breadcrumb">
 			<li>{{link_to_route('admin', 'Administravimas')}}</li>
 			<li>{{link_to_route('admin.reports.show', 'Ataskaitos')}}</li>
-			<li class="active">Valdymas</li>
+			<li class="active">Redagavimas</li>
 		</ol>
 	</div>
 
