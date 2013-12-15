@@ -28,3 +28,4 @@
 //= require cart
 //= require home.food
 //= require waiter.order
+//= require waiter.order.manage

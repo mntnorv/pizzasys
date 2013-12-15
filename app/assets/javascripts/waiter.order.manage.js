@@ -5,12 +5,32 @@ $( function(){
 		return false;
 	}
 
+	var orderSelectElem = $("#orders");
+	var	waiterOrderManageTableBody = waiterOrderManageTable.find('tbody');
 	var waiterOrderManageTableRows = null;
 	var inputElements   = null;
 	var priceElements   = null;
 	var removeButtons   = null;
 	var fullPriceElem   = null;
-	var orderSelectElem = null;
+
+	var loadOrderFood = function(select){
+		waiterOrderManageTableBody.empty();
+		var order_id = select.val();
+		var url = BASE_URL + '/api/waiter/order/' +order_id+ '/food'
+		$.get(url, function(orderFood){
+			for(var i = 0; i < orderFood.length; i++){
+				waiterOrderManageTableBody.append(
+					JST['handlebars/waiter_food_list'](orderFood[i])
+				);
+			}
+		})
+	};
+
+	loadOrderFood(orderSelectElem);
+	var onOrderSelectChange = function(){
+		loadOrderFood($(this));
+	};
+	orderSelectElem.change(onOrderSelectChange);
 
 	//var cartSize      = $('#cart-size');
 
@@ -20,9 +40,8 @@ $( function(){
 		inputElements = waiterOrderManageTable.find('input.amount-input');
 		priceElements = waiterOrderManageTable.find('.price');
 		removeButtons = waiterOrderManageTable.find('.remove-button');
-		orderSelectElem = waiterOrderManageTable.find('#orders');
+
 		removeButtons.click(deleteRow);
-		orderSelectElem.change();
 		inputElements.focusout(onInputFocusLost);
 	};
 	updateCachedSelectors();
@@ -76,10 +95,6 @@ $( function(){
 		updateFullAmount();
 	};
 
-	var onOrderSelectChange = function(){
-		loadOrderFood($(this));
-	};
-
 	var deleteRow = function() {
 		var row = waiterOrderManageTableRows.eq(removeButtons.index($(this)));
 		var foodId = Number(row.attr('data-food'));
@@ -93,9 +108,6 @@ $( function(){
 		updateFullAmount();
 	};
 
-	var loadOrderFood = function(select){
-		alert (select.val());
-	};
 
 	$( "#query" ).autocomplete({
 		source: BASE_URL + "/api/get/food",
@@ -110,9 +122,9 @@ $( function(){
 			});
 
 			if(foodAmountID == -1){
-				$("#waiter-order-table tbody").append(
+				$("#waiter-order-manage-table tbody").append(
 					JST['handlebars/waiter_food_list'](ui.item)
-					);
+				);
 
         	//Add food to the cart
         	var url = BASE_URL + '/api/waiter/order/add';
@@ -142,7 +154,7 @@ $( function(){
 });
 
 	//Handle submit yourself
-	var form = $("#waiter-order-form");
+	var form = $("#waiter-order-manage-form");
 	form.submit(function(event){
 
 		event.preventDefault();

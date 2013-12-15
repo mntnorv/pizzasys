@@ -172,4 +172,13 @@ class WaiterController extends BaseController {
 		return $this->jsonSuccess('ORDER_SAVED');
 	}
 
+	public function getOrderFood($id){
+		$order = Order::find($id);
+
+		if($order == NULL){
+			return $this->jsonError('ORDER_NOT_FOUND');
+		}
+		return Response::json($order->orderFood()->join('food', 'order_food.food_id', '=', 'food.id')->get());
+	}
+
 }

@@ -1,4 +1,4 @@
-{{ Form::open(array('action' => 'WaiterController@saveOrder', 'class' => 'form-horizontal', 'id' => 'waiter-order-form')) }}
+{{ Form::open(array('action' => 'WaiterController@saveOrder', 'class' => 'form-horizontal', 'id' => 'waiter-order-manage-form')) }}
 
 	<!-- Maistas autocomplete field-->
 	<div class="form-group ui-widget">
