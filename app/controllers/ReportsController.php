@@ -124,7 +124,22 @@ class ReportsController extends BaseController {
 	*/
 	public function showReport($id) {
 
-		$report = $id;
+		// $report = Report::find($id);
+
+		$report = DB::table('users')
+					->select(DB::raw('count(orders.id) as order_count'))
+					->leftJoin('orders', 'users.id', '=', 'orders.user_id' )
+					->where('users.user_type_id', '=', '2')
+					->groupBy('users.id')
+					->get();
+		$queries = DB::getQueryLog();
+		$last_query = end($queries);
+		var_dump($report);
+
+		exit();
+
+
+
 		return View::make('admin.show_report', array("report" => $report));
 	}
 	

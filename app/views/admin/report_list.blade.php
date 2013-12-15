@@ -35,7 +35,9 @@
 		<tbody>
 			@foreach ($reports as $report)
 				<tr class="report-item">
-					<td>{{$report->name}}</td>
+					<td>{{link_to_route('admin.report.show', $report->name,
+								array('id' => $report->id));
+						}}</td>
 					<td>{{$report->reportType->name}}</td>
 					<td>{{$report->start}}</td>
 					<td>{{$report->end}}</td>					
