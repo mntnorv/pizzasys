@@ -83,9 +83,15 @@ Route::group(array('prefix' => 'admin'), function() {
 
 	Route::get('discount/{id}', array('uses' => 'DiscountController@showEditDiscount', 
 		'as' => 'admin.discount.edit'))->before('admin');
-	
+
 	Route::get('reports', array('uses' => 'ReportsController@showReports', 
 		'as' => 'admin.reports.show'))->before('admin');
+	
+	Route::get('report/{id}', array('uses' => 'ReportsController@showReportEdit', 
+		'as' => 'admin.report.edit'))->before('admin');
+
+	Route::get('reports', array('uses' => 'ReportsController@showReportList', 
+		'as' => 'admin.report_list.show'))->before('admin');
 
 	Route::get('orders', array('uses' => 'OrderController@showOrderList', 
 		'as' => 'admin.orders'))->before('admin');

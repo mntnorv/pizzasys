@@ -8,15 +8,15 @@ class ReportTypeTableSeeder extends Seeder {
 
 		ReportType::create(array(
 			'id' => 1,
-			'name' => '1'
+			'name' => 'Tipas 1'
 		));
 		ReportType::create(array(
 			'id' => 2,
-			'name' => '2'
+			'name' => 'Tipas 2'
 		));
 		ReportType::create(array(
 			'id' => 3,
-			'name' => '3'
+			'name' => 'Tipas 3'
 		));
 	}
 }
