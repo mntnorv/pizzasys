@@ -125,16 +125,35 @@ class ReportsController extends BaseController {
 	public function showReport($id) {
 
 		// $report = Report::find($id);
+		$format = 'Y-m-d H:i:s';
+		$now = time();
+		$notNow = strtotime( '-12 month', $now );
+		$nowDate = date($format, $now);
+		$notNowDate = date($format, $notNow);
 
 		$report = DB::table('users')
 					->select(DB::raw('count(orders.id) as order_count'))
 					->leftJoin('orders', 'users.id', '=', 'orders.user_id' )
 					->where('users.user_type_id', '=', '2')
+					//->where(DB::raw("(orders.updated_at BETWEEN '$notNowDate' AND '$nowDate')"))
+					->whereBetween('orders.updated_at', array($notNowDate, $nowDate))
 					->groupBy('users.id')
+					->get();
+
+		$report2 = DB::table('pizzerias')
+					->select(DB::raw('count(orders.id) as order_count'))
+					->leftJoin('orders', function($join) use ($notNowDate, $nowDate){
+								$join->on('orders.pizzeria_id', '=', 'pizzerias.id');
+								$join->on('orders.updated_at', '>=', DB::raw('".mysql_real_escape_string($notNowDate)."'));
+								$join->on('orders.updated_at', '<=', DB::raw('".mysql_real_escape_string($nowDate)."'));
+							})
+					//->where(DB::raw("(orders.updated_at BETWEEN '$notNowDate' AND '$nowDate')"))
+					//->whereBetween('orders.updated_at', array($notNowDate, $nowDate))
+					->groupBy('pizzerias.id')
 					->get();
 		$queries = DB::getQueryLog();
 		$last_query = end($queries);
-		var_dump($report);
+		var_dump($report2, $last_query);
 
 		exit();
 
