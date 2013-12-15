@@ -1,13 +1,13 @@
 $(function() {
 
 	// Check if correct page
-	var discountTable = $("#discount-table");
-	if (discountTable.length === 0) {
-		return false;
+	var reportTable = $("#reports-list-form");
+	if (reportTable.length === 0) {
+		return;
 	}
 
-	var discountTableRows = discountTable.find('tr.discount-item');
-	var removeButtons = discountTable.find('.remove-button');
+	var reportTableRows = reportTable.find('tr.report-item');
+	var removeButtons = reportTable.find('.remove-button');
 
 
 	var deleteRow = function() {
@@ -15,10 +15,10 @@ $(function() {
 			return;
 		}
 
-		var row = discountTableRows.eq(removeButtons.index($(this)));
-		var discount_id = Number($(this).attr('data-discount-id'));
+		var row = reportTableRows.eq(removeButtons.index($(this)));
+		var report_id = Number($(this).attr('data-report-id'));
 
-		var url = BASE_URL + '/api/discount/remove/' + discount_id;
+		var url = BASE_URL + '/api/report/remove/' + report_id;
 		$.post(url);
 
 		row.remove();

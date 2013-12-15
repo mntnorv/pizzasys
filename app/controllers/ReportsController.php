@@ -108,5 +108,15 @@ class ReportsController extends BaseController {
 		}		
 	}
 
+	/*
+	| POST /api/discount/remove/{id}
+	*/
+	public function removeReport($id) {
+		$discount = Report::find($id);
+
+		$discount->delete();
+
+		return $this->jsonSuccess('DISCOUNT_REMOVED');
+	}
 	
 }

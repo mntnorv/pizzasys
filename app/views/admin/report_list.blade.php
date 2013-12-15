@@ -15,7 +15,7 @@
 		</ol>
 	</div>
 
-	<table class="table">
+	<table class="table" id="reports-list-form">
 		<colgroup>
 			<col style="width: 20%;" />
 			<col style="width: 10%;" />
@@ -29,12 +29,12 @@
 				<th>Tipas</th>
 				<th>Data nuo</th>
 				<th>Data iki</th>
-				<th>{{link_to_route('admin.report.create', 'Sukurti naują', null, array( 'class' => 'btn btn-success btn-xs remove-button'))}}</th>
+				<th>{{link_to_route('admin.report.create', 'Sukurti naują', null, array( 'class' => 'btn btn-success btn-xs'))}}</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach ($reports as $report)
-				<tr>
+				<tr class="report-item">
 					<td>{{$report->name}}</td>
 					<td>{{$report->reportType->name}}</td>
 					<td>{{$report->start}}</td>
