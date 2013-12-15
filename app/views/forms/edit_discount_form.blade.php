@@ -37,7 +37,7 @@
 
 	<!-- Percentage edit -->
 	<div class="form-group">
-		{{ Form::label('percentage', 'Reikšmė (%):', array('class' => 'col-md-4 control-label')) }}
+		{{ Form::label('percentage', 'Nuolaida (%):', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
 			{{ Form::text('percentage', $discount->percentage, array( 'class' => 'form-control'))}}
 		</div>

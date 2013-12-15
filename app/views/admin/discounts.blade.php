@@ -29,8 +29,15 @@
 			<tr>
 				<th>Pavadinimas</th>
 				<th>Tipas</th>
-				<th>Reikšmė (%)</th>
-				<th></th>
+				<th>Nuolaida (%)</th>
+				<th>
+				{{ 
+					link_to_route('admin.discount.create', 'Sukurti naują',
+						NULL,
+						array('class' => 'btn btn-xs btn-success') 
+					)
+				}}
+				</th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -42,16 +49,22 @@
 			@foreach ($discounts as $discount)
 			<tr class="discount-item">
 				<td>{{ $discount->name }}</td>
-				<td>{{ $discount->discountType->name }}</td>
+				<td>{{ $discount->discountType->name }}
+				@if ($discount->discount_type_id === 1)
+					({{ $discount->food->name }})
+				@elseif ($discount->discount_type_id === 2)
+					({{ $discount->foodType->displayName }})
+				@endif 
+				</td>
 				<td>{{ $discount->percentage }}</td>
 				<td>
 					{{
 						link_to_route('admin.discount.edit', 'Redaguoti',
 							array('id' => $discount->id),
-							array('class' => 'btn btn-sm btn-primary edit-button discounts-edit') 
+							array('class' => 'btn btn-xs btn-primary') 
 						)
 					}}
-					<button type="button" class="btn btn-sm btn-danger remove-button fa fa-times" data-discount-id="{{$discount->id}}"></button>
+					<button type="button" class="btn btn-xs btn-danger remove-button" data-discount-id="{{$discount->id}}"><span class="fa fa-times"></span></button>
 				</td>
 			</tr>
 			@endforeach

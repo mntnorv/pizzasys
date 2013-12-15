@@ -66,7 +66,6 @@ Route::group(array('prefix' => 'cart'), function() {
 /*
 | Admin panel routes
 */
-
 Route::get('admin', array('uses' => 'AdminController@showIndex',
 	'as' => 'admin'))->before('admin');
 
@@ -212,6 +211,9 @@ Route::group(array('prefix' => 'api'), function() {
 
 		Route::post('remove/{id}', array('uses' => 'DiscountController@removeDiscount', 
 			'as' => 'api.discount.remove'));
+
+		Route::post('create', array('uses' => 'DiscountController@createDiscount', 
+			'as' => 'api.discount.create'));
 
 	});
 
