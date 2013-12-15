@@ -130,6 +130,9 @@ Route::group(array('prefix' => 'api'), function() {
 		Route::get('food', array('uses' => 'ApiController@getFood', 
 			'as' => 'api.get.food'));
 
+		Route::get('foodtypes', array('uses' => 'ApiController@getFoodTypes', 
+			'as' => 'api.get.foodtypes'));
+
 		Route::get('food/{type_id}', array('uses' => 'ApiController@getFoodByType', 
 			'as' => 'api.get.foodByType'));
 

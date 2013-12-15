@@ -15,11 +15,19 @@
 		</div>
 	</div>
 
-	<!-- User edit -->
+	<!-- Discount group edit -->
 	<div class="form-group">
 		{{ Form::label('type', 'Tipas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
 			{{ Form::select('type', $discountTypes, $discount->discount_type_id, array( 'class' => 'form-control'))}}
+		</div>
+	</div>
+
+	<!-- Discount type to edit -->
+	<div class="form-group">
+		{{ Form::label('type_to', 'Kokiam maistui:', array('class' => 'col-md-4 control-label')) }}
+		<div class="col-md-8">
+			{{ Form::select('type_to', $food, $discount->food_type_id, array( 'class' => 'form-control'))}}
 		</div>
 	</div>
 

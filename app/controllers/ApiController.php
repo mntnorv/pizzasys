@@ -37,6 +37,17 @@ class ApiController extends BaseController {
 	}
 
 	/*
+	| GET /api/get/foodtypes
+	*/
+	public function getFoodTypes() {
+		$foodTypes = FoodType::all();
+
+		return Response::json(
+			$foodTypes->toArray()
+		);
+	}
+
+	/*
 	| GET /api/get/food/{type}
 	*/
 	public function getFoodByType($type_id) {
