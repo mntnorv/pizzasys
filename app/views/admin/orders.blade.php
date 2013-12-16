@@ -7,8 +7,14 @@
 @section('content')
 
 <div class="container">
-	<h1>Užsakymų valdymas</h1>
-
+	
+	<div class="page-header">
+		<h1>Užsakymų valdymas</h1>
+		<ol class="breadcrumb">
+			<li>{{link_to_route('admin', 'Administravimas')}}</li>
+			<li class="active">Užsakymai</li>
+		</ol>
+	</div>
 	<table class="table">
 		<colgroup>
 			<col style="width: 20%;" />
