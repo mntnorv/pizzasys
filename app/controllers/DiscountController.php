@@ -20,6 +20,7 @@ class DiscountController extends BaseController {
 	*/
 	public function showEditDiscount($id) {
 
+		$button = 'Atnaujinti';
 		$discount = Discount::find($id);
 		$discountTypes = DiscountType::all()->lists('name', 'id');
 		$food = Food::all()->lists('name', 'id');
@@ -35,6 +36,7 @@ class DiscountController extends BaseController {
 			"discount" => $discount,
 			"discountTypes" => $discountTypes,
 			"discountTo" => $discountTo,
+			"button" => $button
 		));
 	}
 
@@ -42,6 +44,8 @@ class DiscountController extends BaseController {
 	| GET /admin/discount/{id}
 	*/
 	public function showCreateDiscount() {
+
+		$button = 'Sukurti';
 		$discount = new Discount();
 		$discountTypes = DiscountType::all()->lists('name', 'id');
 		$food = Food::all()->lists('name', 'id');
@@ -57,6 +61,7 @@ class DiscountController extends BaseController {
 			"discount" => $discount,
 			"discountTypes" => $discountTypes,
 			"discountTo" => $discountTo,
+			"button" => $button
 		));
 	}
 

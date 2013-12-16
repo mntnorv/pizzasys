@@ -20,7 +20,7 @@
 	<div class="row">
 		<!-- Discount edit form-->
 		<div class="col-sm-6">
-			@include('forms.edit_discount_form')
+			@include('forms.discount_form')
 		</div>
 	</div>
 </div>
