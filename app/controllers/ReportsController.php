@@ -140,10 +140,20 @@ class ReportsController extends BaseController {
 	
 	
 	public function showReportPDF($id) {
-		// $report = Report::find($id);
+		$pdf = null;
+		$report = Report::find($id);
 
-		$pdf = PDF::loadView('admin.show_report', array());
-		return $pdf->download('test.pdf');
+		if ($report->report_type_id === 1) {
+			$pdf = PDF::loadView('admin.reports.waiter_report', array(
+				'reportLines' => $this->calculateWaiterReport($report)
+			));
+		} else if ($report->report_type_id === 2) {
+			$pdf = PDF::loadView('admin.reports.order_report', array(
+				'reportLines' => $this->calculateOrderReport($report)
+			));
+		}
+
+		return $pdf->download('ataskaita.pdf');
 	}
 
 	private function calculateWaiterReport($report) {
