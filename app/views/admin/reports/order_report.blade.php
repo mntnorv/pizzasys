@@ -1,21 +1,18 @@
 @extends('layouts.report')
 
 @section('title')
-	Padavėjų ataskaita
+	Užsakymų ataskaita
 @stop
 
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h1>Padavėjų ataskaita</h1>
-
+		<h1>Užsakymų ataskaita</h1>
 	</div>
 	<div>
-
-		<?php echo "<pre>"; var_dump($reports); echo "</pre>"; ?>
-	</div>	
-
+		<?php echo "<pre>"; var_dump($reportLines); echo "</pre>"; ?>
+	</div>
 
 	<table class="table" id="reports-list-form">
 		<colgroup>
@@ -25,17 +22,17 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th>Padavėjas</th>
 				<th>Picerija</th>
 				<th>Užsakymų skaičius</th>
+				<th>Pajamos</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach ($reports as $report)
+			@foreach ($reportLines as $line)
 				<tr class="report-item">
-					<td>{{$report->username}}</td>
-					<td>{{Pizzeria::find($report->pizzeria_id)->name}}</td>
-					<td>{{$report->order_count}}</td>
+					<td>{{Pizzeria::find($line->pizzeria_id)->name}}</td>
+					<td>{{$line->order_count}}</td>
+					<td>{{$line->income}} Lt</td>
 				</tr>
 			@endforeach
 		</tbody>

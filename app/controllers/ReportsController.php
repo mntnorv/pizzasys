@@ -123,66 +123,72 @@ class ReportsController extends BaseController {
 	| POST /api/report/remove/{id}
 	*/
 	public function showReport($id) {
+		$report = Report::find($id);
 
+		if ($report->report_type_id === 1) {
+			return View::make('admin.reports.waiter_report', array(
+				'reportLines' => $this->calculateWaiterReport($report)
+			));
+		} else if ($report->report_type_id === 2) {
+			return View::make('admin.reports.order_report', array(
+				'reportLines' => $this->calculateOrderReport($report)
+			));
+		}
 
-		// $report = Report::find($id);
-
-		// $format = 'Y-m-d H:i:s';	
-		// $toDate = date($format, strtotime( $report->end ));
-		// $fromDate = date($format, strtotime( $report->start ));
-
-		// $reports = DB::table('users')
-		// 	->select(DB::raw('count(orders.id) as order_count'), 'users.username', 'users.pizzeria_id')
-		// 	->leftJoin('orders', 'users.id', '=', 'orders.user_id' )
-		// 	->where('users.user_type_id', '=', '2')
-		// 	->whereBetween('orders.updated_at', array($fromDate, $toDate))
-		// 	->groupBy('users.id')
-		// 	->get();
-		// $queries = DB::getQueryLog();
-		// $last_query = end($queries);
-
-		// $report = Report::find($id);
-		$format = 'Y-m-d H:i:s';
-		$now = time();
-		$notNow = strtotime( '-12 month', $now );
-		$nowDate = date($format, $now);
-		$notNowDate = date($format, $notNow);
-
-		$report = DB::table('users')
-					->select(DB::raw('count(orders.id) as order_count'))
-					->leftJoin('orders', 'users.id', '=', 'orders.user_id' )
-					->where('users.user_type_id', '=', '2')
-					//->where(DB::raw("(orders.updated_at BETWEEN '$notNowDate' AND '$nowDate')"))
-					->whereBetween('orders.updated_at', array($notNowDate, $nowDate))
-					->groupBy('users.id')
-					->get();
-
-		$report2 = DB::table('pizzerias')
-					->select(DB::raw('count(orders.id) as order_count'))
-					->leftJoin('orders', function($join) use ($notNowDate, $nowDate){
-								$join->on('orders.pizzeria_id', '=', 'pizzerias.id');
-								$join->on('orders.updated_at', '>=', DB::raw('".mysql_real_escape_string($notNowDate)."'));
-								$join->on('orders.updated_at', '<=', DB::raw('".mysql_real_escape_string($nowDate)."'));
-							})
-					//->where(DB::raw("(orders.updated_at BETWEEN '$notNowDate' AND '$nowDate')"))
-					//->whereBetween('orders.updated_at', array($notNowDate, $nowDate))
-					->groupBy('pizzerias.id')
-					->get();
-		$queries = DB::getQueryLog();
-		$last_query = end($queries);
-		var_dump($report2, $last_query);
-
-		return View::make('admin.show_report', array("reports" => $reports, "report" => $report));
+		return true;
 	}
 	
 	
 	public function showReportPDF($id) {
+		$pdf = null;
+		$report = Report::find($id);
 
-		// $report = Report::find($id);
+		if ($report->report_type_id === 1) {
+			$pdf = PDF::loadView('admin.reports.waiter_report', array(
+				'reportLines' => $this->calculateWaiterReport($report)
+			));
+		} else if ($report->report_type_id === 2) {
+			$pdf = PDF::loadView('admin.reports.order_report', array(
+				'reportLines' => $this->calculateOrderReport($report)
+			));
+		}
 
-		
+		return $pdf->download('ataskaita.pdf');
+	}
 
-		$pdf = PDF::loadView('admin.show_report', array());
-		return $pdf->download('test.pdf');
+	private function calculateWaiterReport($report) {
+		$format = 'Y-m-d H:i:s';	
+		$toDate = date($format, strtotime($report->end));
+		$fromDate = date($format, strtotime($report->start));
+
+		$orders = DB::raw('(SELECT * FROM `orders` WHERE `updated_at` BETWEEN \''
+			. $toDate .
+			'\' AND \''
+			. $fromDate .
+			'\') AS filteredorders'
+		);
+
+		$reportLines = DB::table('users')
+			->select(DB::raw('count(filteredorders.id) as order_count'), 'users.username', 'users.pizzeria_id')
+			->leftJoin($orders, 'users.id', '=', 'filteredorders.user_id')
+			->where('users.user_type_id', '=', '2')
+			->groupBy('users.id')
+			->get();
+
+		return $reportLines;
+	}
+
+	private function calculateOrderReport($report) {
+		$format = 'Y-m-d H:i:s';	
+		$toDate = date($format, strtotime($report->end));
+		$fromDate = date($format, strtotime($report->start));
+
+		$reportLines = DB::table('orders')
+			->select(DB::raw('count(id) as order_count'), DB::raw('sum(price) as income'), 'pizzeria_id')
+			->whereBetween('orders.updated_at', array($fromDate, $toDate))
+			->groupBy('pizzeria_id')
+			->get();
+
+		return $reportLines;
 	}
 }

@@ -117,7 +117,7 @@ Route::group(array('prefix' => 'waiter'), function() {
 	Route::group(array('prefix' => 'orders'), function() {
 
 		Route::get('manage', array('uses' => 'WaiterController@showOrderManage', 
-			'as' => 'waiter.order.manage'))->before('waiter');
+			'as' => 'waiter.orders.manage'))->before('waiter');
 
 	});
 
