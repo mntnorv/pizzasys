@@ -10,7 +10,7 @@ class Order extends Eloquent {
 	public function table() {
 		return $this->belongsTo('Table');
 	}
-
+	
 	public function orderFood() {
 		return $this->hasMany('OrderFood');
 	}

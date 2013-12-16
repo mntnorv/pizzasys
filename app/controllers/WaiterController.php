@@ -169,7 +169,8 @@ class WaiterController extends BaseController {
 
 		$order->table_id = Input::get('table');
 		$order->user_id = Auth::user()->id;
-		$order->pizzeria_id = Auth::user()->pizzeria_id;	
+		$order->pizzeria_id = Auth::user()->pizzeria_id;
+		$order->order_state_id = 2;
 		$order->save();
 
 		return $this->jsonSuccess('ORDER_SAVED');
@@ -181,7 +182,15 @@ class WaiterController extends BaseController {
 		if($order == NULL){
 			return $this->jsonError('ORDER_NOT_FOUND');
 		}
-		return Response::json($order->orderFood()->join('food', 'order_food.food_id', '=', 'food.id')->get());
+
+		$foods = array();
+		$joinedFoods = $order->orderFood()->join('food', 'order_food.food_id', '=', 'food.id')->get();
+
+		$joinedFoods->each(function ($food) use (&$foods) {
+			array_push($foods, Food::find($food['id'])->toArray());
+		});
+
+		return Response::json($foods);
 	}
 
 }

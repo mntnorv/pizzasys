@@ -1,18 +1,18 @@
 {{ Form::open(array('action' => 'WaiterController@saveOrder', 'class' => 'form-horizontal', 'id' => 'waiter-order-form')) }}
 
-	<!-- Maistas autocomplete field-->
-	<div class="form-group ui-widget">
-		{{ Form::label('food', 'Maistas:', array('class' => 'col-md-4 control-label')) }}
-		<div class="col-md-8">
-			{{ Form::text('food', NULL, array( 'class' => 'form-control', 'id' => 'query'))}}
-		</div>
-	</div>
-
 	<!--  Waiter tables  -->
 	<div class="form-group ui-widget">
 		{{ Form::label('table', 'Stalas:', array('class' => 'col-md-4 control-label')) }}
 		<div class="col-md-8">
 			{{ Form::select('table', $waiterTables, NULL, array( 'class' => 'form-control'))}}
+		</div>
+	</div>
+
+	<!-- Maistas autocomplete field-->
+	<div class="form-group ui-widget">
+		{{ Form::label('food', 'Maistas:', array('class' => 'col-md-4 control-label')) }}
+		<div class="col-md-8">
+			{{ Form::text('food', NULL, array( 'class' => 'form-control', 'id' => 'query'))}}
 		</div>
 	</div>
 

@@ -2,7 +2,8 @@
 
 class Food extends Eloquent {
 	protected $table = "food";
-	protected $hidden = array('created_at', 'updated_at');
+	protected $appends = array('discounted_price');
+	protected $visible = array('id', 'name', 'food_type_id', 'price', 'discounted_price', 'value');
 	
 	public function foodType() {
 		return $this->belongsTo('FoodType');
@@ -20,7 +21,7 @@ class Food extends Eloquent {
 		return $this->hasMany('Discount');
 	}
 
-	public function getDiscountAttribute() {
+	public function getDiscountedPriceAttribute() {
 		$fullDiscount = 1;
 		$discounts = $this->foodDiscounts;
 		$typeDiscounts = $this->foodType->foodTypeDiscounts;
@@ -32,6 +33,6 @@ class Food extends Eloquent {
 			$fullDiscount *= (100 - $discount->percentage) / 100;
 		});
 
-		return $fullDiscount;
+		return $fullDiscount * $this->price;
 	}
 }

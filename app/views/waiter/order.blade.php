@@ -4,7 +4,7 @@
 
 <div class="container">
 	<div class="page-header">
-		<h1>Waiter Orders</h1>
+		<h1>Užsakymas</h1>
 	</div>
 
 	<!-- Grid-->

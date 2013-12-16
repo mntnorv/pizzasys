@@ -22,6 +22,9 @@
 //= require handlebars
 //= require_directory handlebars
 //
+// Pizzasys libs:
+//= require handlebars-helpers
+//
 // Pizzasys javascripts:
 //= require admin.edit-order
 //= require admin.edit-report
