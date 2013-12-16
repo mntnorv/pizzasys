@@ -15,4 +15,23 @@ class Food extends Eloquent {
 	public function orderFood() {
 		return $this->hasMany('OrderFood');
 	}
+
+	public function foodDiscounts() {
+		return $this->hasMany('Discount');
+	}
+
+	public function getDiscountAttribute() {
+		$fullDiscount = 1;
+		$discounts = $this->foodDiscounts;
+		$typeDiscounts = $this->foodType->foodTypeDiscounts;
+
+		$discounts->each(function($discount) use (&$fullDiscount) {
+			$fullDiscount *= (100 - $discount->percentage) / 100;
+		});
+		$typeDiscounts->each(function($discount) use (&$fullDiscount) {
+			$fullDiscount *= (100 - $discount->percentage) / 100;
+		});
+
+		return $fullDiscount;
+	}
 }

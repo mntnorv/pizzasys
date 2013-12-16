@@ -174,7 +174,7 @@ Route::group(array('prefix' => 'api'), function() {
 	Route::group(array('prefix' => 'order'), function() {
 
 		Route::post('update/{id}', array('uses' => 'OrderController@updateOrder', 
-			'as' => 'api.cart.update'));
+			'as' => 'api.order.update'));
 
 	});
 

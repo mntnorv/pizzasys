@@ -178,7 +178,7 @@ class CartController extends BaseController {
 		}
 
 		$orderFood->save();
-		$order->price += $food->price;
+		$order->price += $food->price * $food->getDiscountAttribute();
 		$order->save();
 
 		return $this->jsonSuccess('FOOD_ADDED');
