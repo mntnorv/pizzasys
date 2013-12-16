@@ -8,11 +8,21 @@
 
 <div class="container">
 	<div class="page-header">
-		<h1>Padavėjų ataskaita</h1>
+		<h1>
+			{{$report->name}}		
+		</h1>
+
 	</div>
 	<div>
-		<?php echo "<pre>"; var_dump($reportLines); echo "</pre>"; ?>
+		<h4>
+			Padavėjų ataskaita		
+			<span class="pull-right">
+				Nuo {{$report->start}} Iki {{$report->end}}
+			</span>
+		</h4>
+		<hr/>
 	</div>
+
 
 	<table class="table" id="reports-list-form">
 		<colgroup>

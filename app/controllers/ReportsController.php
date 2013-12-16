@@ -127,11 +127,13 @@ class ReportsController extends BaseController {
 
 		if ($report->report_type_id === 1) {
 			return View::make('admin.reports.waiter_report', array(
-				'reportLines' => $this->calculateWaiterReport($report)
+				'reportLines' => $this->calculateWaiterReport($report),
+				'report' => $report
 			));
 		} else if ($report->report_type_id === 2) {
 			return View::make('admin.reports.order_report', array(
-				'reportLines' => $this->calculateOrderReport($report)
+				'reportLines' => $this->calculateOrderReport($report),
+				'report' => $report
 			));
 		}
 
@@ -145,11 +147,13 @@ class ReportsController extends BaseController {
 
 		if ($report->report_type_id === 1) {
 			$pdf = PDF::loadView('admin.reports.waiter_report', array(
-				'reportLines' => $this->calculateWaiterReport($report)
+				'reportLines' => $this->calculateWaiterReport($report),
+				'report' => $report
 			));
 		} else if ($report->report_type_id === 2) {
 			$pdf = PDF::loadView('admin.reports.order_report', array(
-				'reportLines' => $this->calculateOrderReport($report)
+				'reportLines' => $this->calculateOrderReport($report),
+				'report' => $report
 			));
 		}
 
