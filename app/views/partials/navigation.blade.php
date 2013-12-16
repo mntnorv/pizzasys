@@ -19,14 +19,14 @@
 				@if(Auth::check())
 					@if(Auth::user()->user_type_id === 1)
 						<li>
-							{{ link_to_route('admin', 'Administratoriaus panelė') }}
+							{{ link_to_route('admin', 'Administravimas') }}
 						</li>
 					@elseif(Auth::user()->user_type_id === 2)
 						<li>
 							{{ link_to_route('waiter.orders.manage', 'Užsakymų valdymas') }}
 						</li>
 					@endif
-					
+
 					<li>
 						{{ link_to(route('logout'), 'Atsijungti ('.Auth::user()->username.')', []) }}
 					</li>

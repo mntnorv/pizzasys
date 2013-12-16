@@ -80,7 +80,7 @@ Route::group(array('prefix' => 'admin'), function() {
 		'as' => 'admin.discount.edit'))->before('admin');
 
 	Route::get('reports', array('uses' => 'ReportsController@showReports', 
-		'as' => 'admin.reports.show'))->before('admin');
+		'as' => 'admin.reports'))->before('admin');
 
 	Route::get('report/create', array('uses' => 'ReportsController@showReportCreate', 
 		'as' => 'admin.report.create'))->before('admin');
