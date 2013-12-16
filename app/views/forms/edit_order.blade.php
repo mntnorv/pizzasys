@@ -104,9 +104,7 @@
 
 	<!-- Submit button -->
 	<div class="form-group">
-		<div class="col-md-4">
-			{{ Form::submit('Atnaujinti', array('class' => 'btn btn-primary btn-block btn-lg')) }}
-		</div>
+		{{ Form::submit('Atnaujinti', array('class' => 'btn btn-primary btn-block btn-lg')) }}
 	</div>
 
 {{ Form::close() }}

@@ -5,6 +5,8 @@ $(function() {
 		return false;
 	}
 
+	console.log('editOrderForm');
+
 	var typeInput       = editOrderForm.find('#type');
 	var pizzeriaInput   = editOrderForm.find('#pizzeria');
 	var tableInput      = editOrderForm.find('#table');
@@ -67,7 +69,7 @@ $(function() {
 		});
 	};
 
-	var submitOrderForm = function() {
+	var submitOrderForm = function(event) {
 		event.preventDefault();
 
 		var data = {
