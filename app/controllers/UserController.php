@@ -89,11 +89,4 @@ class UserController extends BaseController {
 		return View::make('register');
 	}
 
-	/*
-	| GET /profile
-	*/
-	public function showProfile() {
-		return View::make('profile');
-	}
-
 }

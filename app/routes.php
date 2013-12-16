@@ -33,13 +33,6 @@ Route::get('logout',   array('uses' => 'UserController@handleLogout',
 Route::get('login',    array('uses' => 'UserController@showLogin',
 	'as' => 'login'))->before('guest');
 
-Route::group(array('prefix' => 'user'), function() {
-
-	Route::get('profile', array('uses' => 'UserController@showProfile',
-		'as' => 'profile'))->before('auth');
-
-});
-
 /*
 | Cart management routes
 */
@@ -118,7 +111,7 @@ Route::group(array('prefix' => 'waiter'), function() {
 	Route::get('order', array('uses' => 'WaiterController@showOrder', 
 		'as' => 'waiter.order'))->before('waiter');
 	
-	Route::group(array('prefix' => 'order'), function() {
+	Route::group(array('prefix' => 'orders'), function() {
 
 		Route::get('manage', array('uses' => 'WaiterController@showOrderManage', 
 			'as' => 'waiter.order.manage'))->before('waiter');
