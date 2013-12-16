@@ -27,7 +27,7 @@
 			<tr
 				class="cart-item"
 				data-food="{{ $item->food->id }}"
-				data-price="{{ $item->food->price * $item->food->getDiscountAttribute() }}"
+				data-price="{{ $item->food->getDiscountedPriceAttribute() }}"
 			>
 				<td>{{ $item->food->name }}</td>
 				<td class="align-right">
@@ -35,7 +35,7 @@
 				</td>
 				<td class="align-right">
 					<span class="price">
-						<?php printf('%.2f', $item->food->price * $item->food->getDiscountAttribute() * $item->amount); ?>
+						<?php printf('%.2f', $item->food->getDiscountedPriceAttribute() * $item->amount); ?>
 					</span> Lt
 				</td>
 				<td>

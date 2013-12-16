@@ -65,7 +65,7 @@ class OrderController extends BaseController {
 		$validator->sometimes('table_id', 'Exists:tables,id', function($input) {
 			return $input->type_id == 1;
 		});
-		$validator->sometimes(array('street', 'building_no', 'flat_no', 'tel_no'), 'Required', function($input) {
+		$validator->sometimes(array('street', 'building_no'), 'Required', function($input) {
 			return $input->type_id == 2;
 		});
 

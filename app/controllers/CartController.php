@@ -178,7 +178,7 @@ class CartController extends BaseController {
 		}
 
 		$orderFood->save();
-		$order->price += $food->price * $food->getDiscountAttribute();
+		$order->price += $food->getDiscountedPriceAttribute();
 		$order->save();
 
 		return $this->jsonSuccess('FOOD_ADDED');
@@ -204,7 +204,7 @@ class CartController extends BaseController {
 			return $this->jsonError('INVALID_FOOD_ID');
 		}
 
-		$order->price -= $orderFood->food->price * $orderFood->amount;
+		$order->price -= $orderFood->food->getDiscountedPriceAttribute() * $orderFood->amount;
 		$order->save();
 		$orderFood->delete();
 
@@ -240,7 +240,7 @@ class CartController extends BaseController {
 		$orderFood->amount = $newAmount;
 		$orderFood->save();
 
-		$order->price += $amountDiff * $orderFood->food->price;
+		$order->price += $amountDiff * $orderFood->food->getDiscountedPriceAttribute();
 		$order->save();
 
 		return $this->jsonSuccess('FOOD_UPDATED');
