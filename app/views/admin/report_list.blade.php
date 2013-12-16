@@ -13,6 +13,8 @@
 			<li>{{link_to_route('admin', 'Administravimas')}}</li>
 			<li class="active">Ataskaitos</li>
 		</ol>
+		
+	{{link_to_route('admin.report.pdf', 'PDF', array('id' => '1'))}}
 	</div>
 
 	<table class="table" id="reports-list-form">
@@ -36,12 +38,15 @@
 			@foreach ($reports as $report)
 				<tr class="report-item">
 					<td>{{link_to_route('admin.report.show', $report->name,
-								array('id' => $report->id));
+								array('id' => $report->id), array('target' => '_blank'));
 						}}</td>
 					<td>{{$report->reportType->name}}</td>
 					<td>{{$report->start}}</td>
 					<td>{{$report->end}}</td>					
 					<td>
+						{{link_to_route('admin.report.pdf', 'Parsisiųsti',
+							array('id' => '1'),
+							array('class' => 'btn btn-primary btn-xs'))}}
 						{{
 							link_to_route('admin.report.edit', 'Redaguoti',
 								array('id' => $report->id),
