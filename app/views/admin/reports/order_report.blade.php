@@ -38,7 +38,7 @@
 		<tbody>
 			@foreach ($reportLines as $line)
 				<tr class="report-item">
-					<td>{{Pizzeria::find($line->pizzeria_id)->name}}</td>
+					<td>{{$line->pizzeria_name}}</td>
 					<td>{{$line->order_count}}</td>
 					<td>{{$line->income}} Lt</td>
 				</tr>

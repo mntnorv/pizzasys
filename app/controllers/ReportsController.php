@@ -166,9 +166,9 @@ class ReportsController extends BaseController {
 		$fromDate = date($format, strtotime($report->start));
 
 		$orders = DB::raw('(SELECT * FROM `orders` WHERE `updated_at` BETWEEN \''
-			. $toDate .
-			'\' AND \''
 			. $fromDate .
+			'\' AND \''
+			. $toDate .
 			'\') AS filteredorders'
 		);
 
@@ -187,10 +187,17 @@ class ReportsController extends BaseController {
 		$toDate = date($format, strtotime($report->end));
 		$fromDate = date($format, strtotime($report->start));
 
-		$reportLines = DB::table('orders')
-			->select(DB::raw('count(id) as order_count'), DB::raw('sum(price) as income'), 'pizzeria_id')
-			->whereBetween('orders.updated_at', array($fromDate, $toDate))
-			->groupBy('pizzeria_id')
+		$orders = DB::raw('(SELECT * FROM `orders` WHERE `updated_at` BETWEEN \''
+			. $fromDate .
+			'\' AND \''
+			. $toDate .
+			'\') AS filteredorders'
+		);
+
+		$reportLines = DB::table('pizzerias')
+			->select(DB::raw('count(filteredorders.id) as order_count'), DB::raw('sum(filteredorders.price) as income'), 'pizzerias.name AS pizzeria_name')
+			->leftJoin($orders, 'pizzerias.id', '=', 'filteredorders.pizzeria_id')
+			->groupBy('pizzerias.id')
 			->get();
 
 		return $reportLines;

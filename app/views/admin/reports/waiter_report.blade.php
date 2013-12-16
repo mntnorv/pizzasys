@@ -22,6 +22,7 @@
 		</h4>
 		<hr/>
 	</div>
+	
 	<table class="table" id="reports-list-form">
 		<colgroup>
 			<col style="width: 10%;" />
