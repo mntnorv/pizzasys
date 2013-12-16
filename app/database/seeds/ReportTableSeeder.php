@@ -7,7 +7,7 @@ class ReportTableSeeder extends Seeder {
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 		$report = new Report(array(
-				'name' => 'Ataskaita 1',
+				'name' => 'Pirmoji užsakymų ataskaita',
 				'start' => '2013-12-01',
 				'end' => '2013-12-20'
 		));
@@ -17,9 +17,9 @@ class ReportTableSeeder extends Seeder {
 		$report->save();
 
 		$report = new Report(array(
-				'name' => 'Ataskaita 2',
+				'name' => 'Pirmoji picerijų ataskaita',
 				'start' => '2013-12-01',
-				'end' => '2013-12-20'
+				'end' => '2013-12-15'
 		));
 		
 		$type = ReportType::where('id', '=', '2')->first();
@@ -27,8 +27,8 @@ class ReportTableSeeder extends Seeder {
 		$report->save();
 
 		$report = new Report(array(
-				'name' => 'Ataskaita 3',
-				'start' => '2013-12-01',
+				'name' => 'Antroji picerijų ataskaita',
+				'start' => '2013-12-15',
 				'end' => '2013-12-20'
 		));
 		

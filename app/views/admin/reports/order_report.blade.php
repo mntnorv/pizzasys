@@ -8,12 +8,20 @@
 
 <div class="container">
 	<div class="page-header">
-		<h1>Užsakymų ataskaita</h1>
+		<h1>
+			{{$report->name}}		
+		</h1>
+
 	</div>
 	<div>
-		<?php echo "<pre>"; var_dump($reportLines); echo "</pre>"; ?>
+		<h4>
+			Užsakymų ataskaita		
+			<span class="pull-right">
+				Nuo {{$report->start}} Iki {{$report->end}}
+			</span>
+		</h4>
+		<hr/>
 	</div>
-
 	<table class="table" id="reports-list-form">
 		<colgroup>
 			<col style="width: 10%;" />
@@ -24,7 +32,7 @@
 			<tr>
 				<th>Picerija</th>
 				<th>Užsakymų skaičius</th>
-				<th>Pajamos</th>
+				<th>Apyvarta</th>
 			</tr>
 		</thead>
 		<tbody>

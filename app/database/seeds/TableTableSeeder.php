@@ -45,6 +45,30 @@ class TableTableSeeder extends Seeder {
 		$pizzeria = Pizzeria::where('name', '=', 'Kauno picerija 1')->first();
 		$table->pizzeria()->associate($pizzeria);
 		$table->save();
+
+		$table = new Table(array(
+			'name' => 'Staliukas D'
+		));
+
+		$pizzeria = Pizzeria::where('name', '=', 'Druskininkų picerija 1')->first();
+		$table->pizzeria()->associate($pizzeria);
+		$table->save();
+
+		$table = new Table(array(
+			'name' => 'Staliukas V'
+		));
+
+		$pizzeria = Pizzeria::where('name', '=', 'Vilniaus picerija 1')->first();
+		$table->pizzeria()->associate($pizzeria);
+		$table->save();
+
+		$table = new Table(array(
+			'name' => 'Staliukas K'
+		));
+
+		$pizzeria = Pizzeria::where('name', '=', 'Klaipėdos picerija 1')->first();
+		$table->pizzeria()->associate($pizzeria);
+		$table->save();
 		
 	}
 }
