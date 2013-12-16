@@ -9,6 +9,9 @@
 <div class="container">
 	<div class="page-header">
 		<h1>Administravimas</h1>
+		<ol class="breadcrumb">
+			<li class="active">Administravimas</li>
+		</ol>
 	</div>
 
 	<!-- Grid-->

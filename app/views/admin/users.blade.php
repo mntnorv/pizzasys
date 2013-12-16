@@ -5,6 +5,11 @@
 <div class="container">
 	<div class="page-header">
 		<h1>Vartotojų valdymas</h1>
+		<ol class="breadcrumb">
+			<li>{{link_to_route('admin', 'Administravimas')}}</li>
+			<li class="active">Vartotojai</li>
+		</ol>
+	</div>
 	</div>
 
 	<!-- Grid-->
