@@ -9,10 +9,10 @@ $( function(){
 	var tableSelectElem = $('#table');
 	var	waiterOrderManageTableBody = waiterOrderManageTable.find('tbody');
 	var waiterOrderManageTableRows = null;
-	var inputElements   = null;
-	var priceElements   = null;
-	var removeButtons   = null;
-	var fullPriceElem   = null;
+	var inputElements = null;
+	var priceElements = null;
+	var removeButtons = null;
+	var fullPriceElem = null;
 
 	var loadOrderFood = function(select) {
 		waiterOrderManageTableBody.empty();
@@ -99,7 +99,7 @@ $( function(){
 			'amount': newAmount
 		});
 
-		priceElement.html(newAmount * priceForOne);
+		priceElement.html(sprintf('%.2f', newAmount * priceForOne));
 	};
 
 	var updateFullPrice = function() {
@@ -107,7 +107,7 @@ $( function(){
 		priceElements.each(function (index) {
 			fullPrice += Number($(this).html());
 		});
-		fullPriceElem.html(fullPrice);
+		fullPriceElem.html(sprintf("%.2f", fullPrice));
 	};
 
 	var updateFullAmount = function() {

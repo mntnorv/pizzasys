@@ -1,14 +1,14 @@
 <tr
 	class="waiter-order-item"
-	data-food="{{ id }}"
-	data-price="{{ price }}"
+	data-food="{{id}}"
+	data-price="{{discounted_price}}"
 >
 	<td>{{ name }}</td>
 	<td class="align-right">
 		<input type="text" class="amount-input" value="{{amount}}" />
 	</td>
 	<td class="align-right">
-		<span class="price">{{ price }}</span> Lt
+		<span class="price">{{formatCurrency discounted_price}}</span> Lt
 	</td>
 	<td>
 		<button class="btn btn-xs btn-danger remove-button fa fa-times"></button>
