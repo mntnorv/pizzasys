@@ -41,7 +41,7 @@
 			<div class="form-group">
 				{{ Form::label('pizzeria', 'Picerija:', array('class' => 'col-md-4 control-label')) }}
 				<div class="col-md-8">
-					{{ Form::select('pizzeria', array(), NULL, array('class' => 'form-control')) }}
+					{{ Form::select('pizzeria', array(), NULL, array('class' => 'form-control', 'data-selected'=> $order->pizzeria_id)) }}
 				</div>
 			</div>
 
@@ -49,7 +49,7 @@
 			<div class="form-group" id="table-input-group">
 				{{ Form::label('table', 'Staliukas:', array('class' => 'col-md-4 control-label')) }}
 				<div class="col-md-8">
-					{{ Form::select('table', array(), NULL, array('class' => 'form-control')) }}
+					{{ Form::select('table', array(), NULL, array('class' => 'form-control', 'data-selected'=> $order->table_id)) }}
 				</div>
 			</div>
 

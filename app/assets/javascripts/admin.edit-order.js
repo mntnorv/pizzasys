@@ -5,8 +5,6 @@ $(function() {
 		return false;
 	}
 
-	console.log('editOrderForm');
-
 	var typeInput       = editOrderForm.find('#type');
 	var pizzeriaInput   = editOrderForm.find('#pizzeria');
 	var tableInput      = editOrderForm.find('#table');
@@ -57,6 +55,10 @@ $(function() {
 		var url = BASE_URL + '/api/get/tables/' + pizzeria_id;
 		$.getJSON(url, function (data) {
 			tableInput.html(JST['handlebars/option_list'](data));
+			if(tableInput.attr('data-selected')) {
+				tableInput.val(tableInput.attr('data-selected'));
+				tableInput.removeAttr('data-selected');
+			}
 		});
 	};
 
@@ -65,6 +67,10 @@ $(function() {
 		var url = BASE_URL + '/api/get/pizzerias/' + city_id;
 		$.getJSON(url, function (data) {
 			pizzeriaInput.html(JST['handlebars/option_list'](data));
+			if(pizzeriaInput.attr('data-selected')) {
+				pizzeriaInput.val(pizzeriaInput.attr('data-selected'));
+				pizzeriaInput.removeAttr('data-selected');
+			}
 			updateTables();
 		});
 	};
@@ -91,6 +97,8 @@ $(function() {
 		$.post(url, data, function (response) {
 			if(response.error) {
 				alert('Klaida. Nepavyko atnaujinti užsakymo.');
+			} else if (response.success) {
+				alert('Užsakymas sėkmingai atnaujintas');
 			}
 		}, 'json');
 	};
