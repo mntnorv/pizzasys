@@ -48,7 +48,7 @@ $( function(){
 			'amount': newAmount
 		});
 
-		priceElement.html(newAmount * priceForOne);
+		priceElement.html(sprintf("%.2f", newAmount * priceForOne));
 	};
 
 	var updateFullPrice = function() {
@@ -56,7 +56,7 @@ $( function(){
 		priceElements.each(function (index) {
 			fullPrice += Number($(this).html());
 		});
-		fullPriceElem.html(fullPrice);
+		fullPriceElem.html(sprintf("%.2f", fullPrice));
 	};
 
 	var updateFullAmount = function() {
@@ -86,7 +86,7 @@ $( function(){
 		updateFullAmount();
 	};
 
-	$( "#query" ).autocomplete({
+	$("#query").autocomplete({
 		source: BASE_URL + "/api/get/food",
 		minLength: 2,
 		select: function( event, ui ) {
@@ -101,34 +101,34 @@ $( function(){
 			if(foodAmountID == -1){
 				$("#waiter-order-table tbody").append(
 					JST['handlebars/waiter_food_list'](ui.item)
-					);
+				);
 
-        	//Add food to the cart
-        	var url = BASE_URL + '/api/waiter/order/add';
-        	$.post(url, {
-        		'food_id': ui.item.id,
-        	});
-        }else{
-        	var foodInputField = inputElements.eq(foodAmountID);
-        	var foodAmount = foodInputField.val();
+				//Add food to the cart
+				var url = BASE_URL + '/api/waiter/order/add';
+				$.post(url, {
+					'food_id': ui.item.id,
+				});
+			} else {
+				var foodInputField = inputElements.eq(foodAmountID);
+				var foodAmount = foodInputField.val();
 
-        	foodAmount++;
-        	foodInputField.val('' +foodAmount);
+				foodAmount++;
+				foodInputField.val('' +foodAmount);
 
-    		//Update food amount
-    		var url = BASE_URL + '/api/waiter/order/update';
-    		$.post(url, {
-    			'food_id': ui.item.id,
-    			'amount' : foodAmountID
-    		});
-    	}
+				//Update food amount
+				var url = BASE_URL + '/api/waiter/order/update';
+				$.post(url, {
+					'food_id': ui.item.id,
+					'amount' : foodAmountID
+				});
+			}
 
-    	updateCachedSelectors();
-    	updateFullPrice();
-    	removeButtons.unbind("click");
-    	removeButtons.click(deleteRow);
-    }
-});
+			updateCachedSelectors();
+			updateFullPrice();
+			removeButtons.unbind("click");
+			removeButtons.click(deleteRow);
+		}
+	});
 
 	//Handle submit yourself
 	var form = $("#waiter-order-form");
@@ -138,13 +138,14 @@ $( function(){
 		var waiterTableId = $(this).find('select[name="table"]').val();
 
 		var url = BASE_URL + "/api/waiter/order/save"
-		$.post(url,
-			{
-				'table' : waiterTableId
-			},
-			function(data){
-				alert(data);
-			} );
-	}
-	)
-} )
+		$.post(url, {
+			'table' : waiterTableId
+		}, function(data){
+			if (data.success) {
+				alert('Užsakymas sėkmingai išsaugotas');
+			} else if (data.error) {
+				alert('Klaida! Nepavyko išsaugoti užsakymo');
+			}
+		}, 'json');
+	});
+});
