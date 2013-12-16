@@ -7,7 +7,7 @@
 		<h1>Ataskaitų redagavimas</h1>
 		<ol class="breadcrumb">
 			<li>{{link_to_route('admin', 'Administravimas')}}</li>
-			<li>{{link_to_route('admin.reports.show', 'Ataskaitos')}}</li>
+			<li>{{link_to_route('admin.reports', 'Ataskaitos')}}</li>
 			<li class="active">Redagavimas</li>
 		</ol>
 	</div>

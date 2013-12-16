@@ -28,13 +28,14 @@ $(function() {
 			var url = BASE_URL + '/api/report/create';
 		}
 
-
-
 		$.post(url, data, function (response) {
 			console.log(response);
-			alert(response);
-			if(response.success==='REPORT_CREATED'){
+			if (response.success === 'REPORT_CREATED'){
 				window.location.href = BASE_URL + '/admin/reports';
+			} else if (response.success) {
+				alert('Ataskaita sėkmingai atnaujinta');
+			} else if (response.error) {
+				alert('Klaida! Ataskaita neatnaujinta');
 			}
 		}, 'json');
 	});

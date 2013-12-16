@@ -13,8 +13,6 @@
 			<li>{{link_to_route('admin', 'Administravimas')}}</li>
 			<li class="active">Ataskaitos</li>
 		</ol>
-		
-	{{link_to_route('admin.report.pdf', 'PDF', array('id' => '1'))}}
 	</div>
 
 	<table class="table" id="reports-list-form">
