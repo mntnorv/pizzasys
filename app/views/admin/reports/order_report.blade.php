@@ -22,10 +22,6 @@
 		</h4>
 		<hr/>
 	</div>
-	<div>
-		<?php echo "<pre>"; var_dump($reportLines); echo "</pre>"; ?>
-	</div>
-
 	<table class="table" id="reports-list-form">
 		<colgroup>
 			<col style="width: 10%;" />
@@ -36,7 +32,7 @@
 			<tr>
 				<th>Picerija</th>
 				<th>Užsakymų skaičius</th>
-				<th>Pajamos</th>
+				<th>Apyvarta</th>
 			</tr>
 		</thead>
 		<tbody>
