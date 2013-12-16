@@ -124,6 +124,23 @@ class ReportsController extends BaseController {
 	*/
 	public function showReport($id) {
 
+
+		// $report = Report::find($id);
+
+		// $format = 'Y-m-d H:i:s';	
+		// $toDate = date($format, strtotime( $report->end ));
+		// $fromDate = date($format, strtotime( $report->start ));
+
+		// $reports = DB::table('users')
+		// 	->select(DB::raw('count(orders.id) as order_count'), 'users.username', 'users.pizzeria_id')
+		// 	->leftJoin('orders', 'users.id', '=', 'orders.user_id' )
+		// 	->where('users.user_type_id', '=', '2')
+		// 	->whereBetween('orders.updated_at', array($fromDate, $toDate))
+		// 	->groupBy('users.id')
+		// 	->get();
+		// $queries = DB::getQueryLog();
+		// $last_query = end($queries);
+
 		// $report = Report::find($id);
 		$format = 'Y-m-d H:i:s';
 		$now = time();
@@ -155,11 +172,17 @@ class ReportsController extends BaseController {
 		$last_query = end($queries);
 		var_dump($report2, $last_query);
 
-		exit();
-
-
-
-		return View::make('admin.show_report', array("report" => $report));
+		return View::make('admin.show_report', array("reports" => $reports, "report" => $report));
 	}
 	
+	
+	public function showReportPDF($id) {
+
+		// $report = Report::find($id);
+
+		
+
+		$pdf = PDF::loadView('admin.show_report', array());
+		return $pdf->download('test.pdf');
+	}
 }

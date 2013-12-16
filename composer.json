@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 		"codesleeve/asset-pipeline": "1.3",
-		"codesleeve/l4-asset-handlebars": "dev-master"
+		"codesleeve/l4-asset-handlebars": "dev-master",
+		"barryvdh/laravel-dompdf": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

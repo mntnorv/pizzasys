@@ -88,6 +88,9 @@ Route::group(array('prefix' => 'admin'), function() {
 	Route::get('report/edit/{id}', array('uses' => 'ReportsController@showReportEdit', 
 		'as' => 'admin.report.edit'))->before('admin');
 
+	Route::get('report/pdf/{id}', array('uses' => 'ReportsController@showReportPDF', 
+			'as' => 'admin.report.pdf'));
+
 	Route::get('report/{id}', array('uses' => 'ReportsController@showReport', 
 			'as' => 'admin.report.show'));
 
